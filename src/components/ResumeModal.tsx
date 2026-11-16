@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Download, Printer, Mail, ExternalLink, MapPin, Award, CheckCircle2 } from 'lucide-react';
+import { X, Printer, MapPin, Award, Copy, Check } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -8,8 +9,25 @@ interface ResumeModalProps {
   onContactClick?: () => void;
 }
 
-export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, onContactClick }) => {
+export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
+  const { t } = useLanguage();
+  const [copiedHeadline, setCopiedHeadline] = useState(false);
   if (!isOpen) return null;
+
+  const positioningHeadline = t(
+    'People Operations & HR Systems Specialist | Managing 110+ Workforce & Building In-House HR Tech (PMS, ATS, Payroll, Analytics)',
+    'Spesialis People Operations & Sistem HR | Mengelola 110+ Karyawan & Membangun HR Tech Internal (PMS, ATS, Payroll, Analitik)'
+  );
+
+  const handleCopyHeadline = async () => {
+    try {
+      await navigator.clipboard.writeText(positioningHeadline);
+      setCopiedHeadline(true);
+      setTimeout(() => setCopiedHeadline(false), 2000);
+    } catch {
+      // Ignore clipboard failures
+    }
+  };
 
   const handlePrint = () => {
     window.print();
@@ -65,11 +83,34 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, onCon
                 <h1 className="font-serif text-3xl sm:text-4xl text-[#171B26] font-normal tracking-tight">
                   Bangkit Surya Wijaya
                 </h1>
-                <p className="font-mono text-xs uppercase tracking-widest text-[#B49A70] mt-1 font-semibold">
-                  People & Culture Lead · Business Analyst · Digital Product Architect
-                </p>
+                <div className="flex flex-wrap items-center gap-2 mt-1.5">
+                  <p className="font-mono text-xs uppercase tracking-wider text-[#B49A70] font-semibold leading-snug">
+                    {positioningHeadline}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={handleCopyHeadline}
+                    className="print:hidden inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#F5F3EE] hover:bg-[#EAE3D7] border border-[#E4E0D8] text-[10px] font-mono text-[#605E59] transition-colors cursor-pointer"
+                    title={t('Copy CV/LinkedIn Headline', 'Salin Headline CV/LinkedIn')}
+                  >
+                    {copiedHeadline ? (
+                      <>
+                        <Check className="w-3 h-3 text-[#6E7C69]" />
+                        <span>{t('Copied', 'Disalin')}</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3 h-3" />
+                        <span>{t('Copy Headline', 'Salin Headline')}</span>
+                      </>
+                    )}
+                  </button>
+                </div>
                 <p className="text-xs text-[#6B6A65] mt-2 max-w-xl leading-relaxed">
-                  Multidisciplinary professional operating at the intersection of Human Resources, strategic business planning, and internal SaaS engineering. Experienced as Sole HR Lead managing 110+ personnel, architecting custom recruitment and payroll automation platforms, and authoring C-suite workforce diagnostics.
+                  {t(
+                    'People Operations & HR Systems practitioner combining IPB University quantitative modeling (S.Pt., GPA 3.65) with hands-on HR governance. Experienced in managing end-to-end HR operations for 110+ personnel and building in-house PMS, ATS, Payroll, and Psychometric systems.',
+                    'Praktisi People Operations & Sistem HR yang memadukan pemodelan kuantitatif IPB University (S.Pt., IPK 3,65) dengan tata kelola HR lapangan. Berpengalaman mengelola operasional HR secara end-to-end bagi 110+ karyawan sekaligus membangun sistem PMS, ATS, Payroll, dan Psikometri internal.'
+                  )}
                 </p>
               </div>
 
@@ -91,15 +132,15 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, onCon
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
                 <div className="p-3.5 bg-[#F5F3EE] rounded-xs border border-[#E4E0D8]">
                   <strong className="block font-semibold text-[#171B26] mb-1">People & Culture</strong>
-                  <span className="text-[#6B6A65] text-[11px]">Sole HR Lead 110+, BPJS, PPh 21 TER, KPI/OKR, Talent Acquisition</span>
+                  <span className="text-[#6B6A65] text-[11px]">End-to-End HR Ops (110+), BPJS, PPh 21 TER, KPI/OKR, Talent Acquisition</span>
                 </div>
                 <div className="p-3.5 bg-[#F5F3EE] rounded-xs border border-[#E4E0D8]">
                   <strong className="block font-semibold text-[#171B26] mb-1">Business Analysis</strong>
                   <span className="text-[#6B6A65] text-[11px]">Workforce Needs Analysis, RACI Matrices, Process Optimization</span>
                 </div>
                 <div className="p-3.5 bg-[#F5F3EE] rounded-xs border border-[#E4E0D8]">
-                  <strong className="block font-semibold text-[#171B26] mb-1">Digital Products</strong>
-                  <span className="text-[#6B6A65] text-[11px]">Matchify RMS, Slipr Payroll, Zeno Psychometrics, Cloud APIs</span>
+                  <strong className="block font-semibold text-[#171B26] mb-1">In-House HR Tech</strong>
+                  <span className="text-[#6B6A65] text-[11px]">Pervia PMS, Matchify RMS, Slipr Payroll, Zeno Assessment</span>
                 </div>
                 <div className="p-3.5 bg-[#F5F3EE] rounded-xs border border-[#E4E0D8]">
                   <strong className="block font-semibold text-[#171B26] mb-1">High-Stakes Ops</strong>
@@ -124,7 +165,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, onCon
                     <span className="font-mono text-xs text-[#A7A69F]">Apr 2026 – Present · Jakarta</span>
                   </div>
                   <p className="text-xs text-[#6B6A65] leading-relaxed">
-                    Sole HR Lead directing full-spectrum Human Capital operations single-handedly for 110+ full-time personnel across operational and business units.
+                    Dedicated HR Generalist &amp; People Operations Lead supporting end-to-end Human Capital operations for 110+ full-time personnel across operational and business units.
                   </p>
                   <ul className="text-xs text-[#171B26] space-y-1.5 list-disc pl-4">
                     <li>Engineered in-house automation suites: Matchify (RMS with smart interview timers), Slipr (automated payroll and encrypted PDF payslips), and Zeno (psychometrics).</li>
@@ -186,8 +227,18 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, onCon
                 </span>
                 <div className="space-y-1 text-xs">
                   <strong className="block text-sm font-serif text-[#171B26]">Institut Pertanian Bogor (IPB University)</strong>
-                  <span className="text-[#6B6A65] block">Bachelor of Animal Science (S.Pt.) · GPA 3.65 / 4.00</span>
-                  <span className="font-mono text-[#A7A69F] text-[11px] block">2020 – 2024 · Faculty of Animal Science</span>
+                  <span className="text-[#6B6A65] block">
+                    {t(
+                      'Bachelor of Animal Science (S.Pt.) · GPA 3.65 / 4.00',
+                      'Sarjana Peternakan (S.Pt.) · IPK 3,65 / 4,00'
+                    )}
+                  </span>
+                  <span className="font-mono text-[#A7A69F] text-[11px] block">
+                    {t(
+                      '2020 – 2024 · Quantitative Modeling & Statistical Optimization',
+                      '2020 – 2024 · Pemodelan Kuantitatif & Optimasi Statistik'
+                    )}
+                  </span>
                 </div>
               </div>
 

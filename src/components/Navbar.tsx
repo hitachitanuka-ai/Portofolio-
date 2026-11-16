@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { AppRoute } from '../types';
 import { IMAGES } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 interface NavbarProps {
   currentRoute: AppRoute;
@@ -20,14 +21,14 @@ interface NavbarProps {
   onOpenResume: () => void;
 }
 
-const NAV_ITEMS: { label: string; route: AppRoute }[] = [
-  { label: 'Home', route: 'home' },
-  { label: 'About', route: 'about' },
-  { label: 'Expertise', route: 'expertise' },
-  { label: 'Projects', route: 'projects' },
-  { label: 'Experience', route: 'experience' },
-  { label: 'Insights', route: 'insights' },
-  { label: 'Contact', route: 'contact' },
+const NAV_ITEMS: { labelEn: string; labelId: string; route: AppRoute }[] = [
+  { labelEn: 'Home', labelId: 'Beranda', route: 'home' },
+  { labelEn: 'About', labelId: 'Tentang', route: 'about' },
+  { labelEn: 'Expertise', labelId: 'Keahlian', route: 'expertise' },
+  { labelEn: 'Projects', labelId: 'Proyek', route: 'projects' },
+  { labelEn: 'Experience', labelId: 'Pengalaman', route: 'experience' },
+  { labelEn: 'Insights', labelId: 'Wawasan', route: 'insights' },
+  { labelEn: 'Contact', labelId: 'Kontak', route: 'contact' },
 ];
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -39,6 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isExpDropdownOpen, setIsExpDropdownOpen] = useState(false);
   const dropdownTimerRef = useRef<number | null>(null);
+  const { lang, setLang, t } = useLanguage();
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -137,7 +139,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </span>
               <div className="flex items-center gap-1.5 mt-0.5">
                 <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.18em] uppercase font-bold text-[#B49A70]">
-                  BANGKIT SURYA
+                  BANGKIT SURYA WIJAYA
                 </span>
                 <span
                   aria-hidden="true"
@@ -152,7 +154,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     isDarkTop ? 'text-[#D1CCC5]/80' : 'text-[#605E59]'
                   }`}
                 >
-                  HC &amp; Systems
+                  People Ops &amp; HR Tech
                 </span>
               </div>
             </div>
@@ -207,7 +209,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                           }`}
                         />
                       )}
-                      <span>{item.label}</span>
+                      <span>{lang === 'id' ? item.labelId : item.labelEn}</span>
                       <ChevronDown
                         className={`w-3 h-3 text-[#B49A70] transition-transform duration-200 ${
                           isExpDropdownOpen ? 'rotate-180' : ''
@@ -227,10 +229,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                         >
                           <div className="px-3 pt-1.5 pb-2 border-b border-[#E7E0D6] flex items-center justify-between">
                             <span className="text-[10px] font-mono uppercase tracking-widest text-[#9E7B62] font-bold">
-                              Experience Dossier
+                              {t('Experience Dossier', 'Rekam Pengalaman')}
                             </span>
                             <span className="text-[10px] font-mono text-[#6E7C69] font-semibold">
-                              3 Tracks
+                              {t('3 Tracks', '3 Jalur')}
                             </span>
                           </div>
 
@@ -245,14 +247,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center justify-between">
                                   <span className="text-xs font-bold text-[#1E2022]">
-                                    Working Experience
+                                    {t('Working Experience', 'Pengalaman Kerja')}
                                   </span>
                                   <span className="font-mono text-[10px] text-[#B49A70] font-semibold">
-                                    4 Roles
+                                    {t('4 Roles', '4 Peran')}
                                   </span>
                                 </div>
                                 <span className="text-[11px] text-[#605E59] block truncate">
-                                  HR Lead, Project Analyst &amp; Ops
+                                  {t('HR Lead, Project Analyst & Ops', 'HR Lead, Project Analyst & Ops')}
                                 </span>
                               </div>
                             </button>
@@ -267,10 +269,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center justify-between">
                                   <span className="text-xs font-bold text-[#1E2022]">
-                                    Organizational Leadership
+                                    {t('Organizational Leadership', 'Kepemimpinan Organisasi')}
                                   </span>
                                   <span className="font-mono text-[10px] text-[#B49A70] font-semibold">
-                                    5 Roles
+                                    {t('5 Roles', '5 Amanah')}
                                   </span>
                                 </div>
                                 <span className="text-[11px] text-[#605E59] block truncate">
@@ -289,10 +291,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center justify-between">
                                   <span className="text-xs font-bold text-[#1E2022]">
-                                    Project &amp; Systems
+                                    {t('Project & Systems', 'Proyek & Sistem')}
                                   </span>
                                   <span className="font-mono text-[10px] text-[#6E7C69] font-semibold">
-                                    6 Projects
+                                    {t('7 Projects', '7 Proyek')}
                                   </span>
                                 </div>
                                 <span className="text-[11px] text-[#605E59] block truncate">
@@ -309,7 +311,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                             >
                               <span className="flex items-center gap-2">
                                 <Aperture className="w-3.5 h-3.5 text-[#B49A70]" />
-                                <span>CreativeStyle Archive</span>
+                                <span>{t('CreativeStyle Archive', 'Arsip Foto & Dokumentasi')}</span>
                               </span>
                               <ArrowUpRight className="w-3.5 h-3.5 text-[#B49A70] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                             </button>
@@ -346,22 +348,60 @@ export const Navbar: React.FC<NavbarProps> = ({
                       }`}
                     />
                   )}
-                  <span>{item.label}</span>
+                  <span>{lang === 'id' ? item.labelId : item.labelEn}</span>
                 </button>
               );
             })}
           </nav>
 
           {/* -------------------------------------------------------------------
-              RIGHT: VISUAL ARCHIVE SHORTCUT + INTEGRATED EXECUTIVE RESUME CTA
+              RIGHT: LANGUAGE TOGGLE + VISUAL ARCHIVE SHORTCUT + EXECUTIVE RESUME CTA
               ------------------------------------------------------------------- */}
-          <div className="hidden lg:flex items-center gap-2.5 shrink-0">
+          <div className="hidden lg:flex items-center gap-2 shrink-0">
+            {/* Compact EN / ID Language Switcher */}
+            <div
+              role="group"
+              aria-label="Language Switcher"
+              className={`inline-flex items-center p-0.5 rounded-full border text-[10px] font-mono font-bold transition-colors ${
+                isDarkTop
+                  ? 'bg-white/[0.07] border-white/20 text-[#D1CCC5]'
+                  : 'bg-[#EDE8DF]/80 border-[#E0D9CE] text-[#605E59]'
+              }`}
+            >
+              <button
+                type="button"
+                onClick={() => setLang('en')}
+                className={`px-2 py-1 rounded-full transition-all cursor-pointer ${
+                  lang === 'en'
+                    ? isDarkTop
+                      ? 'bg-white text-[#14171A] shadow-xs'
+                      : 'bg-[#1E2022] text-white shadow-xs'
+                    : 'hover:text-[#B49A70]'
+                }`}
+              >
+                EN
+              </button>
+              <button
+                type="button"
+                onClick={() => setLang('id')}
+                className={`px-2 py-1 rounded-full transition-all cursor-pointer ${
+                  lang === 'id'
+                    ? isDarkTop
+                      ? 'bg-white text-[#14171A] shadow-xs'
+                      : 'bg-[#1E2022] text-white shadow-xs'
+                    : 'hover:text-[#B49A70]'
+                }`}
+              >
+                ID
+              </button>
+            </div>
+
             {/* Visual Archive Icon Shortcut */}
             <button
               onClick={() => handleLinkClick('archive')}
-              title="CreativeStyle Visual Archive"
-              aria-label="Open CreativeStyle Visual Archive"
-              className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all cursor-pointer active:scale-95 ${
+              title={t('CreativeStyle Visual Archive', 'Arsip Visual & Dokumentasi')}
+              aria-label={t('Open CreativeStyle Visual Archive', 'Buka Arsip Visual')}
+              className={`w-9 h-9 rounded-full flex items-center justify-center border transition-all cursor-pointer active:scale-95 ${
                 currentRoute === 'archive'
                   ? 'bg-[#6E7C69] text-white border-[#6E7C69] shadow-sm'
                   : isDarkTop
@@ -375,17 +415,17 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Integrated Executive Profile + Resume CV Action */}
             <button
               onClick={onOpenResume}
-              className={`group inline-flex items-center gap-2.5 pl-1.5 pr-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all cursor-pointer active:scale-95 border ${
+              className={`group inline-flex items-center gap-2 pl-1.5 pr-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all cursor-pointer active:scale-95 border ${
                 isDarkTop
                   ? 'bg-white text-[#14171A] hover:bg-[#B49A70] hover:text-white border-white shadow-lg'
                   : 'bg-[#1E2022] text-[#F5F3EE] hover:bg-[#6E7C69] border-[#1E2022] hover:border-[#6E7C69] shadow-sm'
               }`}
             >
-              <span className="relative w-7 h-7 rounded-full overflow-hidden border border-[#B49A70]/60 shrink-0">
+              <span className="relative w-7 h-7 rounded-full overflow-hidden border border-[#B49A70]/60 shrink-0 bg-[#E7E0D6]">
                 <img
-                  src={IMAGES.heroSurya}
+                  src={IMAGES.suryaOriginal}
                   alt="Bangkit Surya Wijaya"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-[center_18%] scale-125"
                 />
                 <span
                   aria-hidden="true"
@@ -400,17 +440,45 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* -------------------------------------------------------------------
               MOBILE MENU ACTIONS
               ------------------------------------------------------------------- */}
-          <div className="flex items-center gap-2 lg:hidden shrink-0">
+          <div className="flex items-center gap-1.5 lg:hidden shrink-0">
+            <div
+              role="group"
+              aria-label="Mobile Language Switcher"
+              className={`inline-flex items-center p-0.5 rounded-full border text-[10px] font-mono font-bold ${
+                isDarkTop
+                  ? 'bg-white/10 border-white/20 text-[#D1CCC5]'
+                  : 'bg-white border-[#E4E0D8] text-[#605E59]'
+              }`}
+            >
+              <button
+                type="button"
+                onClick={() => setLang('en')}
+                className={`px-2 py-1 rounded-full cursor-pointer ${
+                  lang === 'en' ? 'bg-[#B49A70] text-[#14171A]' : ''
+                }`}
+              >
+                EN
+              </button>
+              <button
+                type="button"
+                onClick={() => setLang('id')}
+                className={`px-2 py-1 rounded-full cursor-pointer ${
+                  lang === 'id' ? 'bg-[#B49A70] text-[#14171A]' : ''
+                }`}
+              >
+                ID
+              </button>
+            </div>
             <button
               onClick={onOpenResume}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full border transition-colors cursor-pointer min-h-[40px] ${
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full border transition-colors cursor-pointer min-h-[38px] ${
                 isDarkTop
                   ? 'text-[#14171A] bg-white border-white'
                   : 'text-white bg-[#1E2022] border-[#1E2022]'
               }`}
             >
               <FileText className="w-3.5 h-3.5 text-[#B49A70]" />
-              <span>Resume</span>
+              <span>CV</span>
             </button>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -466,7 +534,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                               isActive ? 'text-[#6E7C69]' : 'text-[#1E2022]'
                             }`}
                           >
-                            {item.label}
+                            {lang === 'id' ? item.labelId : item.labelEn}
                           </span>
                           <span className="font-mono text-xs text-[#B49A70] font-bold">
                             0{idx + 1}
@@ -477,19 +545,19 @@ export const Navbar: React.FC<NavbarProps> = ({
                             onClick={() => handleLinkClick('experience', 'working')}
                             className="text-xs font-medium text-[#605E59] hover:text-[#1E2022] block py-1 cursor-pointer text-left"
                           >
-                            Working Experience — 4 Corporate Roles
+                            {t('Working Experience — 4 Corporate Roles', 'Pengalaman Kerja — 4 Peran Korporat')}
                           </button>
                           <button
                             onClick={() => handleLinkClick('experience', 'organizational')}
                             className="text-xs font-medium text-[#605E59] hover:text-[#1E2022] block py-1 cursor-pointer text-left"
                           >
-                            Organizational Leadership — 5 Mandates
+                            {t('Organizational Leadership — 5 Mandates', 'Kepemimpinan Organisasi — 5 Amanah')}
                           </button>
                           <button
                             onClick={() => handleLinkClick('experience', 'project')}
                             className="text-xs font-medium text-[#605E59] hover:text-[#1E2022] block py-1 cursor-pointer text-left"
                           >
-                            Project &amp; Systems — 6 Initiatives
+                            {t('Project & Systems — 7 Initiatives', 'Proyek & Sistem — 7 Inisiatif')}
                           </button>
                         </div>
                       </div>
@@ -507,7 +575,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                           isActive ? 'text-[#6E7C69]' : 'text-[#1E2022]'
                         }`}
                       >
-                        {item.label}
+                        {lang === 'id' ? item.labelId : item.labelEn}
                       </span>
                       <span className="font-mono text-xs text-[#B49A70] font-bold">
                         0{idx + 1}
@@ -528,10 +596,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </div>
                   <div className="text-left">
                     <span className="text-sm font-bold text-[#1E2022] block">
-                      CreativeStyle Visual Archive
+                      {t('CreativeStyle Visual Archive', 'Arsip Visual & Dokumentasi')}
                     </span>
                     <span className="text-[11px] font-mono text-[#9E7B62]">
-                      Albums · Events · Leadership
+                      {t('Albums · Events · Leadership', 'Album · Acara · Kepemimpinan')}
                     </span>
                   </div>
                 </div>
@@ -542,7 +610,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <div className="pt-6 mt-6 border-t border-[#E7E0D6] space-y-4">
               <div className="flex items-center gap-2 text-xs font-mono text-[#605E59]">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Available for Strategic Advisory &amp; Leadership</span>
+                <span>{t('Available for People Ops & HR Systems Impact', 'Siap Berkontribusi di People Ops & Sistem HR')}</span>
               </div>
               <button
                 onClick={() => {
@@ -552,7 +620,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 className="w-full py-3.5 bg-[#1E2022] text-white text-xs font-semibold tracking-wider uppercase rounded-full flex items-center justify-center gap-2 shadow-sm hover:bg-[#6E7C69] transition-colors cursor-pointer"
               >
                 <FileText className="w-4 h-4 text-[#B49A70]" />
-                <span>Download Executive Resume</span>
+                <span>{t('Download Executive Resume', 'Unduh CV Eksekutif')}</span>
               </button>
             </div>
           </motion.div>

@@ -18,6 +18,7 @@ import { InsightDetailPage } from './components/pages/InsightDetailPage';
 import { ContactPage } from './components/pages/ContactPage';
 import { VisualArchivePage } from './components/pages/VisualArchivePage';
 import { AppRoute } from './types';
+import { LanguageProvider } from './context/LanguageContext';
 
 export default function App() {
   const [currentRoute, setCurrentRoute] = useState<AppRoute>('home');
@@ -106,98 +107,100 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F3EE] text-[#23272F] font-sans selection:bg-[#B49A70] selection:text-white flex flex-col justify-between">
-      {/* Global Fixed Navigation Bar */}
-      <Navbar
-        currentRoute={currentRoute}
-        onNavigate={navigate}
-        onOpenResume={() => setIsResumeOpen(true)}
-      />
+    <LanguageProvider>
+      <div className="min-h-screen bg-[#F5F3EE] text-[#23272F] font-sans selection:bg-[#B49A70] selection:text-white flex flex-col justify-between">
+        {/* Global Fixed Navigation Bar */}
+        <Navbar
+          currentRoute={currentRoute}
+          onNavigate={navigate}
+          onOpenResume={() => setIsResumeOpen(true)}
+        />
 
-      {/* Main Page Body */}
-      <main className="flex-1">
-        {currentRoute === 'home' && (
-          <HomePage
-            onNavigate={navigate}
-            onOpenResume={() => setIsResumeOpen(true)}
-          />
-        )}
+        {/* Main Page Body */}
+        <main className="flex-1">
+          {currentRoute === 'home' && (
+            <HomePage
+              onNavigate={navigate}
+              onOpenResume={() => setIsResumeOpen(true)}
+            />
+          )}
 
-        {currentRoute === 'about' && (
-          <AboutPage
-            onNavigate={navigate}
-            onOpenResume={() => setIsResumeOpen(true)}
-          />
-        )}
+          {currentRoute === 'about' && (
+            <AboutPage
+              onNavigate={navigate}
+              onOpenResume={() => setIsResumeOpen(true)}
+            />
+          )}
 
-        {currentRoute === 'expertise' && (
-          <ExpertisePage
-            onNavigate={navigate}
-          />
-        )}
+          {currentRoute === 'expertise' && (
+            <ExpertisePage
+              onNavigate={navigate}
+            />
+          )}
 
-        {currentRoute === 'projects' && (
-          <ProjectsPage
-            onNavigate={navigate}
-          />
-        )}
+          {currentRoute === 'projects' && (
+            <ProjectsPage
+              onNavigate={navigate}
+            />
+          )}
 
-        {currentRoute === 'project-detail' && (
-          <ProjectDetailPage
-            projectId={activeSlug || 'matchify-platform'}
-            onNavigate={navigate}
-          />
-        )}
+          {currentRoute === 'project-detail' && (
+            <ProjectDetailPage
+              projectId={activeSlug || 'matchify-platform'}
+              onNavigate={navigate}
+            />
+          )}
 
-        {currentRoute === 'experience' && (
-          <ExperiencePage
-            initialSubMenu={activeSlug}
-            onNavigate={navigate}
-            onOpenResume={() => setIsResumeOpen(true)}
-          />
-        )}
+          {currentRoute === 'experience' && (
+            <ExperiencePage
+              initialSubMenu={activeSlug}
+              onNavigate={navigate}
+              onOpenResume={() => setIsResumeOpen(true)}
+            />
+          )}
 
-        {currentRoute === 'insights' && (
-          <InsightsPage
-            onNavigate={navigate}
-          />
-        )}
+          {currentRoute === 'insights' && (
+            <InsightsPage
+              onNavigate={navigate}
+            />
+          )}
 
-        {currentRoute === 'insight-detail' && (
-          <InsightDetailPage
-            postSlug={activeSlug || 'zeno-assessment-platform'}
-            onNavigate={navigate}
-          />
-        )}
+          {currentRoute === 'insight-detail' && (
+            <InsightDetailPage
+              postSlug={activeSlug || 'zeno-assessment-platform'}
+              onNavigate={navigate}
+            />
+          )}
 
-        {currentRoute === 'contact' && (
-          <ContactPage
-            onOpenResume={() => setIsResumeOpen(true)}
-          />
-        )}
+          {currentRoute === 'contact' && (
+            <ContactPage
+              onOpenResume={() => setIsResumeOpen(true)}
+            />
+          )}
 
-        {currentRoute === 'archive' && (
-          <VisualArchivePage
-            onNavigate={navigate}
-          />
-        )}
-      </main>
+          {currentRoute === 'archive' && (
+            <VisualArchivePage
+              onNavigate={navigate}
+            />
+          )}
+        </main>
 
-      {/* Global Minimal Premium Footer */}
-      <Footer
-        onNavigate={navigate}
-        onOpenResume={() => setIsResumeOpen(true)}
-      />
+        {/* Global Minimal Premium Footer */}
+        <Footer
+          onNavigate={navigate}
+          onOpenResume={() => setIsResumeOpen(true)}
+        />
 
-      {/* Printable Executive Resume Modal */}
-      <ResumeModal
-        isOpen={isResumeOpen}
-        onClose={() => setIsResumeOpen(false)}
-        onContactClick={() => {
-          setIsResumeOpen(false);
-          navigate('contact');
-        }}
-      />
-    </div>
+        {/* Printable Executive Resume Modal */}
+        <ResumeModal
+          isOpen={isResumeOpen}
+          onClose={() => setIsResumeOpen(false)}
+          onContactClick={() => {
+            setIsResumeOpen(false);
+            navigate('contact');
+          }}
+        />
+      </div>
+    </LanguageProvider>
   );
 }

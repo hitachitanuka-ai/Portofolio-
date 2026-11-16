@@ -122,7 +122,7 @@ export const BenefitsBento: React.FC<BenefitsBentoProps> = ({ onViewPortfolio })
             </div>
 
             <p className="text-xs text-neutral-600 leading-relaxed relative z-10">
-              Sole HR Lead yang mengelola penuh operasional karyawan, absensi digital, kesejahteraan, dan kepatuhan BPJS tanpa deviasi hukum.
+              People &amp; Culture Lead yang mendampingi operasional karyawan, absensi digital, kesejahteraan, dan kepatuhan BPJS secara end-to-end.
             </p>
           </div>
 

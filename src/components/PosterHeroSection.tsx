@@ -3,6 +3,7 @@ import { ArrowDown, ArrowUpRight, Sparkles, FileText } from 'lucide-react';
 import { IMAGES } from '../data/portfolioData';
 import { AppRoute } from '../types';
 import { ScrollReveal } from './ScrollReveal';
+import { useLanguage } from '../context/LanguageContext';
 
 interface PosterHeroSectionProps {
   onNavigate: (route: AppRoute, slug?: string) => void;
@@ -15,6 +16,7 @@ export const PosterHeroSection: React.FC<PosterHeroSectionProps> = ({
   onOpenResume,
   onScrollToNext,
 }) => {
+  const { t } = useLanguage();
   return (
     <section className="relative w-full min-h-[94vh] lg:min-h-screen bg-[#14171A] text-[#F3EFEA] overflow-hidden flex flex-col justify-between pt-24 sm:pt-28 pb-10 select-none">
       {/* Background Ambient Glows & Lighting */}
@@ -46,16 +48,16 @@ export const PosterHeroSection: React.FC<PosterHeroSectionProps> = ({
       >
         <div className="space-y-0.5">
           <span className="text-[#B49A70] font-bold block">
-            HUMAN CAPITAL SPECIALIST
+            {t('PEOPLE OPERATIONS & HR SYSTEMS SPECIALIST', 'SPESIALIS PEOPLE OPERATIONS & SISTEM HR')}
           </span>
           <span className="text-[#A7A69F]/80 text-[11px] block">
-            DIGITAL PRODUCT BUILDER
+            {t('MANAGING 110+ WORKFORCE | IN-HOUSE HR TECH (PMS, ATS, PAYROLL, ANALYTICS)', 'MENGELOLA 110+ KARYAWAN | HR TECH INTERNAL (PMS, ATS, PAYROLL, ANALITIK)')}
           </span>
         </div>
 
         <div className="flex items-center gap-2">
           <span className="text-[#F3EFEA] font-semibold text-[11px] sm:text-xs">
-            AVAILABLE FOR STRATEGIC IMPACT
+            {t('AVAILABLE FOR STRATEGIC IMPACT', 'SIAP UNTUK DAMPAK STRATEGIS')}
           </span>
           <Sparkles className="w-3.5 h-3.5 text-[#B49A70] fill-[#B49A70] animate-pulse" />
         </div>
@@ -116,35 +118,41 @@ export const PosterHeroSection: React.FC<PosterHeroSectionProps> = ({
             {/* Script "Hello, I'm" */}
             <ScrollReveal immediateOnMount variant="editorial" delay={0.1} duration={0.85}>
               <div className="font-serif italic text-3xl sm:text-4xl text-[#E8DFD4] font-normal tracking-wide flex items-center gap-2">
-                <span>Hello, I'm</span>
+                <span>{t("Hello, I'm", 'Halo, Saya')}</span>
                 <span className="w-8 h-[1px] bg-[#B49A70]/80 inline-block" />
               </div>
             </ScrollReveal>
 
             {/* Big Condensed Name */}
             <ScrollReveal immediateOnMount variant="editorial" delay={0.18} duration={0.9} className="space-y-0.5">
-              <h2 className="font-sans font-black text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight uppercase leading-[0.9] drop-shadow-lg">
+              <h2 className="font-sans font-black text-4xl sm:text-5xl xl:text-6xl text-white tracking-tight uppercase leading-[0.92] drop-shadow-lg">
                 BANGKIT
               </h2>
-              <h2 className="font-sans font-black text-4xl sm:text-6xl lg:text-7xl text-white tracking-tight uppercase leading-[0.9] drop-shadow-lg">
-                SURYA
+              <h2 className="font-sans font-black text-4xl sm:text-5xl xl:text-6xl text-white tracking-tight uppercase leading-[0.92] drop-shadow-lg">
+                SURYA WIJAYA
               </h2>
             </ScrollReveal>
 
             {/* Role Subtitle in Champagne Tone */}
             <ScrollReveal immediateOnMount variant="subtle" delay={0.26} duration={0.8} className="pt-1">
               <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-[#B49A70] block">
-                HUMAN CAPITAL SPECIALIST &
+                {t('PEOPLE OPERATIONS & HR SYSTEMS SPECIALIST', 'SPESIALIS PEOPLE OPERATIONS & SISTEM HR')}
               </span>
-              <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-[#A7A69F] block">
-                STRATEGIC INNOVATOR
+              <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#A7A69F] block">
+                {t(
+                  'MANAGING 110+ WORKFORCE & BUILDING IN-HOUSE HR TECH (PMS, ATS, PAYROLL, ANALYTICS)',
+                  'MENGELOLA 110+ KARYAWAN & MEMBANGUN HR TECH INTERNAL (PMS, ATS, PAYROLL, ANALITIK)'
+                )}
               </span>
             </ScrollReveal>
 
             {/* Narrative Summary */}
             <ScrollReveal immediateOnMount variant="editorial" delay={0.33} duration={0.85}>
               <p className="text-xs sm:text-sm text-[#D1CCC5] font-light leading-relaxed max-w-sm pt-1">
-                I design and build human-centered systems and digital platforms that combine empathy with business strategy. Passionate about organizational excellence, scalable HRIS automation, and measurable business impact.
+                {t(
+                  'People Operations & HR Systems Specialist managing 110+ personnel end-to-end while engineering in-house HR tech (PMS, ATS, Payroll, Analytics) for measurable ROI.',
+                  'Spesialis People Operations & Sistem HR yang mengelola 110+ karyawan secara menyeluruh sekaligus merancang HR tech internal (PMS, ATS, Payroll, Analitik) demi efisiensi terukur.'
+                )}
               </p>
             </ScrollReveal>
 
@@ -154,7 +162,7 @@ export const PosterHeroSection: React.FC<PosterHeroSectionProps> = ({
                 onClick={onScrollToNext}
                 className="px-6 py-3 bg-[#B49A70] hover:bg-[#A3885E] text-[#14171A] font-bold text-xs uppercase tracking-wider rounded-full transition-all cursor-pointer shadow-lg active:scale-95 flex items-center gap-2"
               >
-                <span>Explore My Work</span>
+                <span>{t('Explore My Work', 'Lihat Karya Saya')}</span>
                 <ArrowDown className="w-3.5 h-3.5 text-[#14171A]" />
               </button>
 
@@ -163,7 +171,7 @@ export const PosterHeroSection: React.FC<PosterHeroSectionProps> = ({
                 className="px-5 py-3 border border-white/20 hover:border-white text-white hover:bg-white/10 text-xs font-semibold uppercase tracking-wider rounded-full transition-all cursor-pointer backdrop-blur-sm flex items-center gap-2"
               >
                 <FileText className="w-3.5 h-3.5 text-[#B49A70]" />
-                <span>Download CV</span>
+                <span>{t('Download CV', 'Unduh CV')}</span>
               </button>
             </ScrollReveal>
           </div>
@@ -176,14 +184,17 @@ export const PosterHeroSection: React.FC<PosterHeroSectionProps> = ({
             {/* Circular / Pill Accent Quote Badge */}
             <ScrollReveal immediateOnMount variant="card" delay={0.2} duration={0.85}>
               <div className="max-w-xs p-4 rounded-2xl bg-white/[0.04] border border-[#B49A70]/25 backdrop-blur-md text-left lg:text-right space-y-1 shadow-xl">
-                <div className="flex items-center lg:justify-end gap-1.5 text-[#B49A70]">
+                  <div className="flex items-center lg:justify-end gap-1.5 text-[#B49A70]">
                   <Sparkles className="w-3.5 h-3.5 fill-[#B49A70]" />
                   <span className="text-[10px] font-mono uppercase tracking-widest font-bold">
-                    Core Philosophy
+                    {t('Core Philosophy', 'Filosofi Inti')}
                   </span>
                 </div>
                 <p className="text-xs text-[#E8DFD4] font-light leading-relaxed">
-                  "Turning ideas into powerful human & digital experiences."
+                  {t(
+                    '"Turning HR strategy into scalable human & digital systems."',
+                    '"Mengubah strategi HR menjadi sistem manusiawi & digital yang terukur."'
+                  )}
                 </p>
               </div>
             </ScrollReveal>
@@ -194,14 +205,14 @@ export const PosterHeroSection: React.FC<PosterHeroSectionProps> = ({
               <ScrollReveal immediateOnMount variant="subtle" delay={0.26} duration={0.78}>
                 <div className="flex items-baseline lg:justify-end gap-3 border-b border-white/10 pb-3">
                   <span className="font-sans font-black text-3xl sm:text-4xl text-[#B49A70] leading-none">
-                    3<span className="text-[#6E7C69]">+</span>
+                    2<span className="text-[#6E7C69]">+</span>
                   </span>
                   <div className="text-left font-mono">
                     <span className="text-[11px] text-white font-bold block uppercase tracking-wider">
-                      Years Experience
+                      {t('Years Experience', 'Tahun Pengalaman')}
                     </span>
                     <span className="text-[9px] text-[#A7A69F] block">
-                      Strategic HR & Operations
+                      {t('Corporate HR & Leadership Track', 'HR Korporat & Kepemimpinan')}
                     </span>
                   </div>
                 </div>
@@ -215,10 +226,10 @@ export const PosterHeroSection: React.FC<PosterHeroSectionProps> = ({
                   </span>
                   <div className="text-left font-mono">
                     <span className="text-[11px] text-white font-bold block uppercase tracking-wider">
-                      Personnel Managed
+                      {t('Personnel Managed', 'Karyawan Dikelola')}
                     </span>
                     <span className="text-[9px] text-[#A7A69F] block">
-                      Direct Team Leadership
+                      {t('End-to-End HR Operations', 'Operasional HR End-to-End')}
                     </span>
                   </div>
                 </div>
@@ -228,11 +239,11 @@ export const PosterHeroSection: React.FC<PosterHeroSectionProps> = ({
               <ScrollReveal immediateOnMount variant="subtle" delay={0.4} duration={0.78}>
                 <div className="flex items-baseline lg:justify-end gap-3 border-b border-white/10 pb-3">
                   <span className="font-sans font-black text-3xl sm:text-4xl text-[#B49A70] leading-none">
-                    04<span className="text-[#6E7C69]">+</span>
+                    04
                   </span>
                   <div className="text-left font-mono">
                     <span className="text-[11px] text-white font-bold block uppercase tracking-wider">
-                      Digital SaaS Platforms
+                      {t('In-House HR Systems', 'Sistem HR Internal')}
                     </span>
                     <span className="text-[9px] text-[#A7A69F] block">
                       Pervia, Matchify, Slipr, Zeno
@@ -249,10 +260,10 @@ export const PosterHeroSection: React.FC<PosterHeroSectionProps> = ({
                   </span>
                   <div className="text-left font-mono">
                     <span className="text-[11px] text-white font-bold block uppercase tracking-wider">
-                      Execution Success
+                      {t('Compliance & Delivery', 'Kepatuhan & Eksekusi')}
                     </span>
                     <span className="text-[9px] text-[#A7A69F] block">
-                      High-Stakes Live Productions
+                      {t('BPJS · TER PPh 21 · Live Ops', 'BPJS · TER PPh 21 · Ops Lapangan')}
                     </span>
                   </div>
                 </div>
@@ -274,14 +285,19 @@ export const PosterHeroSection: React.FC<PosterHeroSectionProps> = ({
       >
         <div className="flex items-center gap-2 text-[11px] font-mono text-[#A7A69F]">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>Strategic Mind · Human Perspective · Digital Approach</span>
+          <span>
+            {t(
+              'Strategic Mind · Human Perspective · Digital Approach',
+              'Pikiran Strategis · Perspektif Manusiawi · Pendekatan Digital'
+            )}
+          </span>
         </div>
 
         <button
           onClick={onScrollToNext}
           className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-[#E8DFD4] hover:text-[#B49A70] transition-colors cursor-pointer group"
         >
-          <span>Scroll To Explore Systems</span>
+          <span>{t('Scroll To Explore Systems', 'Gulir untuk Jelajahi Sistem')}</span>
           <ArrowDown className="w-3.5 h-3.5 text-[#B49A70] group-hover:translate-y-1 transition-transform" />
         </button>
       </ScrollReveal>

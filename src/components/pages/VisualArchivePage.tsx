@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { AnimatePresence } from 'motion/react';
 import { Camera, MapPin, Calendar, X, ChevronLeft, ChevronRight, UserCheck, FolderOpen, Layers, ArrowLeft, ArrowUpRight, Sparkles } from 'lucide-react';
-import { SURYA_PHOTOS_ARCHIVE, EVENT_PHOTOS_ARCHIVE } from '../../data/portfolioData';
 import { AppRoute } from '../../types';
 import { ScrollReveal } from '../ScrollReveal';
+import { useLanguage } from '../../context/LanguageContext';
+import { getLocalizedPhotoArchive } from '../../data/portfolioLocalized';
 
 interface VisualArchivePageProps {
   onNavigate: (route: AppRoute, slug?: string) => void;
@@ -12,15 +13,18 @@ interface VisualArchivePageProps {
 type ArchiveTab = 'all' | 'myself' | 'event';
 
 export const VisualArchivePage: React.FC<VisualArchivePageProps> = ({ onNavigate }) => {
+  const { lang, t } = useLanguage();
   const [activeTab, setActiveTab] = useState<ArchiveTab>('all');
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
+  const { myself: myselfPhotos, event: eventPhotos } = getLocalizedPhotoArchive(lang);
+
   const photoList = 
     activeTab === 'myself'
-      ? SURYA_PHOTOS_ARCHIVE
+      ? myselfPhotos
       : activeTab === 'event'
-        ? EVENT_PHOTOS_ARCHIVE
-        : [...EVENT_PHOTOS_ARCHIVE, ...SURYA_PHOTOS_ARCHIVE];
+        ? eventPhotos
+        : [...eventPhotos, ...myselfPhotos];
 
   const selectedPhoto = selectedIndex !== null ? photoList[selectedIndex] : null;
 
@@ -59,10 +63,13 @@ export const VisualArchivePage: React.FC<VisualArchivePageProps> = ({ onNavigate
             </div>
 
             <h1 className="font-sans font-black text-4xl sm:text-5xl lg:text-6xl text-[#1E2022] tracking-tight leading-tight">
-              Curated Photographic Evidence
+              {t('Curated Photographic Evidence', 'Dokumentasi Visual Terpilih')}
             </h1>
             <p className="text-sm sm:text-base text-[#605E59] mt-3 font-light leading-relaxed">
-              Dokumentasi personal dan dinamika kepemimpinan lapangan Bangkit Surya Wijaya. Terbagi dalam <strong>Sub-Album "Event" (13 foto)</strong> dan <strong>Album "myself" (10 foto)</strong>.
+              {t(
+                'Personal milestones and field leadership documentation curated across the "Event" sub-album (13 photos) and "myself" album (10 photos).',
+                'Dokumentasi personal dan dinamika kepemimpinan lapangan Bangkit Surya Wijaya. Terbagi dalam Sub-Album "Event" (13 foto) dan Album "myself" (10 foto).'
+              )}
             </p>
           </ScrollReveal>
 
@@ -81,7 +88,7 @@ export const VisualArchivePage: React.FC<VisualArchivePageProps> = ({ onNavigate
               }`}
             >
               <Layers className="w-3.5 h-3.5" />
-              <span>Semua ({SURYA_PHOTOS_ARCHIVE.length + EVENT_PHOTOS_ARCHIVE.length})</span>
+              <span>{t('All', 'Semua')} ({myselfPhotos.length + eventPhotos.length})</span>
             </button>
 
             <button
@@ -96,7 +103,7 @@ export const VisualArchivePage: React.FC<VisualArchivePageProps> = ({ onNavigate
               }`}
             >
               <FolderOpen className="w-3.5 h-3.5" />
-              <span>Sub-Album "Event" ({EVENT_PHOTOS_ARCHIVE.length})</span>
+              <span>{t('Sub-Album "Event"', 'Sub-Album "Event"')} ({eventPhotos.length})</span>
             </button>
 
             <button
@@ -111,7 +118,7 @@ export const VisualArchivePage: React.FC<VisualArchivePageProps> = ({ onNavigate
               }`}
             >
               <UserCheck className="w-3.5 h-3.5" />
-              <span>Album "myself" ({SURYA_PHOTOS_ARCHIVE.length})</span>
+              <span>{t('Album "myself"', 'Album "myself"')} ({myselfPhotos.length})</span>
             </button>
           </div>
           </ScrollReveal>
@@ -137,7 +144,7 @@ export const VisualArchivePage: React.FC<VisualArchivePageProps> = ({ onNavigate
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4 text-white">
                   <span className="font-mono text-[10px] uppercase tracking-wider flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
                     <Camera className="w-3 h-3 text-[#AF8C72]" />
-                    <span>Klik untuk Melihat Resolusi Penuh</span>
+                    <span>{t('Click for Full Resolution', 'Klik untuk Resolusi Penuh')}</span>
                   </span>
                 </div>
 

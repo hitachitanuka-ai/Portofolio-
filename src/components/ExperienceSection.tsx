@@ -71,7 +71,7 @@ const WORKING_EXPERIENCES: WorkItem[] = [
     type: 'Full-time · Corporate',
     location: 'Jakarta, Indonesia',
     scope: '110+ Tenaga Kerja Lintas Divisi',
-    description: 'Bertindak sebagai Sole HR Lead yang memegang kendali penuh operasional People & Culture untuk 110+ karyawan, memastikan kepatuhan regulasi ketenagakerjaan, kesejahteraan karyawan, dan integrasi sistem kerja otomatis.',
+    description: 'Berperan sebagai People & Culture Lead yang mengelola operasional HR secara end-to-end untuk 110+ karyawan, menjaga kepatuhan regulasi ketenagakerjaan, kesejahteraan karyawan, dan integrasi alat bantu kerja otomatis.',
     achievements: [
       'Memimpin operasional HR penuh: end-to-end recruitment, attendance, evaluasi kinerja, dan kepatuhan BPJS Ketenagakerjaan & Kesehatan.',
       'Membangun suite otomasi HR in-house: otomasi penjadwalan interview, platform psikotes digital (MBTI & DISC), dan slip gaji digital (Slipr).',

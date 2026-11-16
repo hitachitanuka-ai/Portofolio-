@@ -54,6 +54,7 @@ import {
 import { IMAGES } from '../data/portfolioData';
 import { AppRoute } from '../types';
 import { ScrollReveal } from './ScrollReveal';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ProfessionalJourneyDashboardProps {
   onNavigate: (route: AppRoute, slug?: string) => void;
@@ -63,28 +64,28 @@ interface ProfessionalJourneyDashboardProps {
 // =========================================================================
 // DATA: Corporate & Working Roles
 // =========================================================================
-const WORKING_ROLES = [
+const WORKING_ROLES_EN = [
   {
     id: 'work-1',
     role: 'People and Culture Lead',
     company: 'PT. Fan Sukses Bersama',
     period: 'Apr 2026 – Present',
-    badge: 'Current Executive Role',
+    badge: 'Current Role',
     type: 'Full-time · Corporate',
-    scope: '110+ Full-Time Personnel · Sole HR Lead',
-    summary: 'Directing full-spectrum Human Capital, managing employee welfare, regulatory BPJS compliance, and building in-house digital automation suites.',
+    scope: '110+ Full-Time Personnel · End-to-End HR Operations',
+    summary: 'Managing end-to-end Human Capital operations, employee welfare, regulatory BPJS compliance, and building practical in-house HR workflow tools.',
     responsibilities: [
       'Directing full-lifecycle recruitment, candidate screening rubrics, and automated onboarding workflows.',
       'Ensuring statutory labor compliance for BPJS Ketenagakerjaan & BPJS Kesehatan with zero legal infractions.',
       'Cascading division-level OKRs into individual contributor KPI scorecards with calibrated appraisal cycles.',
-      'Architecting custom internal automation systems (Matchify RMS, Slipr Payroll, Zeno Assessment).'
+      'Architecting custom internal automation systems (Pervia PMS, Matchify RMS, Slipr Payroll, Zeno Assessment).'
     ],
     metrics: [
-      { label: 'Payroll Cycle', value: '-75%', detail: 'Dari 3 hari ke <1 jam' },
-      { label: 'Time-to-Hire', value: '-60%', detail: 'Dari 43 ke 17.2 hari' },
+      { label: 'Payroll Cycle', value: '-75%', detail: 'From 3 days to <1 hr' },
+      { label: 'Time-to-Hire', value: '-60%', detail: 'From 43 to 17.2 days' },
       { label: 'Compliance', value: '100%', detail: 'Zero infractions' }
     ],
-    toolsApplied: ['Matchify RMS', 'Slipr Payroll', 'Zeno AI', 'Notion', 'Google Workspace'],
+    toolsApplied: ['Pervia PMS', 'Matchify RMS', 'Slipr Payroll', 'Zeno Assessment', 'Google Workspace'],
     image: IMAGES.eventMeetingDinner,
   },
   {
@@ -102,8 +103,8 @@ const WORKING_ROLES = [
       'Authoring and standardizing the Corporate Leadership Handbook establishing clear governance & delegation RACI matrices.'
     ],
     metrics: [
-      { label: 'Role Clarity', value: '100%', detail: 'Aligned across all leads' },
-      { label: 'Reporting Velocity', value: '+40%', detail: 'Automated telemetry' },
+      { label: 'Role Clarity', value: '100%', detail: 'Aligned across leads' },
+      { label: 'Reporting Speed', value: '+40%', detail: 'Automated dashboards' },
       { label: 'Handbook', value: 'Adopted', detail: 'Enterprise-wide' }
     ],
     toolsApplied: ['Power BI', 'Org Design RACI', 'Looker Studio', 'C-Suite Handbooks'],
@@ -139,7 +140,7 @@ const WORKING_ROLES = [
     scope: '50+ Major Luxury Productions · Up to 2,000+ Guests',
     summary: 'Orchestrating end-to-end operational logistics, VIP guest flows, multi-vendor contracts, and crisis mitigation under high-pressure real-time conditions.',
     responsibilities: [
-      'Managing live on-site crowd logistics, security protocols, and spatial movement for up to 2,000 high-profile attendees.',
+      'Managing live on-site crowd logistics, security protocols, and spatial movement for up to 2,000 attendees.',
       'Leading multi-vendor contract negotiations, synchronization of technical run-sheets, and vendor compliance.',
       'Acting as primary executive stakeholder liaison and directing real-time crisis mitigation calmly under pressure.'
     ],
@@ -150,6 +151,78 @@ const WORKING_ROLES = [
     ],
     toolsApplied: ['Master Run-Sheets', 'Crowd Protocol', 'Vendor Contracts', 'Stage Comms'],
     image: IMAGES.eventAquafestSolo,
+  },
+];
+
+const WORKING_ROLES_ID = [
+  {
+    ...WORKING_ROLES_EN[0],
+    badge: 'Peran Aktif Saat Ini',
+    type: 'Full-time · Korporat',
+    scope: '110+ Karyawan Tetap · Operasional HR End-to-End',
+    summary: 'Mengelola operasional Human Capital secara end-to-end, kesejahteraan karyawan, kepatuhan regulasi BPJS & PPh 21, serta membangun sistem otomasi HR internal.',
+    responsibilities: [
+      'Memimpin rekrutmen menyeluruh, rubrik skrining kandidat, dan alur onboarding otomatis.',
+      'Memastikan kepatuhan ketenagakerjaan BPJS Ketenagakerjaan & BPJS Kesehatan dengan nol pelanggaran.',
+      'Menurunkan OKR divisi ke dalam scorecard KPI individu melalui siklus evaluasi terkalibrasi.',
+      'Merancang sistem otomasi internal kustom (Pervia PMS, Matchify RMS, Slipr Payroll, Zeno Assessment).'
+    ],
+    metrics: [
+      { label: 'Siklus Payroll', value: '-75%', detail: 'Dari 3 hari ke <1 jam' },
+      { label: 'Time-to-Hire', value: '-60%', detail: 'Dari 43 ke 17,2 hari' },
+      { label: 'Kepatuhan', value: '100%', detail: 'Nol pelanggaran' }
+    ],
+  },
+  {
+    ...WORKING_ROLES_EN[1],
+    badge: 'Penasihat Change Management',
+    type: 'Proyek / Konsultasi',
+    scope: 'Strategi Organisasi Lintas Fungsi & Dashboard Direksi',
+    summary: 'Mengubah kompleksitas organisasi menjadi dashboard eksekutif Power BI bagi jajaran direksi serta menyusun Corporate Leadership Handbook lewat audit struktur.',
+    responsibilities: [
+      'Mengaudit alur kerja lintas fungsi guna mengidentifikasi hambatan struktur dan tumpang-tindih peran.',
+      'Menyusun model kapasitas headcount dan perencanaan beban kerja untuk pengambil keputusan.',
+      'Menyusun Corporate Leadership Handbook dengan matriks tata kelola dan delegasi RACI yang tegas.'
+    ],
+    metrics: [
+      { label: 'Kejelasan Peran', value: '100%', detail: 'Selaras di tiap pemimpin' },
+      { label: 'Kecepatan Laporan', value: '+40%', detail: 'Dashboard otomatis' },
+      { label: 'Panduan', value: 'Diadopsi', detail: 'Seluruh perusahaan' }
+    ],
+  },
+  {
+    ...WORKING_ROLES_EN[2],
+    badge: 'Program MSIB Nasional',
+    type: 'Praktik Profesional',
+    scope: '35 Konsultan Riset & Teknis',
+    summary: 'Memelopori Workforce Needs Analysis (WNA) kuantitatif serta merancang matriks kompetensi 5 tingkat terstandar bagi konsultan riset.',
+    responsibilities: [
+      'Melakukan Workforce Needs Analysis (WNA) kuantitatif lewat studi waktu dan wawancara empiris.',
+      'Menyusun rubrik kompetensi 5 tingkat, restrukturisasi uraian jabatan, dan pemetaan rentang gaji.',
+      'Mengoptimalkan pelacakan data kandidat rekrutmen dan kurikulum onboarding standar.'
+    ],
+    metrics: [
+      { label: 'Kejelasan Peran', value: '+85%', detail: 'Terverifikasi pascaprogram' },
+      { label: 'Kompetensi', value: '5 Tingkat', detail: 'Rubrik terstandar' },
+      { label: 'Konsultan', value: '35 Staf', detail: 'Terpetakan menyeluruh' }
+    ],
+  },
+  {
+    ...WORKING_ROLES_EN[3],
+    badge: 'Logistik Acara Skala Besar',
+    type: 'Kepemimpinan Operasional',
+    scope: '50+ Produksi Acara Mewah · Hingga 2.000+ Tamu',
+    summary: 'Mengorkestrasi logistik operasional end-to-end, alur tamu VIP, negosiasi multi-vendor, dan mitigasi krisis real-time di bawah tekanan tinggi.',
+    responsibilities: [
+      'Mengelola alur massa langsung di lokasi, protokol keamanan, dan pergerakan hingga 2.000 tamu.',
+      'Memimpin negosiasi kontrak multi-vendor, sinkronisasi run-sheet teknis, dan kepatuhan vendor.',
+      'Menjadi penghubung utama pemangku kepentingan serta memimpin mitigasi krisis secara tenang.'
+    ],
+    metrics: [
+      { label: 'Keberhasilan', value: '100%', detail: '50+ produksi acara' },
+      { label: 'Keterlambatan', value: '0 Menit', detail: 'Run-sheet presisi' },
+      { label: 'Skala Tamu', value: '2.000+', detail: 'Tamu terkelola' }
+    ],
   },
 ];
 
@@ -394,7 +467,95 @@ const ORBITAL_ECOSYSTEM_ITEMS: OrbitalEcosystemItem[] = [
 // =========================================================================
 // DATA: Organizational Milestones & Timeline
 // =========================================================================
-const ORGANIZATIONAL_TIMELINE = [
+const ORGANIZATIONAL_TIMELINE_EN = [
+  {
+    id: 'org-1',
+    year: '2024',
+    period: '2024',
+    role: 'Head of Event — IPB OSIS Fest 2024',
+    organization: 'Directorate of Promotion & Admissions, IPB University',
+    scope: 'National Scale (Delegates from 27 Provinces)',
+    badge: 'National Leadership Conference',
+    summary: 'Directed the organizing committee for a national student leadership summit welcoming student council presidents from 27 Indonesian provinces.',
+    highlights: [
+      'Led and coordinated 70+ cross-division committee members overseeing event flow, VIP protocol, and live risk mitigation.',
+      'Managed budget allocation, strategic partnerships, and direct alignment with IPB University rectorate leadership.',
+      'Guided the ESG Digital PR campaign to win 1st Place National at the Public Relations Excellence Awards (PREA) 2024.'
+    ],
+    image: IMAGES.eventSbIpbCommittee,
+    quote: 'True leadership is the discipline of aligning diverse talents around one shared vision of measurable impact.'
+  },
+  {
+    id: 'org-2',
+    year: '2022 – 2024',
+    period: '2022 – 2024',
+    role: 'Duta IPB University (University Ambassador)',
+    organization: 'Institut Pertanian Bogor (IPB University)',
+    scope: 'Official Rectorate Representation & Public Diplomacy',
+    badge: 'Official Campus Ambassador',
+    summary: 'Selected as official university ambassador leading institutional communications, national educational forums, and VIP hospitality.',
+    highlights: [
+      'Represented IPB University across national education roadshows, higher-education expos, and partnership audiences.',
+      'Served as Master of Ceremony (MC) and lead moderator across dozens of rectorate symposia and national seminars.',
+      'Built institutional diplomacy bridges linking campus leadership with ministries and corporate partners.'
+    ],
+    image: IMAGES.eventDutaIpbStage,
+    quote: 'Institutional representation demands character, diplomatic poise, and communication that inspires confidence.'
+  },
+  {
+    id: 'org-3',
+    year: '2023 – 2024',
+    period: '2023 – 2024',
+    role: 'Head of Human Resources / HR of Student',
+    organization: 'BEM Faculty of Animal Science, IPB University',
+    scope: 'Executive Student Board',
+    badge: 'Talent & Culture Lead',
+    summary: 'Led the student HR department in structuring recruitment assessments, member retention, performance tracking, and internal climate.',
+    highlights: [
+      'Designed cultural-fit recruitment and structured onboarding workflows for incoming organization officers.',
+      'Launched periodic organizational pulse surveys to track member engagement and board effectiveness.',
+      'Sustained 92% officer retention and satisfaction throughout the tenure cycle.'
+    ],
+    image: IMAGES.eventFapetIpbStage,
+    quote: 'Organizations grow not through titles on a chart, but through how clearly each member feels valued and guided.'
+  },
+  {
+    id: 'org-4',
+    year: '2021',
+    period: '2021',
+    role: 'National Delegate — Indonesia Student Leadership Camp (ISLC) IX',
+    organization: 'Universitas Indonesia (UI)',
+    scope: 'National Scale (Top 100 Student Council Presidents)',
+    badge: 'National Executive Incubation',
+    summary: 'Selected from thousands of student council presidents nationwide for executive leadership incubation and public policy formulation.',
+    highlights: [
+      'Co-authored national youth advocacy proposals alongside Indonesia’s top 100 student council presidents.',
+      'Trained intensively in strategic policy diplomacy, systems thinking, and structured public problem-solving.',
+      'Selected among drafters of the national youth resolution for Forum OSIS Nusantara.'
+    ],
+    image: IMAGES.eventAquafestMcDuo,
+    quote: 'Young leaders step forward to take responsibility before being asked, and deliver beyond expectation.'
+  },
+  {
+    id: 'org-5',
+    year: '2020 – 2021',
+    period: '2020 – 2021',
+    role: 'Student Council President (Ketua Umum OSIS)',
+    organization: 'Student Council Governance (OSIS)',
+    scope: 'Executive Student Governance',
+    badge: 'Best Student President Award',
+    summary: 'Led student governance through pandemic-era digital program transformation, stakeholder collaboration, and student advocacy.',
+    highlights: [
+      'Pioneered hybrid and digital student initiatives during pandemic operational restrictions.',
+      'Maintained constructive alignment across school faculty, alumni networks, and external student councils.',
+      'Awarded The Best Student Council President for student communication digitalization.'
+    ],
+    image: IMAGES.eventTeamFistSteps,
+    quote: 'Leadership foundations begin with integrity, quiet service, and consistency in daily execution.'
+  }
+];
+
+const ORGANIZATIONAL_TIMELINE_ID = [
   {
     id: 'org-1',
     year: '2024',
@@ -402,7 +563,7 @@ const ORGANIZATIONAL_TIMELINE = [
     role: 'Head of Event — IPB OSIS Fest 2024',
     organization: 'Direktorat Promosi & Penerimaan Mahasiswa Baru IPB University',
     scope: 'Tingkat Nasional (Delegasi dari 27 Provinsi)',
-    badge: 'National Leadership Conference',
+    badge: 'Konferensi Kepemimpinan Nasional',
     summary: 'Memimpin kepanitiaan akbar konferensi kepemimpinan pelajar nasional dengan delegasi ketua OSIS dari 27 provinsi di Indonesia.',
     highlights: [
       'Memimpin dan mengkoordinasikan lebih dari 70 panitia lintas divisi dalam merancang alur acara, protokol tamu kehormatan, dan mitigasi krisis.',
@@ -419,7 +580,7 @@ const ORGANIZATIONAL_TIMELINE = [
     role: 'Duta IPB University (University Ambassador)',
     organization: 'Institut Pertanian Bogor (IPB University)',
     scope: 'Representasi Resmi Rektorat & Diplomasi Publik',
-    badge: 'Official Campus Ambassador',
+    badge: 'Duta Resmi Kampus',
     summary: 'Terpilih sebagai duta resmi universitas untuk memimpin komunikasi publik, representasi institusi pada forum nasional, dan penerimaan tamu VIP.',
     highlights: [
       'Mewakili IPB University dalam roadshow edukasi nasional, expo perguruan tinggi, dan audiensi kemitraan institusional.',
@@ -436,7 +597,7 @@ const ORGANIZATIONAL_TIMELINE = [
     role: 'Head of Human Resources / HR of Student',
     organization: 'BEM Fakultas Peternakan IPB University',
     scope: 'Kepengurusan BEM Fakultas Peternakan',
-    badge: 'Talent & Culture Lead',
+    badge: 'Kepala Departemen SDM',
     summary: 'Memimpin departemen SDM mahasiswa dalam merancang program rekrutmen, retensi, penilaian kinerja, dan iklim internal organisasi.',
     highlights: [
       'Merancang sistem rekrutmen dan orientasi kerja staf organisasi berbasis asesmen kesesuaian nilai (cultural fit).',
@@ -453,11 +614,11 @@ const ORGANIZATIONAL_TIMELINE = [
     role: 'Delegasi Nasional — Indonesia Student Leadership Camp (ISLC) IX',
     organization: 'Universitas Indonesia (UI)',
     scope: 'Tingkat Nasional (Top 100 Ketua OSIS Terbaik se-Indonesia)',
-    badge: 'National Executive Incubation',
+    badge: 'Inkubasi Kepemimpinan Nasional',
     summary: 'Terpilih dari ribuan ketua OSIS se-Indonesia untuk mengikuti inkubasi kepemimpinan eksekutif, debat kebijakan publik, dan inisiatif nasional.',
     highlights: [
       'Merumuskan gagasan advokasi kepemudaan nasional bersama 100 ketua OSIS terbaik se-Indonesia.',
-      'Terlatih dalam diplomasi kebijakan strategis, public problem-solving, dan public policy analysis.',
+      'Terlatih dalam diplomasi kebijakan strategis, pemecahan masalah publik, dan analisis kebijakan.',
       'Terpilih masuk jajaran perumus resolusi kepemudaan nasional Forum OSIS Nusantara.'
     ],
     image: IMAGES.eventAquafestMcDuo,
@@ -470,12 +631,12 @@ const ORGANIZATIONAL_TIMELINE = [
     role: 'Ketua Umum OSIS',
     organization: 'Organisasi Siswa Intra Sekolah (OSIS)',
     scope: 'Kepemimpinan Eksekutif Lembaga Siswa',
-    badge: 'Executive Student President',
+    badge: 'Ketua OSIS Terbaik',
     summary: 'Memimpin kepengurusan OSIS, menginisiasi transformasi program kerja digital masa pandemi, dan mengadvokasi aspirasi seluruh siswa.',
     highlights: [
       'Memimpin jalannya program kerja siswa berbasis virtual dan hybrid selama masa transisi pandemi.',
       'Membina kolaborasi harmonis dengan dewan guru, alumni, dan organisasi kesiswaan eksternal.',
-      'Meraih predikat Ketua OSIS Inspiratif atas terobosan digitalisasi komunikasi kesiswaan.'
+      'Meraih predikat Ketua OSIS Terbaik atas terobosan digitalisasi komunikasi kesiswaan.'
     ],
     image: IMAGES.eventTeamFistSteps,
     quote: 'Fondasi kepemimpinan dimulai dari integritas, ketulusan melayani, dan konsistensi dalam tindakan kecil.'
@@ -486,8 +647,12 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
   onNavigate,
   onOpenResume,
 }) => {
+  const { lang, t } = useLanguage();
   // Professional Journey active role selection (collapsed by default for clean aligned 2x2 grid)
   const [selectedWorkId, setSelectedWorkId] = useState<string | null>(null);
+
+  const workingRoles = lang === 'id' ? WORKING_ROLES_ID : WORKING_ROLES_EN;
+  const orgTimeline = lang === 'id' ? ORGANIZATIONAL_TIMELINE_ID : ORGANIZATIONAL_TIMELINE_EN;
 
   // Competency filter active tab & Orbital spotlight index
   const [skillsTab, setSkillsTab] = useState<'all' | 'hard' | 'soft' | 'tools'>('all');
@@ -512,7 +677,7 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
 
   // Organizational Journey active milestone
   const [activeOrgId, setActiveOrgId] = useState<string>('org-1');
-  const activeOrg = ORGANIZATIONAL_TIMELINE.find((o) => o.id === activeOrgId) || ORGANIZATIONAL_TIMELINE[0];
+  const activeOrg = orgTimeline.find((o) => o.id === activeOrgId) || orgTimeline[0];
 
   return (
     <div className="w-full">
@@ -526,13 +691,16 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
             <ScrollReveal variant="editorial" delay={0}>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#6E7C69]/10 text-[#6E7C69] text-xs font-mono font-bold uppercase tracking-wider mb-2">
                 <Briefcase className="w-3.5 h-3.5 text-[#AF8C72]" />
-                <span>Executive Career Trajectory</span>
+                <span>{t('Career Trajectory', 'Lintasan Karier Profesional')}</span>
               </div>
               <h2 className="font-sans font-black text-4xl sm:text-5xl text-[#1E2022] tracking-tight">
-                Professional Journey
+                {t('Professional Journey', 'Perjalanan Profesional')}
               </h2>
               <p className="text-xs sm:text-sm text-[#605E59] font-light leading-relaxed mt-1 max-w-2xl">
-                Dashboard integratif kepemimpinan sumber daya manusia, analisa tenaga kerja berbasis data, dan orkestrasi operasional berskala tinggi.
+                {t(
+                  'An integrated overview of HR leadership, quantitative workforce needs diagnostics, and high-stakes operational execution.',
+                  'Ringkasan integratif kepemimpinan sumber daya manusia, analisa kebutuhan tenaga kerja berbasis data, dan orkestrasi operasional berskala tinggi.'
+                )}
               </p>
             </ScrollReveal>
 
@@ -542,43 +710,51 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
                 className="px-5 py-2.5 bg-white hover:bg-[#1E2022] hover:text-white text-[#1E2022] border border-[#E7E0D6] rounded-full text-xs font-semibold tracking-wide transition-all cursor-pointer shadow-2xs active:scale-95 flex items-center gap-2"
               >
                 <FileText className="w-3.5 h-3.5 text-[#6E7C69]" />
-                <span>Unduh CV Lengkap</span>
+                <span>{t('Download Full CV', 'Unduh CV Lengkap')}</span>
               </button>
 
               <button
                 onClick={() => onNavigate('experience', 'working')}
                 className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#1E2022] hover:text-[#6E7C69] transition-colors border-b-2 border-[#1E2022] pb-0.5 cursor-pointer ml-1"
               >
-                <span>Full Archive ↗</span>
+                <span>{t('Full Archive ↗', 'Arsip Lengkap ↗')}</span>
               </button>
             </ScrollReveal>
           </div>
 
-          {/* Top KPI Telemetry Ribbon (Modern Organic Rounded Stats) */}
+          {/* Top KPI Telemetry Ribbon */}
           <ScrollReveal variant="subtle" delay={0.08}>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 bg-white rounded-3xl border border-[#E7E0D6] shadow-xs mb-8">
               <div className="p-4 text-center rounded-2xl bg-[#F3EFEA] border border-[#E7E0D6]/60">
                 <span className="font-sans font-black text-2xl sm:text-3xl text-[#6E7C69] block">110+</span>
-                <span className="font-mono text-[11px] text-[#9E7B62] uppercase tracking-wider block font-bold mt-0.5">Personnel Under HC</span>
+                <span className="font-mono text-[11px] text-[#9E7B62] uppercase tracking-wider block font-bold mt-0.5">
+                  {t('Personnel Under HC', 'Karyawan Dikelola')}
+                </span>
               </div>
               <div className="p-4 text-center rounded-2xl bg-[#F3EFEA] border border-[#E7E0D6]/60">
-                <span className="font-sans font-black text-2xl sm:text-3xl text-[#AF8C72] block">3+</span>
-                <span className="font-mono text-[11px] text-[#9E7B62] uppercase tracking-wider block font-bold mt-0.5">Years Experience</span>
+                <span className="font-sans font-black text-2xl sm:text-3xl text-[#AF8C72] block">2+</span>
+                <span className="font-mono text-[11px] text-[#9E7B62] uppercase tracking-wider block font-bold mt-0.5">
+                  {t('Years Corporate HR', 'Tahun Pengalaman HR')}
+                </span>
               </div>
               <div className="p-4 text-center rounded-2xl bg-[#F3EFEA] border border-[#E7E0D6]/60">
                 <span className="font-sans font-black text-2xl sm:text-3xl text-[#1E2022] block">04</span>
-                <span className="font-mono text-[11px] text-[#9E7B62] uppercase tracking-wider block font-bold mt-0.5">Custom Platforms</span>
+                <span className="font-mono text-[11px] text-[#9E7B62] uppercase tracking-wider block font-bold mt-0.5">
+                  {t('In-House HR Systems', 'Sistem HR Internal')}
+                </span>
               </div>
               <div className="p-4 text-center rounded-2xl bg-[#F3EFEA] border border-[#E7E0D6]/60">
                 <span className="font-sans font-black text-2xl sm:text-3xl text-[#6E7C69] block">100%</span>
-                <span className="font-mono text-[11px] text-[#9E7B62] uppercase tracking-wider block font-bold mt-0.5">Regulatory Compliance</span>
+                <span className="font-mono text-[11px] text-[#9E7B62] uppercase tracking-wider block font-bold mt-0.5">
+                  {t('Regulatory Compliance', 'Kepatuhan Regulasi')}
+                </span>
               </div>
             </div>
           </ScrollReveal>
 
-          {/* 4 Professional Roles Grid (Expanded to full container width) */}
+          {/* 4 Professional Roles Grid */}
           <div className={`grid grid-cols-1 lg:grid-cols-2 gap-6 ${selectedWorkId ? 'items-start' : 'items-stretch'}`}>
-            {WORKING_ROLES.map((role, roleIdx) => {
+            {workingRoles.map((role, roleIdx) => {
               const isSelected = role.id === selectedWorkId;
 
               return (
@@ -732,7 +908,10 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
 
             <ScrollReveal variant="editorial" delay={0.14}>
               <p className="text-xs sm:text-sm text-[#605E59] font-light leading-relaxed">
-                Eksplorasi interaktif keahlian analitik SDM, kepemimpinan manusia, dan teknologi otomasi yang terintegrasi dalam operasional nyata.
+                {t(
+                  'Interactive exploration of People Analytics, human leadership, and HR automation stack integrated across daily operations.',
+                  'Eksplorasi interaktif keahlian analitik SDM, kepemimpinan manusia, dan teknologi otomasi yang terintegrasi dalam operasional nyata.'
+                )}
               </p>
             </ScrollReveal>
 
@@ -1087,13 +1266,16 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
             <ScrollReveal variant="editorial" delay={0}>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#AF8C72]/15 text-[#AF8C72] text-xs font-mono font-bold uppercase tracking-wider mb-2">
                 <Trophy className="w-3.5 h-3.5 text-[#AF8C72]" />
-                <span>Leadership Footprint</span>
+                <span>{t('Leadership Footprint', 'Jejak Kepemimpinan')}</span>
               </div>
               <h2 className="font-sans font-black text-4xl sm:text-5xl text-[#1E2022] tracking-tight">
-                Organizational Journey
+                {t('Organizational Journey', 'Perjalanan Organisasi')}
               </h2>
               <p className="text-xs sm:text-sm text-[#605E59] font-light leading-relaxed mt-1 max-w-2xl">
-                Rekam jejak kepemimpinan pemuda, diplomasi universitas, dan kepanitiaan nasional terkemuka dengan konsep lini masa interaktif.
+                {t(
+                  'Interactive timeline of youth leadership, university representation, and national multi-province conference direction.',
+                  'Rekam jejak kepemimpinan pemuda, diplomasi universitas, dan kepanitiaan nasional terkemuka dalam lini masa interaktif.'
+                )}
               </p>
             </ScrollReveal>
 
@@ -1102,7 +1284,7 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
                 onClick={() => onNavigate('experience', 'organizational')}
                 className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#1E2022] hover:text-[#6E7C69] transition-colors border-b-2 border-[#1E2022] pb-0.5 cursor-pointer"
               >
-                <span>Explore All 5 Milestones ↗</span>
+                <span>{t('Explore All 5 Milestones ↗', 'Lihat Semua 5 Tonggak ↗')}</span>
               </button>
             </ScrollReveal>
           </div>
@@ -1113,7 +1295,7 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
           <ScrollReveal variant="subtle" delay={0.1}>
           <div className="relative mb-12 p-3 bg-white rounded-3xl border border-[#E7E0D6] shadow-xs">
             <div className="flex items-center justify-between overflow-x-auto gap-2 p-1">
-              {ORGANIZATIONAL_TIMELINE.map((item, idx) => {
+              {orgTimeline.map((item, idx) => {
                 const isActive = item.id === activeOrgId;
 
                 return (
@@ -1221,7 +1403,7 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
 
                   <div className="absolute bottom-4 inset-x-4 text-white text-xs font-mono flex items-center justify-between">
                     <span className="bg-black/70 backdrop-blur-md px-3 py-1 rounded-full text-[10px] border border-white/20">
-                      Dokumentasi Kepemimpinan
+                      {t('Leadership Documentation', 'Dokumentasi Kepemimpinan')}
                     </span>
                     <span className="text-[11px] font-bold text-[#E8DFD4]">
                       {activeOrg.year}

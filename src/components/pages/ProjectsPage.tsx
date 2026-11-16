@@ -20,9 +20,11 @@ import {
   Compass,
   MapPin,
 } from 'lucide-react';
-import { IMAGES, PROJECTS } from '../../data/portfolioData';
+import { IMAGES } from '../../data/portfolioData';
+import { getLocalizedProjects } from '../../data/portfolioLocalized';
 import { AppRoute, Project } from '../../types';
 import { ScrollReveal } from '../ScrollReveal';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface ProjectsPageProps {
   onNavigate: (route: AppRoute, slug?: string) => void;
@@ -53,10 +55,13 @@ const WNA_CHART_BARS = [
 ];
 
 export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
+  const { lang, t } = useLanguage();
+  const projects = getLocalizedProjects(lang);
+
   const [activeFilter, setActiveFilter] = useState<FilterCategory>('All Projects');
   const [onlyVideoDemos, setOnlyVideoDemos] = useState(false);
 
-  const categoryFiltered = PROJECTS.filter((p) => {
+  const categoryFiltered = projects.filter((p) => {
     if (activeFilter === 'All Projects') return true;
     if (activeFilter === 'HR & People') {
       return p.categoryFilter === 'HR & People' || p.category === 'People & Culture';
@@ -269,7 +274,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
               <div className="space-y-2.5">
                 <div className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-[#8F6D54] font-bold">
                   <Target className="w-3.5 h-3.5 text-[#8F6D54]" strokeWidth={1.6} />
-                  <span>Recruitment Intelligence • 5,200+ Applicants</span>
+                  <span>{t('Recruitment Intelligence • 5,200+ Pipeline Capacity', 'Intelijen Rekrutmen • Kapasitas 5.200+')}</span>
                 </div>
                 <h2 className="font-sans font-extrabold text-2xl sm:text-[1.75rem] text-[#1E2022] group-hover:text-[#6E7C69] transition-colors leading-[1.12] tracking-tight">
                   Streamlining Hiring Into{' '}
@@ -460,7 +465,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                 </h2>
                 <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-white/80 mt-1">
                   <CheckCircle2 className="w-3 h-3 text-[#9BB094]" strokeWidth={1.8} />
-                  <span>Sole HR Lead • 100% BPJS Compliance</span>
+                  <span>{t('End-to-End HR • 100% BPJS Compliance', 'HR End-to-End • 100% Kepatuhan BPJS')}</span>
                 </span>
               </div>
             </div>
@@ -586,7 +591,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                 Engine
               </h2>
               <p className="text-xs text-[#5E626B] font-light leading-relaxed line-clamp-2">
-                -85% evaluation turnaround across 1,200+ calibrated test takers.
+                {t('-85% evaluation turnaround across 1,200+ calibrated test takers.', '-85% waktu evaluasi pada 1.200+ rekor asesmen terkalibrasi.')}
               </p>
             </div>
 
@@ -823,7 +828,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
     }
   };
 
-  const projectById = Object.fromEntries(PROJECTS.map((p) => [p.id, p]));
+  const projectById = Object.fromEntries(projects.map((p) => [p.id, p]));
 
   return (
     <div className="w-full bg-[#F3EFEA] text-[#1E2022] pt-28 sm:pt-32 pb-24">
@@ -833,16 +838,19 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
           <ScrollReveal immediateOnMount variant="editorial" delay={0} className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#6E7C69]/12 text-[#6E7C69] text-xs font-mono font-bold uppercase tracking-wider mb-3">
               <Sparkles className="w-3.5 h-3.5" strokeWidth={1.7} />
-              <span>Bento Showcase &amp; Case Studies</span>
+              <span>{t('Bento Showcase & Case Studies', 'Etalase Bento & Studi Kasus')}</span>
             </div>
             <h1 className="font-sans font-black text-4xl sm:text-5xl lg:text-6xl text-[#1E2022] tracking-tight leading-[1.05]">
-              Selected Works{' '}
+              {t('Selected Works', 'Karya & Sistem')}{' '}
               <span className="font-serif italic font-normal text-[#6E7C69]">
-                &amp; Systems
+                {t('& Systems', 'Terpilih')}
               </span>
             </h1>
             <p className="text-sm sm:text-base text-[#5E626B] mt-3 font-light leading-relaxed">
-              Proprietary digital platforms, organizational diagnostics, workforce architecture models, and national summit campaigns — curated in an interactive editorial Bento mosaic.
+              {t(
+                'In-house HR tech platforms, organizational diagnostics, workforce modeling frameworks, and national leadership campaigns — curated in an editorial Bento mosaic.',
+                'Platform teknologi HR internal, diagnostik organisasi, pemodelan kebutuhan tenaga kerja, serta kampanye kepemimpinan nasional — tersusun dalam mozaik Bento editorial.'
+              )}
             </p>
           </ScrollReveal>
 
@@ -862,11 +870,15 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
               }`}
             >
               <Film className="w-3.5 h-3.5" strokeWidth={1.7} />
-              <span>{onlyVideoDemos ? 'Video Demos Only (On)' : 'Video Demos (4)'}</span>
+              <span>
+                {onlyVideoDemos
+                  ? t('Video Demos Only (On)', 'Khusus Demo Video (Aktif)')
+                  : t('Video Demos (4)', 'Demo Video (4)')}
+              </span>
             </button>
 
             <div className="font-mono text-xs text-[#8F6D54] font-semibold bg-white px-4 py-2 rounded-full border border-[#E7E0D6] shadow-2xs">
-              {filteredProjects.length} / {PROJECTS.length} Systems
+              {filteredProjects.length} / {projects.length} {t('Systems', 'Sistem')}
             </div>
           </ScrollReveal>
         </section>
@@ -919,12 +931,12 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                     onClick={() => setOnlyVideoDemos(true)}
                     className="w-full rounded-[1.5rem] bg-white hover:bg-[#FAF8F5] border border-[#E7E0D6] hover:border-[#6E7C69] px-5 py-3.5 flex items-center justify-between gap-3 shadow-xs hover:shadow-md transition-all cursor-pointer group text-left"
                   >
-                    <div>
+                      <div>
                       <span className="font-sans font-bold text-sm text-[#1E2022] block leading-tight">
-                        Watch Interactive
+                        {t('Watch Interactive', 'Tonton Demo Interaktif')}
                       </span>
                       <span className="text-xs text-[#605E59] font-light">
-                        4 Live System Tours
+                        {t('4 Live System Tours', '4 Tur Sistem Aktif')}
                       </span>
                     </div>
                     <div className="w-9 h-9 rounded-full bg-[#1E2022] group-hover:bg-[#6E7C69] text-white flex items-center justify-center transition-colors shrink-0">

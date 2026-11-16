@@ -76,7 +76,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, onOpenC
               </span>
 
               <p className="text-sm text-neutral-600 leading-relaxed mb-4">
-                Data-driven Human Capital Lead with proven hands-on experience directing full-spectrum HR operations for 110+ employees as a Sole HR Lead. Pioneer of digital HR transformation through custom internal automation systems (automated payroll, psychometric testing, and interview scheduling).
+                Data-driven People Operations Practitioner with hands-on experience supporting end-to-end HR operations for 110+ employees. Focused on practical HR workflow improvements through internal automation tools (automated payroll, psychometric testing, and interview scheduling).
               </p>
 
               <p className="text-sm text-neutral-600 leading-relaxed mb-6">
@@ -189,7 +189,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, onOpenC
                   <span className="text-xs font-mono text-neutral-400">Apr 2026 – Present</span>
                 </div>
                 <ul className="text-xs text-neutral-600 space-y-1.5 list-disc list-inside">
-                  <li>Sole HR Lead managing full-spectrum operations for 110+ employees (recruitment, attendance, welfare, BPJS compliance).</li>
+                  <li>People &amp; Culture Lead supporting end-to-end HR operations for 110+ employees (recruitment, attendance, welfare, BPJS compliance).</li>
                   <li>Engineered custom automation suites: automated interview timetables, digital psychometric testing (MBTI & DISC), and automated payslips.</li>
                   <li>Structured and evaluated division-level and individual KPI frameworks aligned with corporate strategy.</li>
                 </ul>

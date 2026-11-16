@@ -15,9 +15,10 @@ import {
   VolumeX,
   Image as ImageIcon
 } from 'lucide-react';
-import { PROJECTS } from '../../data/portfolioData';
 import { AppRoute, Project } from '../../types';
 import { ScrollReveal } from '../ScrollReveal';
+import { useLanguage } from '../../context/LanguageContext';
+import { getLocalizedProjects } from '../../data/portfolioLocalized';
 
 interface ProjectDetailPageProps {
   projectId: string;
@@ -25,11 +26,13 @@ interface ProjectDetailPageProps {
 }
 
 export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId, onNavigate }) => {
+  const { lang, t } = useLanguage();
   const [isPlayingVideo, setIsPlayingVideo] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const project: Project | undefined = PROJECTS.find((p) => p.id === projectId) || PROJECTS[0];
+  const projects = getLocalizedProjects(lang);
+  const project: Project | undefined = projects.find((p) => p.id === projectId) || projects[0];
 
   useEffect(() => {
     setIsPlayingVideo(true);
@@ -66,7 +69,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
   };
 
   const cs = project.caseStudy;
-  const relatedProjects = PROJECTS.filter((p) => p.id !== project.id && (cs?.relatedProjectIds.includes(p.id) || true)).slice(0, 2);
+  const relatedProjects = projects.filter((p) => p.id !== project.id && (cs?.relatedProjectIds.includes(p.id) || true)).slice(0, 2);
 
   return (
     <div className="w-full bg-[#F3EFEA] text-[#1E2022] pt-28 sm:pt-32 pb-24">
@@ -78,11 +81,11 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
             className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#1E2022] hover:text-[#6E7C69] transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4 text-[#AF8C72]" />
-            <span>Kembali ke Projects Archive</span>
+            <span>{t('Back to Projects Archive', 'Kembali ke Arsip Proyek')}</span>
           </button>
 
           <span className="font-mono text-xs text-[#9E7B62] font-semibold">
-            Case Study · {project.category}
+            {t('Case Study', 'Studi Kasus')} · {project.category}
           </span>
         </ScrollReveal>
 
@@ -147,12 +150,12 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
                     {isMuted ? (
                       <>
                         <VolumeX className="w-3.5 h-3.5" />
-                        <span>Klik untuk Aktifkan Suara 🔊</span>
+                        <span>{t('Click to Enable Sound', 'Klik untuk Aktifkan Suara')}</span>
                       </>
                     ) : (
                       <>
                         <Volume2 className="w-3.5 h-3.5 text-emerald-400" />
-                        <span>Suara Aktif (Sound On)</span>
+                        <span>{t('Sound On', 'Suara Aktif')}</span>
                       </>
                     )}
                   </button>
@@ -161,10 +164,10 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
                   <button
                     onClick={() => setIsPlayingVideo(false)}
                     className="px-3 py-1.5 rounded-full bg-black/60 hover:bg-black text-white text-xs font-mono flex items-center gap-1 border border-white/20 backdrop-blur-md transition-colors cursor-pointer"
-                    title="Tampilkan Screenshot Gambar"
+                    title={t('Show Cover Screenshot', 'Tampilkan Gambar Cover')}
                   >
                     <ImageIcon className="w-3 h-3 text-[#AF8C72]" />
-                    <span>Gambar Cover</span>
+                    <span>{t('Cover Image', 'Gambar Cover')}</span>
                   </button>
                 </div>
               </div>
@@ -193,7 +196,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
                       className="px-6 py-3.5 bg-white text-[#1E2022] hover:bg-[#F3EFEA] text-xs font-bold uppercase tracking-wider rounded-full flex items-center gap-2.5 shadow-2xl transition-all cursor-pointer hover:scale-105 active:scale-95"
                     >
                       <Play className="w-4 h-4 fill-current text-[#AF8C72]" />
-                      <span>Putar Video dengan Suara (Full Tour)</span>
+                      <span>{t('Play Walkthrough Video with Sound', 'Putar Video dengan Suara')}</span>
                     </button>
                   </div>
                 )}
@@ -208,7 +211,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
                 rel="noopener noreferrer"
                 className="absolute top-4 right-4 bg-[#1E2022]/90 backdrop-blur-md px-4 py-2 rounded-full text-xs font-mono text-white border border-white/20 hover:bg-black transition-colors flex items-center gap-1.5 shadow-md z-20"
               >
-                <span>Launch Live System Demo</span>
+                <span>{t('Launch Live System Demo', 'Buka Demo Sistem Live')}</span>
                 <ExternalLink className="w-3.5 h-3.5 text-[#AF8C72]" />
               </a>
             )}
@@ -217,14 +220,17 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
           {/* Quick Nav Prompt to Proceed to Detailed Explanation */}
           <ScrollReveal immediateOnMount variant="subtle" delay={0.2} className="flex items-center justify-between pt-2">
             <span className="text-xs font-mono text-[#9E7B62]">
-              Tampilan awal video bersuara aktif · Gulir ke bawah untuk penjelasan komprehensif.
+              {t(
+                'Video tour above · Scroll down for full system architecture and outcomes.',
+                'Tur video aktif di atas · Gulir ke bawah untuk penjelasan arsitektur dan dampak lengkap.'
+              )}
             </span>
 
             <button
               onClick={scrollToDetails}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white hover:bg-[#1E2022] hover:text-white text-xs font-semibold uppercase tracking-wider text-[#1E2022] border border-[#E7E0D6] shadow-2xs transition-all cursor-pointer group"
             >
-              <span>Lanjut ke Penjelasan Detail Aplikasi</span>
+              <span>{t('Read Detailed Case Study', 'Lanjut ke Penjelasan Detail Aplikasi')}</span>
               <ArrowDown className="w-3.5 h-3.5 text-[#AF8C72] group-hover:translate-y-0.5 transition-transform" />
             </button>
           </ScrollReveal>

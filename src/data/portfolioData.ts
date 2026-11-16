@@ -76,7 +76,7 @@ export const SURYA_PHOTOS_ARCHIVE = [
     image: IMAGES.suryaBalconyExecutive,
     title: 'Executive Presence & Campus Ambassador',
     subtitle: 'Institutional Leadership & Public Relations Representation',
-    year: '2026',
+    year: '2024',
     category: 'Leadership & Formal',
     location: 'IPB University',
   },
@@ -84,10 +84,10 @@ export const SURYA_PHOTOS_ARCHIVE = [
     id: 'myself-2',
     image: IMAGES.suryaGraduationWalk,
     title: 'Bachelor of Animal Science (S.Pt.)',
-    subtitle: 'Academic Milestone & Faculty Walk',
-    year: '2026',
+    subtitle: 'Academic Milestone & Faculty Walk (2020–2024)',
+    year: '2024',
     category: 'Milestone & Honors',
-    location: 'Fakultas Peternakan IPB',
+    location: 'Faculty of Animal Science, IPB',
   },
   {
     id: 'myself-3',
@@ -120,8 +120,8 @@ export const SURYA_PHOTOS_ARCHIVE = [
     id: 'myself-6',
     image: IMAGES.suryaGraduationMonument,
     title: 'Department of Animal Production Milestone',
-    subtitle: 'Academic Honors & Scholarly Journey (GPA 3.65)',
-    year: '2026',
+    subtitle: 'Academic Honors & Quantitative Research Thesis (GPA 3.65)',
+    year: '2024',
     category: 'Academics & Honors',
     location: 'IPB University',
   },
@@ -169,7 +169,7 @@ export const EVENT_PHOTOS_ARCHIVE = [
     id: 'event-1',
     image: IMAGES.eventAquafestSolo,
     title: 'Aquafest 2024 — Official Keynote Host',
-    subtitle: 'Master of Ceremony Memandu Panggung Akbar dengan Cue Card & Setelan Jas Formal',
+    subtitle: 'Master of Ceremony Hosting the Grand Stage Forum in Formal Tailored Attire',
     year: '2024',
     category: 'Keynote Host & MC',
     location: 'Grand Stage IPB Dramaga',
@@ -177,8 +177,8 @@ export const EVENT_PHOTOS_ARCHIVE = [
   {
     id: 'event-2',
     image: IMAGES.eventDutaIpbStage,
-    title: '10 Tahun Duta IPB — Satu Dekade Mengabdi',
-    subtitle: 'Peringatan Satu Dekade Paguyuban Duta IPB University di Panggung Megah',
+    title: '10 Years of Duta IPB — A Decade of Service',
+    subtitle: 'Decade Commemoration of the Duta IPB University Ambassador Guild',
     year: '2024',
     category: 'Duta IPB University',
     location: 'IPB International Convention Center',
@@ -186,26 +186,26 @@ export const EVENT_PHOTOS_ARCHIVE = [
   {
     id: 'event-3',
     image: IMAGES.eventSbIpbCommittee,
-    title: 'Sekolah Bisnis IPB (SB-IPB) — Executive Committee',
-    subtitle: 'Kepanitiaan Formal Berjas Biru & Dasi Garis di Depan Dinding Keemasan SB-IPB',
+    title: 'IPB School of Business (SB-IPB) — Executive Committee',
+    subtitle: 'Formal Executive Committee Delegation at the SB-IPB Hall',
     year: '2024',
     category: 'Executive Committee',
-    location: 'Sekolah Bisnis IPB, Bogor',
+    location: 'IPB School of Business, Bogor',
   },
   {
     id: 'event-4',
     image: IMAGES.eventRamadhanHost,
     title: 'Semarak Ramadhan 1445 H — Keynote Moderator',
-    subtitle: 'Moderator Utama & Pemandu Dialog Kebangsaan Syiar Ramadhan',
+    subtitle: 'Lead Moderator & National Dialogue Facilitator',
     year: '2024',
     category: 'Public Moderator',
-    location: 'Pusat Studi Islam IPB',
+    location: 'IPB Islamic Studies Center',
   },
   {
     id: 'event-5',
     image: IMAGES.eventMosqueProtocol,
-    title: 'VIP State & Religious Ceremony Protocol',
-    subtitle: 'Tim Protokoler Kehormatan Busana Sage Satin pada Perhelatan Akbar Masjid Raya',
+    title: 'VIP State & Ceremonial Protocol',
+    subtitle: 'Honorary Protocol Liaison Team at Grand Mosque State Gathering',
     year: '2025',
     category: 'VIP Protocol',
     location: 'Masjid Raya Bogor',
@@ -214,7 +214,7 @@ export const EVENT_PHOTOS_ARCHIVE = [
     id: 'event-6',
     image: IMAGES.eventAquafestMcDuo,
     title: 'Aquafest 2024 — Grand Stage MC Duo',
-    subtitle: 'Memandu Perhelatan Akbar Aquafest bersama Rekan Host di Panggung Utama',
+    subtitle: 'Co-Hosting the Main Auditorium Stage Program at Aquafest 2024',
     year: '2024',
     category: 'Stage Host Duo',
     location: 'Auditorium IPB Dramaga',
@@ -222,17 +222,17 @@ export const EVENT_PHOTOS_ARCHIVE = [
   {
     id: 'event-7',
     image: IMAGES.eventFapetIpbStage,
-    title: 'Fakultas Peternakan IPB University — Academic Committee',
-    subtitle: 'Panitia & Delegasi Mahasiswa Fakultas Peternakan IPB di Panggung Utama',
+    title: 'Faculty of Animal Science IPB — Academic Committee',
+    subtitle: 'Student Committee & Faculty Delegation on Main Campus Stage',
     year: '2024',
     category: 'Campus Committee',
-    location: 'Fakultas Peternakan, IPB',
+    location: 'Faculty of Animal Science, IPB',
   },
   {
     id: 'event-8',
     image: IMAGES.eventMeetingDinner,
     title: 'Executive Leadership & Strategic Committee Meeting',
-    subtitle: 'Pertemuan Pimpinan & Evaluasi Program Kerja di Ruang Rapat Eksekutif',
+    subtitle: 'Leadership Review & Strategic Work Program Evaluation Session',
     year: '2025',
     category: 'Boardroom Leadership',
     location: 'Executive Boardroom, Jakarta',
@@ -241,7 +241,7 @@ export const EVENT_PHOTOS_ARCHIVE = [
     id: 'event-9',
     image: IMAGES.eventBatikStaircase,
     title: 'Designer Batik Showcase & Grand Staircase Protocol',
-    subtitle: 'Koordinasi Pagelaran Warisan Busana Batik Nusantara di Tangga Utama',
+    subtitle: 'Coordinating Nusantara Heritage Showcase Logistics at Grand Ballroom',
     year: '2025',
     category: 'Fashion & Protocol',
     location: 'Grand Ballroom, Jakarta',
@@ -249,8 +249,8 @@ export const EVENT_PHOTOS_ARCHIVE = [
   {
     id: 'event-10',
     image: IMAGES.eventTradisiMelayu,
-    title: 'Nusantara & Cultural Ceremonial Council',
-    subtitle: 'Keprotokolan Adat Tradisional & Pagelaran Budaya Nusantara di Panggung Kehormatan',
+    title: 'Nusantara Cultural Ceremonial Council',
+    subtitle: 'Traditional Ceremonial Protocol & Cultural Stage Management',
     year: '2024',
     category: 'Cultural Protocol',
     location: 'Gedung Kesenian, Jakarta',
@@ -259,7 +259,7 @@ export const EVENT_PHOTOS_ARCHIVE = [
     id: 'event-11',
     image: IMAGES.eventTeamFistSteps,
     title: 'Operational Crew & Field Logistics Solidarity',
-    subtitle: 'Kekompakan Tim Eksekusi Operasional Lapangan & Manajemen Alur Massa',
+    subtitle: 'On-Site Execution Team & High-Volume Crowd Flow Control',
     year: '2025',
     category: 'Operations Crew',
     location: 'Convention Hall Entrance',
@@ -268,7 +268,7 @@ export const EVENT_PHOTOS_ARCHIVE = [
     id: 'event-12',
     image: IMAGES.eventVillaRetreat,
     title: 'Leadership Retreat & Strategic Brainstorming',
-    subtitle: 'Retreat Sinergi Kepemimpinan & Konsolidasi Visi Pengurus Organisasi',
+    subtitle: 'Executive Alignment Retreat & Organizational Vision Consolidation',
     year: '2024',
     category: 'Leadership Retreat',
     location: 'Highland Retreat, Bogor',
@@ -277,7 +277,7 @@ export const EVENT_PHOTOS_ARCHIVE = [
     id: 'event-13',
     image: IMAGES.eventVestOutdoor,
     title: 'Outdoor Mega Event Organizing & Crowd Marshall',
-    subtitle: 'Tim Pengendali Lapangan Berrompi Keemasan pada Festival Kampus Skala Besar',
+    subtitle: 'Field Control & Crowd Safety Coordination for Campus Festival',
     year: '2024',
     category: 'Event Operations',
     location: 'Campus Grounds, IPB',
@@ -298,11 +298,11 @@ export const PROJECTS: Project[] = [
     client: 'Pervia Enterprise / Strategic People Ops',
     location: 'Jakarta, Indonesia',
     shortSummary: 'Enterprise performance suite featuring real-time KPI deliverable verification, 9-box talent matrix calibration, 360-degree feedback, and multi-tier executive analytics.',
-    description: 'Performance is Progress. Platform manajemen kinerja perusahaan terpadu yang memadukan continuous KPI tracking, 360° multi-rater feedback, 9-Box Grid talent calibration, salary & evaluation, serta Company Performance Analytics untuk menyelaraskan seluruh potensi tim dalam satu workspace sinematik.',
+    description: 'Performance is Progress. Unified enterprise performance management platform integrating continuous KPI tracking, 360° multi-rater feedback, 9-Box Grid talent calibration, compensation reviews, and executive performance analytics within one cohesive workspace.',
     features: [
       'Interactive Video Demo Included (Full Product Tour)',
       'Executive Dashboard with Target Alignment (98.4%) & Pulse Metrics',
-      'Continuous KPI Tracking & SLA MTTR Deliverable Verification',
+      'Continuous KPI Tracking & SLA MTTR Deliverable Verification (66 / 92 Audited)',
       '9-Box Grid Talent Matrix & Succession Calibration (Bell-Curve Normalizer)',
       'Multi-Rater 360° Feedback, Supervisor Review, & Self Assessment',
       'Role-Based Workspace Personas (Super Admin, HR Admin, HR Manager, Department Manager, Supervisor, Employee, Reviewer)',
@@ -310,8 +310,8 @@ export const PROJECTS: Project[] = [
     exif: {
       camera: 'Role: Product Lead & Performance Architect',
       lens: 'Stack: React, TypeScript, PostgreSQL, Recharts, Enterprise PMS',
-      focalLength: '15+ Personnel Appraised & 66+ Verified Metrics',
-      aperture: '99.6% Team Score Alignment',
+      focalLength: '7 Departments · 66 / 92 Verified Deliverables',
+      aperture: '98.4% Target Alignment',
       shutter: 'Interactive Video Demo & Live Platform Available',
       iso: 'Performance Intelligence',
     },
@@ -378,18 +378,18 @@ export const PROJECTS: Project[] = [
     client: 'Matchify / PT. Fan Sukses Bersama',
     location: 'Jakarta, Indonesia',
     shortSummary: 'End-to-end recruitment management system with automated interview timetables, live interview timers, and funnel analytics.',
-    description: 'An integrated recruitment intelligence platform engineered to streamline hiring pipelines, automated interview timetables, candidate spotlight matching, real-time funnel analytics (5,200 applicants tracked, 3,861 scheduled, 603 hired), sourcing channel efficiency benchmarks, and automated onboarding task checklists.',
+    description: 'An integrated recruitment intelligence platform engineered to streamline hiring pipelines, automated interview timetables, candidate spotlight matching, real-time funnel analytics (benchmark capacity tested up to 5,200+ candidate records across multi-cohort datasets), sourcing channel efficiency telemetry, and automated onboarding checklists.',
     features: [
       'Interactive Video Demo Included (Full Product Tour)',
       'Automated Interview Timetable & Smart Live Timer (45:00)',
-      'Recruitment Funnel & Sourcing Efficiency (LinkedIn, Jobstreet, Referral)',
+      'Recruitment Funnel & Sourcing Efficiency (LinkedIn, JobStreet, Referral)',
       'Candidate Spotlight & Predictive Role Matching',
       'Automated Onboarding Task Checklist with Real-Time Progress Tracking',
     ],
     exif: {
       camera: 'Role: Product Architect & HR Lead',
       lens: 'Stack: React, TypeScript, Apps Script, Workspace APIs',
-      focalLength: '5,200+ Applicants Screened',
+      focalLength: '5,200+ Candidate Records Benchmarked',
       aperture: '-60% Time-to-Hire (17.2 Days)',
       shutter: 'Interactive Video Demo Available',
       iso: 'Recruitment Intelligence',
@@ -429,10 +429,10 @@ export const PROJECTS: Project[] = [
       },
       results: {
         metrics: [
-          { label: 'Applicants Tracked', value: '5,200+', detail: 'Centralized database' },
+          { label: 'Records Benchmarked', value: '5,200+', detail: 'Multi-cohort & stress-tested pipeline' },
           { label: 'Time-to-Hire', value: '-60%', detail: 'Cut from 43 to 17.2 days' },
-          { label: 'Interviews Scheduled', value: '3,861', detail: 'Zero calendar conflicts' },
-          { label: 'Successful Hires', value: '603', detail: 'Across technical & ops roles' }
+          { label: 'Slots Scheduled', value: '3,861', detail: 'Automated calendar benchmark' },
+          { label: 'Benchmark Hires', value: '603', detail: 'Live & simulated dataset capacity' }
         ],
         impactNarrative: 'Matchify reduced hiring cycle administrative overhead by 60%, eliminating candidate drop-offs and providing executive leadership with real-time visibility into hiring speed and channel efficacy.'
       },
@@ -457,18 +457,18 @@ export const PROJECTS: Project[] = [
     client: 'Slipr / PT. Fan Sukses Bersama',
     location: 'Jakarta, Indonesia',
     shortSummary: 'Automated payroll computation engine with integrated BPJS/PPh 21 tax compliance, digital signatures, and encrypted distribution.',
-    description: 'Kemudahan Kelola Slip Gaji Digital yang Aman & Transparan. Sistem otomatisasi slip gaji lengkap, perhitungan otomatis BPJS & PPh 21, tanda tangan digital (seamless document signing), serta distribusi email massal terenkripsi setingkat perusahaan.',
+    description: 'Secure and transparent digital payroll management for scaling organizations. Automates salary computation, statutory BPJS & TER PPh 21 tax compliance, legally verified digital document signing, and batch encrypted PDF distribution.',
     features: [
       'Interactive Video Demo Included (Full Product Tour)',
-      'Otomatisasi Perhitungan Gaji Pokok, Tunjangan, BPJS & PPh 21',
-      'Seamless Digital Document Signing (Tanda Tangan Digital Sah)',
-      'Distribusi Slip Gaji Otomatis & Terenkripsi via Email',
-      'Dashboard Analitik Payroll & Mobile-Friendly View "Slip Gaji Saya"',
+      'Automated Base Salary, Allowances, BPJS & TER PPh 21 Computation',
+      'Seamless Digital Document Signing & Verification',
+      'Automated Encrypted Bulk Payslip Email Dispatch',
+      'Payroll Analytics Console & Mobile-Friendly Employee Payslip View',
     ],
     exif: {
       camera: 'Role: Product Designer & HR Architect',
       lens: 'Stack: React, Google Workspace, Cryptography, UI/UX',
-      focalLength: '500+ Personnel Managed',
+      focalLength: '110+ Active Staff (500+ System Capacity)',
       aperture: '-75% Payroll Processing Time',
       shutter: 'Wireframe → Prototype → Final Design',
       iso: 'Enterprise-grade Security',
@@ -478,8 +478,8 @@ export const PROJECTS: Project[] = [
       IMAGES.heroSurya,
     ],
     quote: {
-      text: 'Slipr merevolusi cara kami mendistribusikan slip gaji dan menghitung pajak. Dari proses manual berhari-hari menjadi hitungan menit dengan keamanan terenkripsi dan tanda tangan digital sah.',
-      author: 'Bangkit Surya Wijaya, Creator & Human Capital Enthusiast',
+      text: 'Slipr transformed how we compute statutory taxes and distribute monthly payslips—turning a three-day manual bottleneck into a transparent, encrypted 45-minute workflow.',
+      author: 'Bangkit Surya Wijaya, Creator & People Lead',
     },
     caseStudy: {
       overview: 'Slipr is a bespoke digital payroll and encrypted payslip management system designed to eliminate human error, guarantee legal tax compliance, and protect salary confidentiality for fast-growing companies.',
@@ -534,7 +534,7 @@ export const PROJECTS: Project[] = [
     client: 'Zeno Assessment / PT. Fan Sukses Bersama',
     location: 'Jakarta, Indonesia',
     shortSummary: 'Validated online psychological testing engine mapping 16 MBTI types and 4 DISC quadrants with real-time scoring.',
-    description: 'Know Yourself. Grow Beyond. Platform psikotes dan asesmen digital terintegrasi untuk validasi MBTI & DISC, penyederhanaan alur asesmen kandidat, pemangkasan waktu evaluasi psikometri hingga 85%, dan pengambilan keputusan rekrutmen berbasis data komparatif.',
+    description: 'Know Yourself. Grow Beyond. Integrated digital psychometric assessment engine validating MBTI & DISC profiles, streamlining candidate screening workflows, cutting psychological evaluation turnaround by 85%, and enabling comparative culture-fit hiring.',
     features: [
       'Interactive Video Demo Included (Full Product Tour)',
       'Validated MBTI & DISC Online Testing Engine',
@@ -545,7 +545,7 @@ export const PROJECTS: Project[] = [
     exif: {
       camera: 'Role: Psychometric Architect & HR Lead',
       lens: 'Stack: Web Assessment Engine, Apps Script, Radar Charts',
-      focalLength: '1,200+ Test Takers Assessed',
+      focalLength: '1,200+ Assessments Benchmarked',
       aperture: '-85% Evaluation Turnaround (15 Mins)',
       shutter: 'Interactive Video Demo Available',
       iso: 'Validated Psychometrics',
@@ -585,7 +585,7 @@ export const PROJECTS: Project[] = [
       results: {
         metrics: [
           { label: 'Evaluation Turnaround', value: '-85%', detail: 'Down from 3 days to 15 mins' },
-          { label: 'Candidates Evaluated', value: '1,200+', detail: 'Across commercial & tech cohorts' },
+          { label: 'Assessments Scored', value: '1,200+', detail: 'Multi-cohort & system validation' },
           { label: 'Scoring Accuracy', value: '100%', detail: 'Eliminated manual calculation bias' },
           { label: 'Completion Rate', value: '94%', detail: 'Mobile-friendly testing flow' }
         ],
@@ -608,10 +608,10 @@ export const PROJECTS: Project[] = [
     image: IMAGES.heroSurya,
     client: 'PT. Fan Sukses Bersama',
     location: 'Jakarta, Indonesia',
-    shortSummary: 'Directing full-spectrum Human Capital single-handedly for 110+ personnel while engineering proprietary internal automation suites.',
-    description: 'Directing full-spectrum Human Capital operations single-handedly for 110+ employees. Engineered custom internal automation suites including automated interview scheduling, psychometric assessment (MBTI & DISC), and automated payslip generation while establishing KPI target frameworks.',
+    shortSummary: 'Managing end-to-end Human Capital operations for 110+ personnel while building practical internal automation tools.',
+    description: 'Managing end-to-end Human Capital operations for 110+ employees. Built custom internal workflow tools including automated interview scheduling, psychometric assessment (MBTI & DISC), and automated payslip generation alongside KPI target frameworks.',
     features: [
-      'Sole HR Lead managing 110+ personnel end-to-end',
+      'End-to-end HR operations supporting 110+ personnel',
       'Custom in-house digital DISC & MBTI assessment engine',
       'Automated payslip generator syncing with attendance records',
       'Structured division & individual KPI target frameworks',
@@ -619,10 +619,10 @@ export const PROJECTS: Project[] = [
     exif: {
       camera: 'Role: People & Culture Lead',
       lens: 'Stack: Payroll Auto, DISC/MBTI, Notion, Sheets',
-      focalLength: '110+ Employees Managed',
+      focalLength: '110+ Employees Supported',
       aperture: '-65% Admin Processing Time',
-      shutter: 'Full-Spectrum Operations',
-      iso: 'Sole HR Lead',
+      shutter: 'End-to-End Operations',
+      iso: 'HR Generalist Ops',
     },
     additionalImages: [
       IMAGES.matchifyBanner,
@@ -633,7 +633,7 @@ export const PROJECTS: Project[] = [
       author: 'CEO, PT. Fan Sukses Bersama',
     },
     caseStudy: {
-      overview: 'As Sole HR Lead at PT Fan Sukses Bersama, Surya single-handedly architected the entire corporate People & Culture operating infrastructure for 110+ full-time employees across diverse business divisions.',
+      overview: 'As People & Culture Lead at PT Fan Sukses Bersama, Bangkit Surya Wijaya helped establish and streamline core People & Culture operating workflows for 110+ full-time employees across diverse business divisions.',
       challenge: 'The enterprise experienced rapid commercial growth without formalized human resources infrastructure, resulting in fragmented communication, manual spreadsheets, and undefined performance benchmarks.',
       objectives: [
         'Establish 100% legal compliance in labor contracts, social security (BPJS Ketenagakerjaan & Kesehatan), and workplace safety.',
@@ -666,7 +666,7 @@ export const PROJECTS: Project[] = [
       },
       keyLearnings: [
         'Empathetic leadership and structured operational discipline are mutually reinforcing, not opposing forces.',
-        'Sole HR leadership requires ruthless prioritization and leveraging automation as force multipliers.'
+        'Lean HR operations thrive on thoughtful prioritization and practical workflow tools that free up time for people.'
       ],
       relatedProjectIds: ['slipr-platform', 'matchify-platform']
     }
@@ -974,7 +974,7 @@ export const EXPERTISE_AREAS = [
       'Employee Welfare & BPJS Compliance'
     ],
     tools: ['Matchify RMS', 'Slipr Payroll', 'Zeno Psychometrics', 'Google Workspace', 'Notion'],
-    practicalApplication: 'Managing 110+ employees single-handedly as Sole HR Lead at PT Fan Sukses Bersama with zero compliance breaches and high team cohesion.',
+    practicalApplication: 'Supporting 110+ employees end-to-end as People & Culture Lead at PT Fan Sukses Bersama with clean regulatory compliance and strong team cohesion.',
     relatedProjectIds: ['matchify-platform', 'slipr-platform', 'fan-sukses-hr'],
   },
   {
@@ -1042,7 +1042,7 @@ export const EXPERTISE_AREAS = [
       'Validated Psychometric Calibration'
     ],
     tools: ['Power BI', 'Google Sheets Analytics', 'DISC/MBTI Matrix', 'Radar Charts'],
-    practicalApplication: 'Engineered analytics tracking 5,200+ applicants and created diagnostic models yielding an 85% verified post-program surge in consultant role clarity.',
+    practicalApplication: 'Engineered recruitment analytics benchmarked across 5,200+ pipeline records and built diagnostic models yielding an 85% verified surge in consultant role clarity.',
     relatedProjectIds: ['zeno-platform', 'indekstat-workforce-analysis', 'matchify-platform'],
   },
 ];
@@ -1086,29 +1086,29 @@ export const BLOG_POSTS: BlogPost[] = [
     image: IMAGES.zenoBanner,
     videoUrl: IMAGES.zenoVideo,
     demoUrl: 'https://script.google.com/macros/s/AKfycbzhFD87PJRrOvkU8GMA01CgfTRieF-Qisi9tvJTADvqKXvl4AO4WaHA94z4z7NVRCkd/exec',
-    summary: 'Impact of better assessment for your recruitment: Bagaimana Zeno mentransformasi tes psikologi konvensional menjadi platform asesmen digital interaktif dengan scoring otomatis MBTI, DISC, dan cognitive profiling.',
+    summary: 'Impact of better assessment on recruitment: How Zeno transforms conventional paper psychometrics into an interactive digital engine with automated MBTI, DISC, and cognitive radar profiling.',
     content: {
-      lead: 'Setiap individu memiliki potensi unik, namun proses evaluasi kepribadian dan potensi kerja di tahap rekrutmen sering kali terjebak dalam kuesioner kertas yang panjang, memakan waktu skoring berhari-hari, dan sarat bias subjektif. Zeno dibangun untuk merevolusi asesmen pra-kerja menjadi pengalaman digital yang cepat, akurat, dan berbasis data ilmiah.',
+      lead: 'Every individual holds distinct potential, yet pre-employment personality and behavioral assessments frequently stall inside lengthy paper booklets, multi-day manual grading, and subjective bias. Zeno was built to transform psychometrics into a fast, standardized, data-driven digital experience.',
       sections: [
         {
-          heading: 'Validasi Algoritma MBTI & DISC Digital',
+          heading: 'Validating Digital MBTI & DISC Scoring Algorithms',
           paragraphs: [
-            'Dengan mengadopsi instrumen psikometri tervalidasi, Zeno menyusun 26 pertanyaan situasional terkalibrasi yang dapat diselesaikan kandidat dalam waktu sekitar 10 menit melalui antarmuka web dan mobile yang intuitif.',
-            'Algoritma skoring otomatis secara instan memetakan 16 tipe kepribadian MBTI dan 4 kuadran perilaku DISC (Dominance, Influence, Steadiness, Conscientiousness), menghasilkan grafik radar kompetensi yang objektif.',
+            'Adopting validated industrial psychometric matrices, Zeno structures 26 calibrated situational prompts that candidates complete in roughly 10 minutes via a responsive mobile and desktop interface.',
+            'Automated scoring algorithms instantaneously map 16 MBTI dimensions and all four DISC quadrants (Dominance, Influence, Steadiness, Conscientiousness), generating objective competency radar charts.',
           ],
         },
         {
-          heading: 'Memangkas Waktu Rekrutmen hingga 85%',
+          heading: 'Cutting Psychometric Evaluation Turnaround by 85%',
           paragraphs: [
-            'Sebelum adanya Zeno, tim HR memerlukan 2 hingga 3 hari kerja hanya untuk mengoreksi lembar jawaban psikotes dan menyusun laporan psikogram manual. Dengan Zeno, begitu kandidat menekan tombol kirim, laporan asesmen komprehensif langsung tersedia bagi rekruter.',
-            'Kecepatan evaluasi ini memungkinkan pengambilan keputusan hiring berlangsung dalam hitungan menit, mencegah kandidat terbaik terlepas ke kompetitor lain.',
+            'Prior to Zeno, HR practitioners spent 2 to 3 business days grading physical sheets and compiling psychological profiles. With Zeno, comprehensive assessment dossiers become available to recruiters the moment a candidate submits.',
+            'This speed enables confident shortlist decisions within minutes, preventing high-potential talent from accepting competing offers during administrative delays.',
           ],
         },
         {
-          heading: 'Pengambilan Keputusan Berbasis Data & Culture-Fit',
+          heading: 'Data-Backed Culture Fit & Team Complementarity',
           paragraphs: [
-            'Zeno tidak hanya mengukur kepribadian individu, tetapi juga membandingkan profil kandidat terhadap profil tim yang sudah ada (team archetype fit). Hal ini membantu manajer menemukan talenta yang mampu melengkapi dinamika kerja divisi.',
-            'Melalui integrasi dengan database kandidat dan platform Matchify, ekosistem rekrutmen menjadi satu kesatuan yang terotomasi dari lamaran hingga asesmen psikologi.',
+            'Beyond individual scoring, Zeno compares candidate behavioral profiles against existing team archetypes, helping hiring managers select talent who complement cross-functional division dynamics.',
+            'Integrated alongside Matchify RMS, the recruitment funnel operates as one unified cloud workflow from application intake to behavioral assessment.',
           ],
         },
       ],
@@ -1125,29 +1125,29 @@ export const BLOG_POSTS: BlogPost[] = [
     image: IMAGES.sliprBanner,
     videoUrl: IMAGES.sliprVideo,
     demoUrl: 'https://script.google.com/macros/s/AKfycbyoq-0LSWK4t6xvg5-OgVx4Eki8GQXEO4x_NA6gEjgpImQEGA0vvGFt4hz0MGOWnvfO3Q/exec',
-    summary: 'Kemudahan kelola slip gaji digital yang aman & transparan: Bagaimana merancang Slipr dari wireframe, prototype, hingga final design dengan integrasi perhitungan BPJS, PPh 21, dan tanda tangan digital.',
+    summary: 'Secure and transparent digital payslip management: Designing Slipr from wireframe to production with automated BPJS deductions, TER PPh 21 tax compliance, and digital signatures.',
     content: {
-      lead: 'Distribusi slip gaji manual bukan hanya memakan waktu operasional berhari-hari, tetapi juga rentan terhadap kebocoran privasi gaji antar karyawan dan kesalahan perhitungan pajak. Slipr lahir sebagai jawaban atas kebutuhan sistem payroll digital yang ringkas, aman, dan transparan.',
+      lead: 'Manual payslip distribution consumes days of monthly HR bandwidth while exposing organizations to salary confidentiality leaks and statutory tax miscalculations. Slipr was engineered to deliver concise, encrypted, and legally compliant digital payroll.',
       sections: [
         {
-          heading: 'Dari Wireframe ke Desain Produksi: User Experience yang Humanis',
+          heading: 'From Wireframe to Production: Human-Centered Payroll UX',
           paragraphs: [
-            'Pendekatan desain Slipr berakar dari empati terhadap dua sisi pengguna: tim HR yang membutuhkan kecepatan input data massal, dan karyawan yang menginginkan transparansi rincian gaji (take-home pay, tunjangan, dan potongan pajak) yang mudah dibaca di layar ponsel mereka.',
-            'Dengan membagi tahap rancangan ke dalam Wireframe, Interactive Prototype, hingga Final Design bersertifikasi tanda tangan digital, Slipr memberikan kejelasan status pembayaran secara real-time.',
+            'Slipr was designed with empathy for two distinct user groups: HR administrators who need rapid bulk spreadsheet ingestion, and employees who deserve crystal-clear mobile readability across base salary, allowances, and tax withholdings.',
+            'By iterating from structured wireframes and interactive prototypes to production delivery with verified digital signing, Slipr gives staff immediate clarity on payout breakdowns.',
           ],
         },
         {
-          heading: 'Otomatisasi Rumus BPJS & PPh 21 Terintegrasi',
+          heading: 'Automated BPJS & TER PPh 21 Regulatory Compliance',
           paragraphs: [
-            'Sistem kalkulasi di balik Slipr secara otomatis memetakan persentase iuran BPJS Kesehatan (1% karyawan, 4% perusahaan), BPJS Ketenagakerjaan (JHT, JKK, JKM, JP), serta perhitungan tarif efektif rata-rata (TER) PPh 21 terkini.',
-            'Data kehadiran dan lembur yang tersinkronisasi memungkinkan ribuan slip gaji terbit dalam hitungan menit lengkap dengan proteksi enkripsi dokumen per karyawan.',
+            'Slipr’s calculation engine automatically enforces BPJS Kesehatan contributions (1% employee, 4% employer), BPJS Ketenagakerjaan (JHT, JKK, JKM, JP), and the latest Indonesian Effective Average Tax Rate (TER PPh 21) brackets.',
+            'Synchronized attendance and overtime inputs generate hundreds of individualized, password-protected payslips in minutes.',
           ],
         },
         {
-          heading: 'Distribusi Terenkripsi & Digital Document Signing',
+          heading: 'Encrypted Distribution & Digital Document Signing',
           paragraphs: [
-            'Setiap dokumen slip gaji yang dibuat dilengkapi fitur tanda tangan digital terverifikasi dan didistribusikan secara otomatis ke email pribadi masing-masing karyawan menggunakan protokol enkripsi yang menjamin kerahasiaan nominal pendapatan.',
-            'Hasilnya, siklus penyelesaian payroll di perusahaan terpangkas hingga 75%, menghilangkan antrean pertanyaan slip gaji dan meningkatkan kepuasan karyawan terhadap transparansi perusahaan.',
+            'Each issued payslip carries verified digital signature stamping and dispatches automatically to each employee’s personal inbox under encrypted PDF protection—guaranteeing zero cross-visibility.',
+            'As a result, monthly payroll processing dropped by 75% (from 3 days to under 1 hour), eliminating compensation inquiries and elevating workforce trust.',
           ],
         },
       ],
@@ -1166,7 +1166,7 @@ export const BLOG_POSTS: BlogPost[] = [
     demoUrl: 'https://script.google.com/macros/s/AKfycbygYq3clewdZdfxfOnQox89ep8N9q4jFUIjnJpWUQs2FF4gyKR23msY_3XBzozlnAU/exec',
     summary: 'How building Matchify, automated interview timetables, digital psychometric assessment engines (MBTI & DISC), and automated payslips slashed administrative cycle times by over 60% for a 110+ employee workforce.',
     content: {
-      lead: 'In fast-growing organizations, HR departments often get paralyzed by manual spreadsheets, repetitive interview coordination, and disjointed payroll processes. When I stepped in as Sole HR Lead for 110+ employees at PT. Fan Sukses Bersama, the primary mandate was clear: eliminate repetitive administrative friction through intelligent, scalable automation.',
+      lead: 'In fast-growing organizations, HR teams often get slowed down by manual spreadsheets, repetitive interview coordination, and disjointed payroll processes. When supporting 110+ employees as People & Culture Lead at PT. Fan Sukses Bersama, the priority was clear: ease repetitive administrative friction through practical, scalable workflow tools.',
       sections: [
         {
           heading: 'Building the Digital Psychometric Engine',
@@ -1262,7 +1262,7 @@ export const TESTIMONIALS: Testimonial[] = [
     company: 'PT. Fan Sukses Bersama',
     initials: 'MN',
     rating: 5,
-    content: 'Surya memimpin dan mentransformasi divisi Human Capital kami untuk 110+ personel dengan integritas dan eksekusi yang luar biasa. Inovasi sistem otomasi Matchify yang ia bangun serta struktur KPI yang rapi membawa kedisiplinan operasional dan loyalitas tim yang terukur.',
+    content: 'Surya led and transformed our Human Capital division across 110+ personnel with integrity and decisive execution. The Matchify automation suite he built and the structured KPI architecture introduced measurable operational discipline and team loyalty.',
   },
   {
     id: '2',
@@ -1271,7 +1271,7 @@ export const TESTIMONIALS: Testimonial[] = [
     company: 'PT Indekstat Konsultan Indonesia',
     initials: 'TP',
     rating: 5,
-    content: 'Surya memiliki kapasitas istimewa dalam mengawinkan strategi operasional berskala besar dengan analisa kuantitatif kebutuhan tenaga kerja. Analisa diagnosis dan kedisiplinan eksekusinya memberikan dampak langsung terhadap kejelasan peran dan produktivitas tim konsultan.',
+    content: 'Surya possesses a rare ability to unite large-scale operational strategy with quantitative workforce diagnostics. His analytical rigor and disciplined follow-through directly improved role clarity and productivity across our consulting teams.',
   },
   {
     id: '3',
@@ -1280,7 +1280,7 @@ export const TESTIMONIALS: Testimonial[] = [
     company: 'Directorate of Promotion Duta IPB University',
     initials: 'HS',
     rating: 5,
-    content: 'Kemampuan Surya dalam memimpin koordinasi operasional di tingkat nasional pada 27 provinsi dan membawa delegasi meraih Juara 1 PREA 2024 membuktikan kepemimpinan publik, manajerial talenta, dan resiliensi kerjanya yang sangat tangguh.',
+    content: 'Surya’s leadership coordinating national operations across 27 provinces and guiding our delegation to 1st Place at PREA 2024 proves his public communication mastery, talent orchestration, and calm resilience under pressure.',
   },
 ];
 
@@ -1318,7 +1318,7 @@ export const SERVICES: ServiceItem[] = [
     title: 'People & Culture Leadership',
     tagline: 'End-to-end full-spectrum HR operations and high-retention workplace culture',
     description: 'Comprehensive human capital management for high-growth enterprises and startups. Covering talent acquisition, attendance & scheduling, employee welfare, BPJS compliance, and conflict resolution.',
-    features: ['Sole HR lead capabilities for 100+ headcount', 'KPI / OKR performance architecture', 'Employee engagement & retention programs'],
+    features: ['End-to-end HR operations support for 100+ headcount', 'KPI / OKR performance architecture', 'Employee engagement & retention programs'],
     turnaround: 'Full-time / Ongoing',
     idealFor: 'Growing tech startups, commercial companies, enterprise divisions',
   },

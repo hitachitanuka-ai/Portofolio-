@@ -14,9 +14,10 @@ import {
   ChevronRight,
   Compass,
 } from 'lucide-react';
-import { EXPERTISE_AREAS, PROJECTS } from '../../data/portfolioData';
 import { AppRoute } from '../../types';
 import { ScrollReveal } from '../ScrollReveal';
+import { useLanguage } from '../../context/LanguageContext';
+import { getLocalizedExpertise, getLocalizedProjects } from '../../data/portfolioLocalized';
 
 interface ExpertisePageProps {
   onNavigate: (route: AppRoute, slug?: string) => void;
@@ -58,17 +59,21 @@ const DISCIPLINE_META: Record<
 };
 
 export const ExpertisePage: React.FC<ExpertisePageProps> = ({ onNavigate }) => {
-  const [selectedId, setSelectedId] = useState<string>(EXPERTISE_AREAS[0].id);
+  const { lang, t } = useLanguage();
+  const expertiseAreas = getLocalizedExpertise(lang);
+  const projects = getLocalizedProjects(lang);
+
+  const [selectedId, setSelectedId] = useState<string>(expertiseAreas[0].id);
 
   const activeArea =
-    EXPERTISE_AREAS.find((area) => area.id === selectedId) || EXPERTISE_AREAS[0];
+    expertiseAreas.find((area) => area.id === selectedId) || expertiseAreas[0];
   const activeMeta = DISCIPLINE_META[activeArea.id] || {
     icon: Activity,
     shortImpact: 'Verified Execution',
     accentColor: '#6E7C69',
   };
   const ActiveIcon = activeMeta.icon;
-  const relatedProjects = PROJECTS.filter((p) =>
+  const relatedProjects = projects.filter((p) =>
     activeArea.relatedProjectIds.includes(p.id)
   );
 
@@ -80,17 +85,20 @@ export const ExpertisePage: React.FC<ExpertisePageProps> = ({ onNavigate }) => {
           <ScrollReveal immediateOnMount variant="editorial" delay={0} className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#6E7C69]/12 text-[#6E7C69] text-[11px] font-mono font-bold uppercase tracking-wider mb-3">
               <Sparkles className="w-3.5 h-3.5" strokeWidth={1.7} />
-              <span>05 Core Disciplines</span>
+              <span>{t('05 Core Disciplines', '05 Disiplin Keahlian Inti')}</span>
             </div>
             <h1 className="font-sans font-black text-3xl sm:text-5xl text-[#1E2022] tracking-tight leading-[1.08]">
-              Capability{' '}
+              {t('Capability', 'Arsitektur')}{' '}
               <span className="font-serif italic font-normal text-[#6E7C69]">
-                Architecture
+                {t('Architecture', 'Kapabilitas')}
               </span>{' '}
-              &amp; Expertise
+              &amp; {t('Expertise', 'Keahlian')}
             </h1>
             <p className="text-xs sm:text-sm text-[#5E626B] mt-2.5 font-light leading-relaxed max-w-xl">
-              Lima pilar kompetensi multidisiplin yang dibangun melalui praktik kepemimpinan HR korporat, analisis bisnis kuantitatif, dan rekayasa perangkat lunak internal.
+              {t(
+                'Five multidisciplinary capability pillars forged through corporate People Operations leadership, quantitative workforce analysis, and in-house HR tech engineering.',
+                'Lima pilar kompetensi multidisiplin yang dibangun melalui praktik kepemimpinan HR korporat, analisis bisnis kuantitatif, dan rekayasa perangkat lunak HR internal.'
+              )}
             </p>
           </ScrollReveal>
 
@@ -115,7 +123,7 @@ export const ExpertisePage: React.FC<ExpertisePageProps> = ({ onNavigate }) => {
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           {/* Left Rail: Compact 5-Discipline Selector */}
           <ScrollReveal immediateOnMount variant="card" delay={0.12} className="lg:col-span-5 flex flex-col justify-between gap-2.5">
-            {EXPERTISE_AREAS.map((area) => {
+            {expertiseAreas.map((area) => {
               const isSelected = area.id === activeArea.id;
               const meta = DISCIPLINE_META[area.id] || {
                 icon: Activity,
@@ -229,7 +237,7 @@ export const ExpertisePage: React.FC<ExpertisePageProps> = ({ onNavigate }) => {
                   <div className="md:col-span-6 space-y-3">
                     <div className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-[#1E2022] font-bold">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#6E7C69]" strokeWidth={1.8} />
-                      <span>Core Competencies</span>
+                      <span>{t('Core Competencies', 'Kompetensi Inti')}</span>
                     </div>
                     <ul className="space-y-2">
                       {activeArea.competencies.map((comp, idx) => (
@@ -268,7 +276,7 @@ export const ExpertisePage: React.FC<ExpertisePageProps> = ({ onNavigate }) => {
                     <div className="p-4 rounded-2xl bg-[#EDF1EC] border border-[#D4DFD1] space-y-1.5">
                       <div className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-[#4C5B48] font-bold">
                         <Briefcase className="w-3 h-3" strokeWidth={1.8} />
-                        <span>Real-World Application</span>
+                        <span>{t('Real-World Application', 'Penerapan Nyata')}</span>
                       </div>
                       <p className="text-xs text-[#23272F] leading-relaxed font-normal">
                         {activeArea.practicalApplication}
@@ -308,16 +316,16 @@ export const ExpertisePage: React.FC<ExpertisePageProps> = ({ onNavigate }) => {
           <ScrollReveal variant="subtle" delay={0}>
             <div className="flex items-center justify-between border-b border-[#E7E0D6] pb-3">
               <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#8F6D54] font-bold">
-                At-a-Glance Capability Matrix
+                {t('At-a-Glance Capability Matrix', 'Matriks Ringkas Kapabilitas')}
               </span>
               <span className="font-mono text-[11px] text-[#605E59]">
-                Click any card to inspect
+                {t('Click any card to inspect', 'Klik kartu untuk meninjau')}
               </span>
             </div>
           </ScrollReveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
-            {EXPERTISE_AREAS.map((area, areaIdx) => {
+            {expertiseAreas.map((area, areaIdx) => {
               const isSelected = area.id === activeArea.id;
               const meta = DISCIPLINE_META[area.id] || {
                 icon: Activity,

@@ -1,8 +1,9 @@
 import React from 'react';
 import { ArrowLeft, Clock, Calendar, ArrowUpRight } from 'lucide-react';
-import { BLOG_POSTS } from '../../data/portfolioData';
 import { AppRoute, BlogPost } from '../../types';
 import { ScrollReveal } from '../ScrollReveal';
+import { useLanguage } from '../../context/LanguageContext';
+import { getLocalizedBlogPosts } from '../../data/portfolioLocalized';
 
 interface InsightDetailPageProps {
   postSlug: string;
@@ -10,8 +11,10 @@ interface InsightDetailPageProps {
 }
 
 export const InsightDetailPage: React.FC<InsightDetailPageProps> = ({ postSlug, onNavigate }) => {
+  const { lang, t } = useLanguage();
+  const posts = getLocalizedBlogPosts(lang);
   const post: BlogPost | undefined = 
-    BLOG_POSTS.find((p) => p.slug === postSlug || p.id === postSlug) || BLOG_POSTS[0];
+    posts.find((p) => p.slug === postSlug || p.id === postSlug) || posts[0];
 
   if (!post) return null;
 
@@ -26,11 +29,11 @@ export const InsightDetailPage: React.FC<InsightDetailPageProps> = ({ postSlug, 
               className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#1E2022] hover:text-[#6E7C69] transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4 text-[#AF8C72]" />
-              <span>Back to Insights Journal</span>
+              <span>{t('Back to Insights Journal', 'Kembali ke Jurnal Wawasan')}</span>
             </button>
 
             <span className="font-mono text-xs text-[#9E7B62] font-semibold">
-              Essay · {post.category}
+              {t('Essay', 'Esai')} · {post.category}
             </span>
           </div>
         </ScrollReveal>
@@ -108,21 +111,24 @@ export const InsightDetailPage: React.FC<InsightDetailPageProps> = ({ postSlug, 
           <div className="p-8 sm:p-10 bg-[#6E7C69] text-white rounded-3xl space-y-4 shadow-lg">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs uppercase tracking-widest text-[#EAE2D8] font-bold">
-                Author Perspective
+                {t('Author Perspective', 'Perspektif Penulis')}
               </span>
             </div>
             <h3 className="font-sans font-bold text-2xl text-white">
               Bangkit Surya Wijaya
             </h3>
             <p className="text-xs sm:text-sm text-[#F3EFEA]/90 font-light leading-relaxed">
-              Head of People & Culture at PT Fan Sukses Bersama, managing 110+ employees across multi-disciplinary divisions. He architects bespoke digital HR tools and advises high-growth teams on sustainable workforce systems.
+              {t(
+                'People Operations & HR Systems Specialist at PT Fan Sukses Bersama, managing 110+ employees and building in-house HR tech suites (Pervia, Matchify, Slipr, Zeno).',
+                'People Operations & HR Systems Specialist di PT Fan Sukses Bersama yang mengelola 110+ karyawan sekaligus merancang rangkaian teknologi HR internal (Pervia, Matchify, Slipr, Zeno).'
+              )}
             </p>
             <div className="pt-2">
               <button
                 onClick={() => onNavigate('contact')}
                 className="px-6 py-3 bg-[#1E2022] text-white hover:bg-black rounded-full text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer inline-flex items-center gap-2"
               >
-                <span>Connect on Advisory</span>
+                <span>{t('Connect on Advisory', 'Diskusi & Kolaborasi')}</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-[#AF8C72]" />
               </button>
             </div>

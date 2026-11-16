@@ -2,13 +2,15 @@ import React from 'react';
 import { ArrowUp, ArrowUpRight, Mail, Linkedin, Instagram, MapPin } from 'lucide-react';
 import { AppRoute } from '../types';
 import { ScrollReveal } from './ScrollReveal';
+import { useLanguage } from '../context/LanguageContext';
 
 interface FooterProps {
   onNavigate: (route: AppRoute, slug?: string) => void;
   onOpenResume?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenResume }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+  const { lang, t } = useLanguage();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -25,37 +27,51 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenResume }) => {
                 THE MODERN STRATEGIST
               </span>
               <span className="font-mono text-xs uppercase tracking-widest text-[#AF8C72] mt-1.5 block font-bold">
-                Bangkit Surya Wijaya · Professional Portfolio
+                {t(
+                  'Bangkit Surya Wijaya · People Ops & HR Systems Specialist',
+                  'Bangkit Surya Wijaya · Spesialis People Ops & Sistem HR'
+                )}
               </span>
             </div>
 
             <p className="text-sm text-[#F3EFEA]/80 max-w-sm leading-relaxed font-light">
-              "A Strategic Mind. A Human Perspective. A Digital Approach."
+              {t(
+                '"Managing 110+ Workforce & Building In-House HR Tech (PMS, ATS, Payroll, Analytics)."',
+                '"Mengelola 110+ Karyawan & Membangun HR Tech Internal (PMS, ATS, Payroll, Analitik)."'
+              )}
               <br />
-              Intersecting People & Culture, Business Analysis, and Digital Product Innovation to create measurable organizational impact.
+              {t(
+                'Intersecting People & Culture, Business Analysis, and Digital Product Innovation for measurable impact.',
+                'Menyatukan People & Culture, Analisis Bisnis, dan Inovasi Produk Digital untuk dampak organisasi terukur.'
+              )}
             </p>
 
             <div className="flex items-center gap-2 pt-2 text-xs font-mono text-[#F3EFEA]/70">
               <MapPin className="w-3.5 h-3.5 text-[#6E7C69]" />
-              <span>Jakarta & Bogor, Indonesia · Available Globally</span>
+              <span>
+                {t(
+                  'Jakarta & Bogor, Indonesia · Available Globally',
+                  'Jakarta & Bogor, Indonesia · Terbuka untuk Kolaborasi Global'
+                )}
+              </span>
             </div>
           </ScrollReveal>
 
           {/* Quick Navigation Column */}
           <ScrollReveal variant="editorial" delay={0.1} className="md:col-span-3 space-y-4">
             <span className="font-mono text-[11px] uppercase tracking-widest text-[#AF8C72] block font-bold">
-              Navigation Index
+              {t('Navigation Index', 'Indeks Navigasi')}
             </span>
             <ul className="space-y-2.5 text-xs tracking-wider">
               {[
-                { label: 'HOME', route: 'home' as AppRoute },
-                { label: 'ABOUT', route: 'about' as AppRoute },
-                { label: 'EXPERTISE', route: 'expertise' as AppRoute },
-                { label: 'PROJECTS', route: 'projects' as AppRoute },
-                { label: 'EXPERIENCE', route: 'experience' as AppRoute },
-                { label: 'INSIGHTS', route: 'insights' as AppRoute },
-                { label: 'VISUAL ARCHIVE', route: 'archive' as AppRoute },
-                { label: 'CONTACT', route: 'contact' as AppRoute },
+                { en: 'HOME', id: 'BERANDA', route: 'home' as AppRoute },
+                { en: 'ABOUT', id: 'TENTANG', route: 'about' as AppRoute },
+                { en: 'EXPERTISE', id: 'KEAHLIAN', route: 'expertise' as AppRoute },
+                { en: 'PROJECTS', id: 'PROYEK', route: 'projects' as AppRoute },
+                { en: 'EXPERIENCE', id: 'PENGALAMAN', route: 'experience' as AppRoute },
+                { en: 'INSIGHTS', id: 'WAWASAN', route: 'insights' as AppRoute },
+                { en: 'VISUAL ARCHIVE', id: 'ARSIP VISUAL', route: 'archive' as AppRoute },
+                { en: 'CONTACT', id: 'KONTAK', route: 'contact' as AppRoute },
               ].map((link) => (
                 <li key={link.route}>
                   <button
@@ -65,7 +81,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenResume }) => {
                     }}
                     className="text-[#F3EFEA]/70 hover:text-white transition-colors cursor-pointer text-left uppercase font-medium"
                   >
-                    {link.label}
+                    {lang === 'id' ? link.id : link.en}
                   </button>
                 </li>
               ))}
@@ -75,10 +91,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenResume }) => {
           {/* Connect & Direct Channels Column */}
           <ScrollReveal variant="editorial" delay={0.18} className="md:col-span-4 space-y-4">
             <span className="font-mono text-[11px] uppercase tracking-widest text-[#AF8C72] block font-bold">
-              Direct Contact
+              {t('Direct Contact', 'Kontak Langsung')}
             </span>
             <p className="text-xs text-[#F3EFEA]/80 leading-relaxed font-light">
-              Open for full-time People & Culture leadership, strategic consulting engagements, and advisory partnerships.
+              {t(
+                'Open for People Operations & HR Systems leadership roles, strategic consulting, and internal HR-Tech engagements.',
+                'Terbuka untuk peran People Operations & Sistem HR, konsultasi strategis organisasi, serta proyek transformasi HR-Tech.'
+              )}
             </p>
 
             <div className="space-y-2.5 pt-1 text-xs">
@@ -97,7 +116,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenResume }) => {
                 className="flex items-center gap-2.5 text-white hover:text-[#AF8C72] transition-colors"
               >
                 <Linkedin className="w-4 h-4 text-[#6E7C69]" />
-                <span>LinkedIn / Bangkit Surya</span>
+                <span>LinkedIn / Bangkit Surya Wijaya</span>
                 <ArrowUpRight className="w-3.5 h-3.5 ml-auto text-neutral-400" />
               </a>
 
@@ -123,7 +142,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenResume }) => {
           className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#F3EFEA]/60"
         >
           <div>
-            <span>© {new Date().getFullYear()} Bangkit Surya Wijaya. All rights reserved.</span>
+            <span>
+              © {new Date().getFullYear()} Bangkit Surya Wijaya.{' '}
+              {t('All rights reserved.', 'Hak cipta dilindungi.')}
+            </span>
           </div>
 
           <div className="flex items-center gap-6">
@@ -131,7 +153,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenResume }) => {
               onClick={scrollToTop}
               className="inline-flex items-center gap-2 text-white hover:text-[#AF8C72] transition-colors cursor-pointer group"
             >
-              <span>Back to Top</span>
+              <span>{t('Back to Top', 'Kembali ke Atas')}</span>
               <div className="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#AF8C72] transition-colors">
                 <ArrowUp className="w-3 h-3 group-hover:-translate-y-0.5 transition-transform text-[#AF8C72]" />
               </div>

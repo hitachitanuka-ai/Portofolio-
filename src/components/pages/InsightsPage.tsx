@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, Clock, Filter, Sparkles } from 'lucide-react';
-import { BLOG_POSTS } from '../../data/portfolioData';
 import { AppRoute } from '../../types';
 import { ScrollReveal } from '../ScrollReveal';
+import { useLanguage } from '../../context/LanguageContext';
+import { getLocalizedBlogPosts } from '../../data/portfolioLocalized';
 
 interface InsightsPageProps {
   onNavigate: (route: AppRoute, slug?: string) => void;
 }
 
 export const InsightsPage: React.FC<InsightsPageProps> = ({ onNavigate }) => {
+  const { lang, t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<string>('All');
 
+  const posts = getLocalizedBlogPosts(lang);
   const categories = ['All', 'HR Systems', 'People Ops', 'Analytics', 'Leadership'];
 
-  const filteredPosts = BLOG_POSTS.filter((post) => {
+  const filteredPosts = posts.filter((post) => {
     if (activeCategory === 'All') return true;
     return post.category === activeCategory;
   });
@@ -26,19 +29,22 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ onNavigate }) => {
           <ScrollReveal immediateOnMount variant="editorial" delay={0} className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#6E7C69]/10 text-[#6E7C69] text-xs font-mono font-bold uppercase tracking-wider mb-3">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Editorial Journal & Thought Leadership</span>
+              <span>{t('Editorial Journal & Field Notes', 'Jurnal Editorial & Catatan Lapangan')}</span>
             </div>
             <h1 className="font-sans font-black text-4xl sm:text-5xl lg:text-6xl text-[#1E2022] tracking-tight leading-tight">
-              Insights & Strategic Notes
+              {t('Insights & Strategic Notes', 'Wawasan & Catatan Strategis')}
             </h1>
             <p className="text-sm sm:text-base text-[#605E59] mt-3 font-light leading-relaxed">
-              Practitioner perspectives on psychometric algorithms, cloud payroll architecture, quantitative workforce diagnostics, and stakeholder logistics.
+              {t(
+                'Practitioner perspectives on psychometric algorithms, cloud payroll architecture, quantitative workforce diagnostics, and stakeholder logistics.',
+                'Perspektif praktisi mengenai algoritma psikometri, arsitektur payroll cloud, diagnostik tenaga kerja kuantitatif, dan manajemen operasional.'
+              )}
             </p>
           </ScrollReveal>
 
           <ScrollReveal immediateOnMount variant="subtle" delay={0.14} className="self-start md:self-end">
             <div className="font-mono text-xs text-[#AF8C72] font-semibold bg-white px-4 py-2 rounded-full border border-[#E7E0D6] shadow-2xs">
-              {filteredPosts.length} Published Articles
+              {filteredPosts.length} {t('Published Articles', 'Artikel Terbit')}
             </div>
           </ScrollReveal>
         </section>
@@ -110,7 +116,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ onNavigate }) => {
 
               <div className="pt-6 mt-4 border-t border-[#E7E0D6] flex items-center justify-between">
                 <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1E2022] group-hover:text-[#6E7C69] uppercase tracking-wider transition-colors">
-                  <span>Read Article</span>
+                  <span>{t('Read Article', 'Baca Artikel')}</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-[#AF8C72] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </span>
                 <span className="font-mono text-xs text-[#9E7B62]">No. 0{idx + 1}</span>
