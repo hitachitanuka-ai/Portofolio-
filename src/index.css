@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Instrument Serif", Georgia, Cambria, serif;
+  --font-sans: "Plus Jakarta Sans", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", monospace;
+
+  /* =========================================================================
+     Refined Editorial Minimalist & Luxury Corporate Harmonized Palette
+     ========================================================================= */
+
+  /* Foundational Backgrounds (Soft, warm paper and ivory tones) */
+  --color-warm-ivory: #F5F3EE;
+  --color-warm-cream: #F3EFEA;
+  --color-porcelain: #FAF8F5;
+  --color-linen: #F6F3EE;
+  --color-sandstone-light: #EFE8E0;
+
+  /* Strategic Luxury Champagne (#B49A70) Signature Accent System */
+  --color-champagne: #B49A70;
+  --color-champagne-light: #C8B18B;
+  --color-champagne-dark: #988056;
+  --color-champagne-soft: rgba(180, 154, 112, 0.12);
+  --color-champagne-muted: rgba(180, 154, 112, 0.22);
+  --color-champagne-border: rgba(180, 154, 112, 0.35);
+
+  /* Sage Green Botanical Accents (Calm & Organic) */
+  --color-sage-green: #6E7C69;
+  --color-sage-light: #7E8C78;
+  --color-sage-mist: #EDF1EC;
+  --color-sage-dark: #566452;
+
+  /* Earthy Terracotta & Warm Mocha */
+  --color-warm-mocha: #AF8C72;
+  --color-sandstone: #9E7B62;
+
+  /* Softened Dark Typography & Charcoal 
+     (Softened contrast: warm obsidian graphite #23272F instead of harsh pitch-black) */
+  --color-espresso: #23272F;
+  --color-charcoal-deep: #22262E;
+  --color-charcoal-soft: #282C34;
+  --color-text-primary: #23272F;
+  --color-text-secondary: #5E626B;
+  --color-text-muted: #8E929A;
+
+  /* Soft Subtle Borders & Surfaces */
+  --color-soft-border: #E4E0D8;
+  --color-soft-biscuit: #E7E0D6;
+  --color-pure-white: #FFFFFF;
+}
+
+:root {
+  /* Foundational Backgrounds */
+  --bg-primary: #F5F3EE;
+  --bg-surface: #FAF8F5;
+  --bg-card: #FFFFFF;
+  --bg-card-subtle: #F6F3EE;
+  --bg-card-warm: #F4EFEA;
+
+  /* Softened High-Legibility Typography */
+  --text-primary: #23272F;
+  --text-secondary: #5E626B;
+  --text-muted: #8E929A;
+
+  /* Strategic Luxury Champagne & Complementary Accents */
+  --accent-champagne: #B49A70;
+  --accent-champagne-light: #C8B18B;
+  --accent-champagne-dark: #988056;
+  --accent-champagne-soft: rgba(180, 154, 112, 0.12);
+  --accent-champagne-border: rgba(180, 154, 112, 0.35);
+  
+  --accent-sage: #6E7C69;
+  --accent-sage-mist: #EDF1EC;
+  --accent-mocha: #AF8C72;
+  
+  /* Borders */
+  --border-soft: #E4E0D8;
+  --border-subtle: #EBE6DE;
+}
+
+/* Luxury Editorial Text Selection with #B49A70 Champagne */
+::selection {
+  background-color: #B49A70;
+  color: #FFFFFF;
+}
+
+::-moz-selection {
+  background-color: #B49A70;
+  color: #FFFFFF;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+  }
+}
+
+/* Accessible focus ring using champagne */
+:focus-visible {
+  outline: 2px solid #B49A70;
+  outline-offset: 2px;
+}
+
+/* Serif class helpers */
+.font-serif-editorial {
+  font-family: var(--font-serif);
+  font-feature-settings: "liga" 1, "kern" 1;
+}
+
+/* Organic blob background helper */
+.bg-sage-container {
+  background-color: #6E7C69;
+  background-image: 
+    radial-gradient(ellipse 70% 60% at 75% 35%, rgba(138, 153, 133, 0.45) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(94, 108, 90, 0.4) 0%, transparent 60%);
+}
+
+/* Strategic Champagne (#B49A70) Helper Classes */
+.text-champagne {
+  color: #B49A70;
+}
+
+.text-champagne-dark {
+  color: #8D744D;
+}
+
+.bg-champagne {
+  background-color: #B49A70;
+}
+
+.bg-champagne-soft {
+  background-color: rgba(180, 154, 112, 0.12);
+}
+
+.border-champagne {
+  border-color: #B49A70;
+}
+
+.border-champagne-subtle {
+  border-color: rgba(180, 154, 112, 0.32);
+}
+
+.champagne-glow {
+  box-shadow: 0 0 28px rgba(180, 154, 112, 0.28);
+}
+
+.champagne-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(180, 154, 112, 0.65), transparent);
+}
+
+.badge-champagne {
+  background-color: rgba(180, 154, 112, 0.12);
+  color: #8D744D;
+  border: 1px solid rgba(180, 154, 112, 0.28);
+}
+
+.kicker-champagne {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #B49A70;
+  font-weight: 700;
+}
+
+/* Custom smooth luxury scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F5F3EE;
+}
+::-webkit-scrollbar-thumb {
+  background: #D8D0C5;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B49A70;
+}

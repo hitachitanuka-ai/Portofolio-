@@ -1,0 +1,144 @@
+import React from 'react';
+import { ArrowUp, ArrowUpRight, Mail, Linkedin, Instagram, MapPin } from 'lucide-react';
+import { AppRoute } from '../types';
+import { ScrollReveal } from './ScrollReveal';
+
+interface FooterProps {
+  onNavigate: (route: AppRoute, slug?: string) => void;
+  onOpenResume?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenResume }) => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <footer className="w-full bg-[#1E2022] text-[#F3EFEA] pt-20 pb-12 border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8">
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-16 border-b border-white/10">
+          {/* Brand & Positioning Column */}
+          <ScrollReveal variant="editorial" delay={0} className="md:col-span-5 space-y-5">
+            <div>
+              <span className="font-sans font-black text-2xl sm:text-3xl tracking-[0.2em] text-white block uppercase">
+                THE MODERN STRATEGIST
+              </span>
+              <span className="font-mono text-xs uppercase tracking-widest text-[#AF8C72] mt-1.5 block font-bold">
+                Bangkit Surya Wijaya · Professional Portfolio
+              </span>
+            </div>
+
+            <p className="text-sm text-[#F3EFEA]/80 max-w-sm leading-relaxed font-light">
+              "A Strategic Mind. A Human Perspective. A Digital Approach."
+              <br />
+              Intersecting People & Culture, Business Analysis, and Digital Product Innovation to create measurable organizational impact.
+            </p>
+
+            <div className="flex items-center gap-2 pt-2 text-xs font-mono text-[#F3EFEA]/70">
+              <MapPin className="w-3.5 h-3.5 text-[#6E7C69]" />
+              <span>Jakarta & Bogor, Indonesia · Available Globally</span>
+            </div>
+          </ScrollReveal>
+
+          {/* Quick Navigation Column */}
+          <ScrollReveal variant="editorial" delay={0.1} className="md:col-span-3 space-y-4">
+            <span className="font-mono text-[11px] uppercase tracking-widest text-[#AF8C72] block font-bold">
+              Navigation Index
+            </span>
+            <ul className="space-y-2.5 text-xs tracking-wider">
+              {[
+                { label: 'HOME', route: 'home' as AppRoute },
+                { label: 'ABOUT', route: 'about' as AppRoute },
+                { label: 'EXPERTISE', route: 'expertise' as AppRoute },
+                { label: 'PROJECTS', route: 'projects' as AppRoute },
+                { label: 'EXPERIENCE', route: 'experience' as AppRoute },
+                { label: 'INSIGHTS', route: 'insights' as AppRoute },
+                { label: 'VISUAL ARCHIVE', route: 'archive' as AppRoute },
+                { label: 'CONTACT', route: 'contact' as AppRoute },
+              ].map((link) => (
+                <li key={link.route}>
+                  <button
+                    onClick={() => {
+                      onNavigate(link.route);
+                      scrollToTop();
+                    }}
+                    className="text-[#F3EFEA]/70 hover:text-white transition-colors cursor-pointer text-left uppercase font-medium"
+                  >
+                    {link.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </ScrollReveal>
+
+          {/* Connect & Direct Channels Column */}
+          <ScrollReveal variant="editorial" delay={0.18} className="md:col-span-4 space-y-4">
+            <span className="font-mono text-[11px] uppercase tracking-widest text-[#AF8C72] block font-bold">
+              Direct Contact
+            </span>
+            <p className="text-xs text-[#F3EFEA]/80 leading-relaxed font-light">
+              Open for full-time People & Culture leadership, strategic consulting engagements, and advisory partnerships.
+            </p>
+
+            <div className="space-y-2.5 pt-1 text-xs">
+              <a
+                href="mailto:bangkitsurya321@gmail.com"
+                className="flex items-center gap-2.5 text-white hover:text-[#AF8C72] transition-colors"
+              >
+                <Mail className="w-4 h-4 text-[#6E7C69]" />
+                <span className="font-mono">bangkitsurya321@gmail.com</span>
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/bangkit-surya-133311211/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2.5 text-white hover:text-[#AF8C72] transition-colors"
+              >
+                <Linkedin className="w-4 h-4 text-[#6E7C69]" />
+                <span>LinkedIn / Bangkit Surya</span>
+                <ArrowUpRight className="w-3.5 h-3.5 ml-auto text-neutral-400" />
+              </a>
+
+              <a
+                href="https://www.instagram.com/bangsur.w/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2.5 text-white hover:text-[#AF8C72] transition-colors"
+              >
+                <Instagram className="w-4 h-4 text-[#6E7C69]" />
+                <span>Instagram / @bangsur.w</span>
+                <ArrowUpRight className="w-3.5 h-3.5 ml-auto text-neutral-400" />
+              </a>
+            </div>
+          </ScrollReveal>
+        </div>
+
+        {/* Bottom Bar */}
+        <ScrollReveal
+          variant="subtle"
+          delay={0.22}
+          rootMargin="0px 0px 0px 0px"
+          className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#F3EFEA]/60"
+        >
+          <div>
+            <span>© {new Date().getFullYear()} Bangkit Surya Wijaya. All rights reserved.</span>
+          </div>
+
+          <div className="flex items-center gap-6">
+            <button
+              onClick={scrollToTop}
+              className="inline-flex items-center gap-2 text-white hover:text-[#AF8C72] transition-colors cursor-pointer group"
+            >
+              <span>Back to Top</span>
+              <div className="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#AF8C72] transition-colors">
+                <ArrowUp className="w-3 h-3 group-hover:-translate-y-0.5 transition-transform text-[#AF8C72]" />
+              </div>
+            </button>
+          </div>
+        </ScrollReveal>
+      </div>
+    </footer>
+  );
+};
