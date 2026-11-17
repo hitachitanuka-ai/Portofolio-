@@ -113,14 +113,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
       {/* =========================================================================
           SECTION A — FEATURED COMPOSITION
           ========================================================================= */}
-      <section id="strategic-systems" className="w-full bg-[#F5F3EE] pt-12 sm:pt-20 pb-20 border-b border-[#E4E0D8]">
+      <section id="strategic-systems" className="w-full bg-[#F5F3EE] pt-8 sm:pt-12 pb-10 sm:pb-14 border-b border-[#E4E0D6]">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
-          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-6 sm:mb-8 px-2 sm:px-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 sm:gap-4 mb-5 sm:mb-6 px-1 sm:px-4">
             <ScrollReveal variant="editorial" delay={0}>
               <span className="font-serif italic text-3xl sm:text-5xl lg:text-6xl text-[#23272F] font-normal tracking-tight block">
                 {t('Define Your', 'Rancang')}
               </span>
-              <span className="font-sans font-black text-5xl sm:text-7xl lg:text-8xl tracking-tight text-[#6E7C69] uppercase leading-none block -mt-1 sm:-mt-2">
+              <span className="font-sans font-black text-4xl sm:text-7xl lg:text-8xl tracking-tight text-[#6E7C69] uppercase leading-none block -mt-1 sm:-mt-2">
                 {t('STRATEGY', 'STRATEGI')}
               </span>
             </ScrollReveal>
@@ -132,44 +132,45 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
                 </span>
                 <Sparkles className="w-5 h-5 sm:w-7 sm:h-7 text-[#B49A70] fill-[#B49A70]" />
               </div>
-              <span className="font-sans font-black text-5xl sm:text-7xl lg:text-8xl tracking-tight text-[#B49A70] uppercase leading-none block -mt-1 sm:-mt-2">
+              <span className="font-sans font-black text-4xl sm:text-7xl lg:text-8xl tracking-tight text-[#B49A70] uppercase leading-none block -mt-1 sm:-mt-2">
                 {t('IMPACT', 'DAMPAK')}
               </span>
             </ScrollReveal>
           </div>
 
           <ScrollReveal variant="media" duration={0.95} delay={0.08}>
-            <div className="relative w-full rounded-[2.5rem] bg-[#6E7C69] overflow-hidden shadow-xl p-6 sm:p-12 min-h-[580px] lg:min-h-[620px] flex flex-col justify-between">
+            <div className="relative w-full rounded-[2rem] sm:rounded-[2.5rem] bg-[#6E7C69] overflow-hidden shadow-xl p-5 sm:p-10 lg:p-12 lg:min-h-[620px] flex flex-col justify-between">
               <div className="absolute inset-0 pointer-events-none opacity-40">
                 <div className="absolute top-1/4 -right-10 w-96 h-96 rounded-full bg-[#83917E] blur-2xl" />
                 <div className="absolute -bottom-10 left-1/3 w-80 h-80 rounded-full bg-[#5E6C5A] blur-3xl" />
               </div>
 
-              <div className="relative lg:absolute lg:inset-x-0 lg:bottom-0 lg:top-8 flex justify-center items-end pointer-events-none z-10 order-2 lg:order-none my-6 lg:my-0">
+              {/* Desktop Center Executive Portrait Backdrop (hidden on mobile; rendered cleanly inline below on < lg) */}
+              <div className="hidden lg:flex lg:absolute lg:inset-x-0 lg:bottom-0 lg:top-8 justify-center items-end pointer-events-none z-10">
                 <ScrollReveal
                   variant="media"
                   duration={1.05}
                   delay={0.16}
-                  className="relative w-64 sm:w-80 lg:w-[370px] h-[340px] sm:h-[420px] lg:h-[540px]"
+                  className="relative w-[370px] h-[540px]"
                 >
                   <img
                     src={IMAGES.suryaLoungeExecutive}
                     alt="Bangkit Surya Wijaya"
                     referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover object-top rounded-3xl lg:rounded-none drop-shadow-2xl"
+                    className="w-full h-full object-cover object-top drop-shadow-2xl"
                   />
-                  <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#6E7C69] via-[#6E7C69]/60 to-transparent hidden lg:block" />
+                  <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#6E7C69] via-[#6E7C69]/60 to-transparent" />
                 </ScrollReveal>
               </div>
 
-              <div className="relative z-20 flex flex-col lg:flex-row items-start justify-between gap-6">
-                <div className="max-w-md text-white space-y-4">
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-[11px] font-mono tracking-wider uppercase text-white border border-white/25">
-                    <Sparkles className="w-3 h-3 text-[#EFE4D6]" />
+              <div className="relative z-20 flex flex-col lg:flex-row items-stretch lg:items-start justify-between gap-7 lg:gap-6">
+                <div className="max-w-md text-white space-y-3.5 sm:space-y-4">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-[10px] sm:text-[11px] font-mono tracking-wider uppercase text-white border border-white/25">
+                    <Sparkles className="w-3 h-3 text-[#EFE4D6] shrink-0" />
                     <span>{t('People Ops & HR Systems Specialist', 'Spesialis People Ops & Sistem HR')}</span>
                   </div>
 
-                  <h1 className="font-sans font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-[1.12]">
+                  <h1 className="font-sans font-extrabold text-[1.75rem] sm:text-4xl lg:text-5xl text-white tracking-tight leading-[1.12]">
                     {t('Where Human Empathy Meets Digital Precision', 'Di Mana Empati Manusia Bertemu Presisi Digital')}
                   </h1>
 
@@ -180,10 +181,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
                     )}
                   </p>
 
-                  <div className="pt-2">
+                  <div className="pt-1.5">
                     <button
                       onClick={() => onNavigate('projects')}
-                      className="px-6 py-3.5 bg-[#1E2022] hover:bg-black text-white text-xs font-semibold uppercase tracking-wider rounded-full transition-all cursor-pointer flex items-center gap-3 shadow-lg active:scale-95 group"
+                      className="w-full sm:w-auto px-6 py-3.5 bg-[#1E2022] hover:bg-black text-white text-xs font-semibold uppercase tracking-wider rounded-full transition-all cursor-pointer flex items-center justify-center sm:justify-start gap-3 shadow-lg active:scale-95 group"
                     >
                       <span>{t('Explore My Work', 'Lihat Karya Saya')}</span>
                       <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover:translate-x-1 transition-transform">
@@ -193,13 +194,26 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
                   </div>
                 </div>
 
-                <div className="flex flex-col items-start lg:items-end gap-6 text-white w-full lg:w-auto">
-                  <div className="flex items-center gap-6 text-center">
+                {/* Mobile & Tablet Clean Centered Portrait Stage */}
+                <div className="lg:hidden flex justify-center">
+                  <div className="relative w-full max-w-[290px] sm:max-w-[330px] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-[#5E6C5A]">
+                    <img
+                      src={IMAGES.suryaLoungeExecutive}
+                      alt="Bangkit Surya Wijaya"
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover object-top"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#6E7C69]/85 via-[#6E7C69]/25 to-transparent" />
+                  </div>
+                </div>
+
+                <div className="flex flex-col items-center lg:items-end gap-5 sm:gap-6 text-white w-full lg:w-auto">
+                  <div className="grid grid-cols-3 gap-3 sm:gap-6 text-center w-full max-w-sm lg:w-auto">
                     <div className="flex flex-col items-center gap-1.5">
                       <div className="w-9 h-9 rounded-full bg-white/15 backdrop-blur-md flex items-center justify-center text-white border border-white/20">
                         <Users className="w-4 h-4" />
                       </div>
-                      <span className="text-[10px] font-mono tracking-wider text-[#F3EFEA] uppercase">
+                      <span className="text-[9.5px] sm:text-[10px] font-mono tracking-wider text-[#F3EFEA] uppercase leading-tight">
                         People & Culture
                       </span>
                     </div>
@@ -208,7 +222,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
                       <div className="w-9 h-9 rounded-full bg-white/15 backdrop-blur-md flex items-center justify-center text-white border border-white/20">
                         <BarChart3 className="w-4 h-4" />
                       </div>
-                      <span className="text-[10px] font-mono tracking-wider text-[#F3EFEA] uppercase">
+                      <span className="text-[9.5px] sm:text-[10px] font-mono tracking-wider text-[#F3EFEA] uppercase leading-tight">
                         {t('Workforce Analytics', 'Analitik SDM')}
                       </span>
                     </div>
@@ -217,7 +231,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
                       <div className="w-9 h-9 rounded-full bg-white/15 backdrop-blur-md flex items-center justify-center text-white border border-white/20">
                         <Cpu className="w-4 h-4" />
                       </div>
-                      <span className="text-[10px] font-mono tracking-wider text-[#F3EFEA] uppercase">
+                      <span className="text-[9.5px] sm:text-[10px] font-mono tracking-wider text-[#F3EFEA] uppercase leading-tight">
                         In-House HR Tech
                       </span>
                     </div>
@@ -226,7 +240,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
                   <div
                     onMouseEnter={() => setIsHoveringAppCard(true)}
                     onMouseLeave={() => setIsHoveringAppCard(false)}
-                    className="w-full sm:w-64 bg-white text-[#23272F] p-4 rounded-3xl shadow-2xl border border-white/50 backdrop-blur-md relative overflow-hidden transition-all duration-300"
+                    className="w-full max-w-sm lg:w-64 bg-white text-[#23272F] p-4 rounded-3xl shadow-2xl border border-white/50 backdrop-blur-md relative overflow-hidden transition-all duration-300"
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-1.5">
@@ -348,29 +362,29 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
                 </div>
               </div>
 
-              <div className="relative z-20 pt-8 flex items-center justify-between">
-                <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#EAE2D8]/95 backdrop-blur-md border border-white/40 shadow-sm text-xs text-[#23272F]">
-                  <div className="flex -space-x-2">
-                    <div className="w-7 h-7 rounded-full bg-[#23272F] text-white flex items-center justify-center text-[10px] font-bold border-2 border-white">
+              <div className="relative z-20 pt-6 sm:pt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                <div className="inline-flex items-center justify-center sm:justify-start gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-full bg-[#EAE2D8]/95 backdrop-blur-md border border-white/40 shadow-sm text-xs text-[#23272F]">
+                  <div className="flex -space-x-2 shrink-0">
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#23272F] text-white flex items-center justify-center text-[9px] sm:text-[10px] font-bold border-2 border-white">
                       MN
                     </div>
-                    <div className="w-7 h-7 rounded-full bg-[#B49A70] text-white flex items-center justify-center text-[10px] font-bold border-2 border-white">
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#B49A70] text-white flex items-center justify-center text-[9px] sm:text-[10px] font-bold border-2 border-white">
                       TP
                     </div>
-                    <div className="w-7 h-7 rounded-full bg-[#6E7C69] text-white flex items-center justify-center text-[10px] font-bold border-2 border-white">
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#6E7C69] text-white flex items-center justify-center text-[9px] sm:text-[10px] font-bold border-2 border-white">
                       HS
                     </div>
                   </div>
-                  <span className="font-semibold text-[11px]">
+                  <span className="font-semibold text-[10.5px] sm:text-[11px] leading-tight">
                     {t('Trusted by 110+ Workforce & C-Suite', 'Dipercaya oleh 110+ Karyawan & Direksi')}
                   </span>
-                  <Heart className="w-3.5 h-3.5 text-[#B49A70] fill-[#B49A70]" />
+                  <Heart className="w-3.5 h-3.5 text-[#B49A70] fill-[#B49A70] shrink-0" />
                 </div>
 
-                <div className="hidden sm:flex items-center gap-3">
+                <div className="flex items-center justify-center sm:justify-end">
                   <button
                     onClick={onOpenResume}
-                    className="px-4 py-2 bg-white/20 hover:bg-white text-white hover:text-[#1E2022] backdrop-blur-md rounded-full text-xs font-semibold tracking-wide transition-all border border-white/30"
+                    className="w-full sm:w-auto px-5 py-2.5 sm:py-2 bg-white/20 hover:bg-white text-white hover:text-[#1E2022] backdrop-blur-md rounded-full text-xs font-semibold tracking-wide transition-all border border-white/30 cursor-pointer"
                   >
                     {t('Download CV ↗', 'Unduh CV ↗')}
                   </button>
@@ -384,9 +398,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
       {/* =========================================================================
           SECTION B — INTRODUCTION
           ========================================================================= */}
-      <section className="w-full bg-[#FAF8F5] py-24 border-b border-[#E7E0D6]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <section className="w-full bg-[#FAF8F5] py-10 sm:py-14 border-b border-[#E7E0D6]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             <div className="lg:col-span-5 space-y-4">
               <ScrollReveal variant="subtle" delay={0}>
                 <span className="text-xs font-mono uppercase tracking-widest text-[#B49A70] block font-bold">
@@ -469,9 +483,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
       {/* =========================================================================
           SECTION C — SELECTED EXPERTISE
           ========================================================================= */}
-      <section className="w-full bg-[#EDF1EC] py-16 sm:py-20 border-b border-[#DCE4DA]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+      <section className="w-full bg-[#EDF1EC] py-10 sm:py-14 border-b border-[#DCE4DA]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 sm:mb-8">
             <ScrollReveal variant="editorial" delay={0}>
               <span className="text-xs font-mono uppercase tracking-widest text-[#8F6D54] block font-bold mb-1.5">
                 {t('05 Core Capabilities', '05 Kapabilitas Inti')}
@@ -599,14 +613,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
       {/* =========================================================================
           SECTION E — WHY WORK WITH ME? (Unified Clean EN / ID)
           ========================================================================= */}
-      <section className="w-full bg-[#F6F3EE] text-[#23272F] py-24 border-b border-[#E7E0D6]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+      <section className="w-full bg-[#F6F3EE] text-[#23272F] py-10 sm:py-14 border-b border-[#E7E0D6]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-6 sm:mb-8">
             <ScrollReveal variant="editorial" delay={0} className="max-w-2xl">
               <span className="text-xs font-mono uppercase tracking-widest text-[#B49A70] block font-bold mb-2">
                 {t('Value Proposition & Competitive Edge', 'Proposisi Nilai & Keunggulan Eksekusi')}
               </span>
-              <h2 className="font-sans font-black text-4xl sm:text-5xl text-[#23272F] tracking-tight">
+              <h2 className="font-sans font-black text-3xl sm:text-5xl text-[#23272F] tracking-tight">
                 {t('Why Work With Me?', 'Mengapa Bekerja Bersama Saya?')}
               </h2>
               <p className="text-sm text-[#5E626B] font-light leading-relaxed mt-2">
@@ -625,10 +639,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
             </ScrollReveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {/* Pillar 1 */}
             <ScrollReveal variant="card" delay={0} className="h-full">
-              <div className="h-full p-8 bg-white rounded-3xl border border-[#E7E0D6] space-y-4 hover:border-[#6E7C69] transition-all shadow-xs flex flex-col justify-between group">
+              <div className="h-full p-6 sm:p-8 bg-white rounded-3xl border border-[#E7E0D6] space-y-4 hover:border-[#6E7C69] transition-all shadow-xs flex flex-col justify-between group">
                 <div className="space-y-3">
                   <div className="w-12 h-12 rounded-2xl bg-[#6E7C69]/10 text-[#6E7C69] flex items-center justify-center group-hover:bg-[#6E7C69] group-hover:text-white transition-colors">
                     <Users className="w-6 h-6" />
@@ -654,7 +668,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
 
             {/* Pillar 2 */}
             <ScrollReveal variant="card" delay={0.09} className="h-full">
-              <div className="h-full p-8 bg-white rounded-3xl border border-[#E7E0D6] space-y-4 hover:border-[#B49A70] transition-all shadow-xs flex flex-col justify-between group">
+              <div className="h-full p-6 sm:p-8 bg-white rounded-3xl border border-[#E7E0D6] space-y-4 hover:border-[#B49A70] transition-all shadow-xs flex flex-col justify-between group">
                 <div className="space-y-3">
                   <div className="w-12 h-12 rounded-2xl bg-[#B49A70]/15 text-[#B49A70] flex items-center justify-center group-hover:bg-[#B49A70] group-hover:text-white transition-colors">
                     <BarChart3 className="w-6 h-6" />
@@ -680,7 +694,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
 
             {/* Pillar 3 */}
             <ScrollReveal variant="card" delay={0.18} className="h-full">
-              <div className="h-full p-8 bg-white rounded-3xl border border-[#E7E0D6] space-y-4 hover:border-[#23272F] transition-all shadow-xs flex flex-col justify-between group">
+              <div className="h-full p-6 sm:p-8 bg-white rounded-3xl border border-[#E7E0D6] space-y-4 hover:border-[#23272F] transition-all shadow-xs flex flex-col justify-between group">
                 <div className="space-y-3">
                   <div className="w-12 h-12 rounded-2xl bg-[#23272F]/10 text-[#23272F] flex items-center justify-center group-hover:bg-[#23272F] group-hover:text-white transition-colors">
                     <Terminal className="w-6 h-6" />
@@ -706,7 +720,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
 
             {/* Pillar 4 */}
             <ScrollReveal variant="card" delay={0.27} className="h-full">
-              <div className="h-full p-8 bg-white rounded-3xl border border-[#E7E0D6] space-y-4 hover:border-[#6E7C69] transition-all shadow-xs flex flex-col justify-between group">
+              <div className="h-full p-6 sm:p-8 bg-white rounded-3xl border border-[#E7E0D6] space-y-4 hover:border-[#6E7C69] transition-all shadow-xs flex flex-col justify-between group">
                 <div className="space-y-3">
                   <div className="w-12 h-12 rounded-2xl bg-[#6E7C69]/10 text-[#6E7C69] flex items-center justify-center group-hover:bg-[#6E7C69] group-hover:text-white transition-colors">
                     <ShieldCheck className="w-6 h-6" />
@@ -744,14 +758,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
       {/* =========================================================================
           SECTION G — EXECUTIVE ENDORSEMENTS
           ========================================================================= */}
-      <section className="w-full bg-[#FAF8F5] py-24 border-b border-[#E7E0D6]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+      <section className="w-full bg-[#FAF8F5] py-10 sm:py-14 border-b border-[#E7E0D6]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-6 sm:mb-8">
             <ScrollReveal variant="editorial" delay={0} className="max-w-2xl">
               <span className="text-xs font-mono uppercase tracking-widest text-[#B49A70] block font-bold mb-2">
                 {t('Verified Executive Endorsements', 'Testimoni Pimpinan Terverifikasi')}
               </span>
-              <h2 className="font-sans font-black text-4xl sm:text-5xl text-[#23272F] tracking-tight">
+              <h2 className="font-sans font-black text-3xl sm:text-5xl text-[#23272F] tracking-tight">
                 {t('Leadership Endorsements', 'Feedback Dari Pimpinan Sebelumnya')}
               </h2>
               <p className="text-sm text-[#5E626B] font-light leading-relaxed mt-2">
@@ -770,18 +784,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
             </ScrollReveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
             {testimonials.map((item, tIdx) => (
               <ScrollReveal key={item.id} variant="card" delay={tIdx * 0.09} className="h-full">
-                <div className="h-full p-8 bg-white rounded-3xl border border-[#E7E0D6] shadow-xs hover:border-[#6E7C69] hover:shadow-lg transition-all flex flex-col justify-between group">
+                <div className="h-full p-6 sm:p-8 bg-white rounded-3xl border border-[#E7E0D6] shadow-xs hover:border-[#6E7C69] hover:shadow-lg transition-all flex flex-col justify-between group">
                   <div className="space-y-4">
                     <div className="flex items-center justify-between pb-4 border-b border-[#E7E0D6]">
-                      <div className="flex items-center gap-3">
-                        <div className="w-11 h-11 rounded-2xl bg-[#6E7C69] text-white flex items-center justify-center font-bold text-sm tracking-wider font-mono shadow-xs">
+                      <div className="flex items-center gap-3 min-w-0">
+                        <div className="w-11 h-11 rounded-2xl bg-[#6E7C69] text-white flex items-center justify-center font-bold text-sm tracking-wider font-mono shadow-xs shrink-0">
                           {item.initials}
                         </div>
-                        <div>
-                          <strong className="block font-sans font-bold text-base text-[#23272F]">
+                        <div className="min-w-0">
+                          <strong className="block font-sans font-bold text-base text-[#23272F] truncate">
                             {item.name}
                           </strong>
                           <span className="font-mono text-[11px] text-[#B49A70] block font-semibold leading-tight">
@@ -796,7 +810,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
                     </p>
                   </div>
 
-                  <div className="pt-6 mt-4 border-t border-[#E7E0D6] flex items-center justify-between text-xs font-mono text-[#B49A70]">
+                  <div className="pt-5 sm:pt-6 mt-4 border-t border-[#E7E0D6] flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-[#B49A70]">
                     <span className="font-semibold text-[#6E7C69]">{item.company}</span>
                     <span className="text-[10px] uppercase tracking-wider bg-[#F5F3EE] px-2.5 py-1 rounded-full border border-[#E7E0D6]">
                       {t('Executive Review', 'Ulasan Pimpinan')}
@@ -812,9 +826,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
       {/* =========================================================================
           SECTION H — CLOSING PHILOSOPHY
           ========================================================================= */}
-      <section className="w-full bg-[#F5F3EE] text-[#23272F] py-28 border-t border-[#E7E0D6]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 text-center">
-          <div className="max-w-3xl mx-auto space-y-6">
+      <section className="w-full bg-[#F5F3EE] text-[#23272F] py-10 sm:py-16 border-t border-[#E7E0D6]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 text-center">
+          <div className="max-w-3xl mx-auto space-y-4 sm:space-y-5">
             <ScrollReveal variant="subtle" delay={0}>
               <span className="text-xs font-mono uppercase tracking-widest text-[#B49A70] block font-bold">
                 {t('Closing Philosophy', 'Filosofi Kerja')}
@@ -822,7 +836,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
             </ScrollReveal>
 
             <ScrollReveal variant="editorial" delay={0.1}>
-              <h2 className="font-sans font-black text-4xl sm:text-6xl text-[#23272F] tracking-tight leading-tight">
+              <h2 className="font-sans font-black text-3xl sm:text-6xl text-[#23272F] tracking-tight leading-tight">
                 {t('"Thoughtful Strategy.', '"Strategi Matang.')} <br />
                 <span className="text-[#6E7C69]">
                   {t('Meaningful Execution', 'Eksekusi Bermakna')}
@@ -831,7 +845,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
             </ScrollReveal>
 
             <ScrollReveal variant="editorial" delay={0.18}>
-              <p className="text-base text-[#5E626B] font-light max-w-xl mx-auto leading-relaxed">
+              <p className="text-sm sm:text-base text-[#5E626B] font-light max-w-xl mx-auto leading-relaxed">
                 {t(
                   'Whether architecting people systems for scaling enterprises, structuring workforce diagnostics, or building internal digital applications — excellence lies in disciplined follow-through.',
                   'Baik dalam merancang sistem SDM bagi perusahaan bertumbuh, menyusun diagnostik tenaga kerja, maupun membangun aplikasi HR internal — keunggulan selalu lahir dari konsistensi eksekusi.'
@@ -840,17 +854,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenResume }) 
             </ScrollReveal>
 
             <ScrollReveal variant="subtle" delay={0.26}>
-              <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 pt-3 sm:pt-4 max-w-md sm:max-w-none mx-auto">
                 <button
                   onClick={() => onNavigate('contact')}
-                  className="px-8 py-4 bg-[#23272F] text-white hover:bg-[#B49A70] hover:text-[#14171A] text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer rounded-full shadow-md active:scale-95"
+                  className="w-full sm:w-auto px-8 py-4 bg-[#23272F] text-white hover:bg-[#B49A70] hover:text-[#14171A] text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer rounded-full shadow-md active:scale-95"
                 >
                   {t('Start a Conversation', 'Mulai Diskusi')}
                 </button>
 
                 <button
                   onClick={() => onNavigate('projects')}
-                  className="px-8 py-4 bg-white text-[#23272F] border border-[#E7E0D6] hover:bg-[#F5F3EE] text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer rounded-full active:scale-95 shadow-2xs"
+                  className="w-full sm:w-auto px-8 py-4 bg-white text-[#23272F] border border-[#E7E0D6] hover:bg-[#F5F3EE] text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer rounded-full active:scale-95 shadow-2xs"
                 >
                   {t('Explore Full Portfolio', 'Eksplorasi Portofolio Lengkap')}
                 </button>

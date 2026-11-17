@@ -156,10 +156,10 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
             </div>
 
             {/* Header Row */}
-            <div className="relative z-10 flex items-start justify-between gap-4">
-              <div className="space-y-2.5 max-w-sm">
+            <div className="relative z-10 flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4">
+              <div className="space-y-2 max-w-sm">
                 <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.16em] text-[#EFE4D6]">
-                  <Activity className="w-3.5 h-3.5 text-[#EFE4D6]" strokeWidth={1.6} />
+                  <Activity className="w-3.5 h-3.5 text-[#EFE4D6] shrink-0" strokeWidth={1.6} />
                   <span>{proj.category}</span>
                   <span className="opacity-40">/</span>
                   <span>{proj.year}</span>
@@ -192,7 +192,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
             </div>
 
             {/* Framed Device Preview Rising From Bottom */}
-            <div className="relative z-10 mt-6 -mb-8 mx-auto w-full max-w-[460px] bg-[#FAF8F5] text-[#1E2022] rounded-t-[1.75rem] border-[6px] border-[#1E2022]/90 border-b-0 p-4 pb-8 shadow-2xl group-hover:-translate-y-1.5 transition-transform duration-500">
+            <div className="relative z-10 mt-5 sm:mt-6 -mb-5 sm:-mb-8 mx-auto w-full max-w-[460px] bg-[#FAF8F5] text-[#1E2022] rounded-t-[1.5rem] sm:rounded-t-[1.75rem] border-[5px] sm:border-[6px] border-[#1E2022]/90 border-b-0 p-3.5 sm:p-4 pb-6 sm:pb-8 shadow-2xl group-hover:-translate-y-1.5 transition-transform duration-500">
               <div className="flex items-center justify-between mb-3 pb-2.5 border-b border-[#E7E0D6]">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-[#6E7C69]" />
@@ -738,7 +738,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                   src={proj.image}
                   alt={proj.title}
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
                 <span className="absolute bottom-3 left-3 inline-flex items-center gap-1 font-mono text-[10px] font-semibold text-white">
@@ -831,16 +831,16 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
   const projectById = Object.fromEntries(projects.map((p) => [p.id, p]));
 
   return (
-    <div className="w-full bg-[#F3EFEA] text-[#1E2022] pt-28 sm:pt-32 pb-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10 sm:space-y-12">
+    <div className="w-full bg-[#F3EFEA] text-[#1E2022] pt-24 sm:pt-28 pb-12 sm:pb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-6 sm:space-y-8">
         {/* Page Header */}
-        <section className="border-b border-[#E7E0D6] pb-8 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <section className="border-b border-[#E7E0D6] pb-5 sm:pb-6 flex flex-col md:flex-row md:items-end justify-between gap-5">
           <ScrollReveal immediateOnMount variant="editorial" delay={0} className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#6E7C69]/12 text-[#6E7C69] text-xs font-mono font-bold uppercase tracking-wider mb-3">
               <Sparkles className="w-3.5 h-3.5" strokeWidth={1.7} />
               <span>{t('Bento Showcase & Case Studies', 'Etalase Bento & Studi Kasus')}</span>
             </div>
-            <h1 className="font-sans font-black text-4xl sm:text-5xl lg:text-6xl text-[#1E2022] tracking-tight leading-[1.05]">
+            <h1 className="font-sans font-black text-3xl sm:text-5xl lg:text-6xl text-[#1E2022] tracking-tight leading-[1.05]">
               {t('Selected Works', 'Karya & Sistem')}{' '}
               <span className="font-serif italic font-normal text-[#6E7C69]">
                 {t('& Systems', 'Terpilih')}
@@ -858,12 +858,12 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
             immediateOnMount
             variant="subtle"
             delay={0.12}
-            className="flex flex-wrap items-center gap-3 self-start md:self-end"
+            className="flex flex-wrap items-center gap-2.5 sm:gap-3 self-start md:self-end"
           >
             <button
               type="button"
               onClick={() => setOnlyVideoDemos((prev) => !prev)}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-mono font-semibold border transition-all cursor-pointer ${
+              className={`inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs font-mono font-semibold border transition-all cursor-pointer ${
                 onlyVideoDemos
                   ? 'bg-[#6E7C69] text-white border-[#6E7C69] shadow-xs'
                   : 'bg-white text-[#1E2022] border-[#E7E0D6] hover:border-[#6E7C69]'
@@ -877,15 +877,15 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
               </span>
             </button>
 
-            <div className="font-mono text-xs text-[#8F6D54] font-semibold bg-white px-4 py-2 rounded-full border border-[#E7E0D6] shadow-2xs">
+            <div className="font-mono text-[11px] sm:text-xs text-[#8F6D54] font-semibold bg-white px-3.5 sm:px-4 py-2 rounded-full border border-[#E7E0D6] shadow-2xs">
               {filteredProjects.length} / {projects.length} {t('Systems', 'Sistem')}
             </div>
           </ScrollReveal>
         </section>
 
         {/* Category Filters */}
-        <ScrollReveal immediateOnMount variant="subtle" delay={0.16} className="flex flex-wrap items-center gap-2">
-          <div className="flex items-center gap-2 text-xs font-mono text-[#605E59] mr-2">
+        <ScrollReveal immediateOnMount variant="subtle" delay={0.16} className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+          <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-mono text-[#605E59] mr-1 sm:mr-2">
             <Filter className="w-3.5 h-3.5 text-[#6E7C69]" strokeWidth={1.7} />
             <span className="font-semibold uppercase tracking-wider">Filter:</span>
           </div>
@@ -893,7 +893,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
             <button
               key={f}
               onClick={() => setActiveFilter(f)}
-              className={`px-4 py-2 text-xs font-semibold tracking-wide uppercase rounded-full transition-all cursor-pointer ${
+              className={`px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold tracking-wide uppercase rounded-full transition-all cursor-pointer ${
                 activeFilter === f
                   ? 'bg-[#1E2022] text-white shadow-xs'
                   : 'bg-white text-[#605E59] hover:text-[#1E2022] hover:bg-[#FAF8F5] border border-[#E7E0D6]'
@@ -906,24 +906,24 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
 
         {/* BENTO MOSAIC GRID */}
         {isDefaultAllMosaic ? (
-          <div className="space-y-6">
+          <div className="space-y-5 sm:space-y-6">
             {/* ROW 1 — 12-Col Bento Mosaic */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
               {renderBentoTile(
                 projectById['pervia-platform'],
                 'lg:col-span-5',
-                'min-h-[450px] lg:min-h-[500px]',
+                'min-h-[360px] sm:min-h-[450px] lg:min-h-[500px]',
                 0
               )}
               {renderBentoTile(
                 projectById['matchify-platform'],
                 'lg:col-span-4',
-                'min-h-[450px] lg:min-h-[500px]',
+                'min-h-[360px] sm:min-h-[450px] lg:min-h-[500px]',
                 0.09
               )}
 
-              <div className="lg:col-span-3 flex flex-col gap-5 justify-between">
-                {renderBentoTile(projectById['slipr-platform'], 'flex-1', 'min-h-[380px]', 0.18)}
+              <div className="lg:col-span-3 flex flex-col gap-4 sm:gap-5 justify-between">
+                {renderBentoTile(projectById['slipr-platform'], 'flex-1', 'min-h-[320px] sm:min-h-[380px]', 0.18)}
 
                 <ScrollReveal variant="subtle" delay={0.24}>
                   <button
@@ -931,7 +931,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
                     onClick={() => setOnlyVideoDemos(true)}
                     className="w-full rounded-[1.5rem] bg-white hover:bg-[#FAF8F5] border border-[#E7E0D6] hover:border-[#6E7C69] px-5 py-3.5 flex items-center justify-between gap-3 shadow-xs hover:shadow-md transition-all cursor-pointer group text-left"
                   >
-                      <div>
+                    <div>
                       <span className="font-sans font-bold text-sm text-[#1E2022] block leading-tight">
                         {t('Watch Interactive', 'Tonton Demo Interaktif')}
                       </span>
@@ -948,32 +948,32 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({ onNavigate }) => {
             </div>
 
             {/* ROW 2 — 4-Column Diverse Bento Archetypes */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch">
-              {renderBentoTile(projectById['fan-sukses-hr'], 'lg:col-span-3', 'min-h-[385px]', 0)}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
+              {renderBentoTile(projectById['fan-sukses-hr'], 'lg:col-span-3', 'min-h-[320px] sm:min-h-[385px]', 0)}
               {renderBentoTile(
                 projectById['indekstat-workforce-analysis'],
                 'lg:col-span-3',
-                'min-h-[385px]',
+                'min-h-[320px] sm:min-h-[385px]',
                 0.08
               )}
-              {renderBentoTile(projectById['zeno-platform'], 'lg:col-span-3', 'min-h-[385px]', 0.16)}
-              {renderBentoTile(projectById['rakamin-change-mgmt'], 'lg:col-span-3', 'min-h-[385px]', 0.24)}
+              {renderBentoTile(projectById['zeno-platform'], 'lg:col-span-3', 'min-h-[320px] sm:min-h-[385px]', 0.16)}
+              {renderBentoTile(projectById['rakamin-change-mgmt'], 'lg:col-span-3', 'min-h-[320px] sm:min-h-[385px]', 0.24)}
             </div>
 
             {/* ROW 3 — Asymmetric Finale */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-              {renderBentoTile(projectById['ipb-osis-fest-pr'], 'lg:col-span-7', 'min-h-[290px]', 0)}
-              {renderBentoTile(projectById['sakala-operations'], 'lg:col-span-5', 'min-h-[290px]', 0.12)}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
+              {renderBentoTile(projectById['ipb-osis-fest-pr'], 'lg:col-span-7', 'min-h-[260px] sm:min-h-[290px]', 0)}
+              {renderBentoTile(projectById['sakala-operations'], 'lg:col-span-5', 'min-h-[260px] sm:min-h-[290px]', 0.12)}
             </div>
           </div>
         ) : (
           <AnimatePresence mode="popLayout">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
               {filteredProjects.map((proj, idx) =>
                 renderBentoTile(
                   proj,
                   getFilteredColSpan(filteredProjects.length, idx),
-                  'min-h-[360px]',
+                  'min-h-[320px] sm:min-h-[360px]',
                   idx * 0.06,
                   false
                 )

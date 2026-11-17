@@ -78,10 +78,10 @@ export const ExpertisePage: React.FC<ExpertisePageProps> = ({ onNavigate }) => {
   );
 
   return (
-    <div className="w-full bg-[#F3EFEA] text-[#1E2022] pt-28 sm:pt-32 pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
+    <div className="w-full bg-[#F3EFEA] text-[#1E2022] pt-24 sm:pt-28 pb-12 sm:pb-14">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-6 sm:space-y-8">
         {/* Compact Editorial Header */}
-        <section className="border-b border-[#E7E0D6] pb-7 flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+        <section className="border-b border-[#E7E0D6] pb-5 sm:pb-6 flex flex-col lg:flex-row lg:items-end justify-between gap-5">
           <ScrollReveal immediateOnMount variant="editorial" delay={0} className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#6E7C69]/12 text-[#6E7C69] text-[11px] font-mono font-bold uppercase tracking-wider mb-3">
               <Sparkles className="w-3.5 h-3.5" strokeWidth={1.7} />
@@ -203,11 +203,11 @@ export const ExpertisePage: React.FC<ExpertisePageProps> = ({ onNavigate }) => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.25, ease: 'easeOut' }}
-                className="h-full bg-white rounded-[2rem] border border-[#E7E0D6] p-6 sm:p-8 shadow-xs flex flex-col justify-between space-y-6"
+                className="h-full bg-white rounded-[2rem] border border-[#E7E0D6] p-5 sm:p-8 shadow-xs flex flex-col justify-between space-y-6"
               >
                 {/* Top Header */}
                 <div className="space-y-3 pb-5 border-b border-[#E7E0D6]">
-                  <div className="flex items-center justify-between gap-3">
+                  <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
                     <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.15em] text-[#6E7C69] font-bold">
                       <ActiveIcon className="w-3.5 h-3.5" strokeWidth={1.7} />
                       <span>Discipline {activeArea.num}</span>
@@ -314,7 +314,7 @@ export const ExpertisePage: React.FC<ExpertisePageProps> = ({ onNavigate }) => {
         {/* Compact At-a-Glance Quick Reference Matrix */}
         <section className="pt-2 space-y-4">
           <ScrollReveal variant="subtle" delay={0}>
-            <div className="flex items-center justify-between border-b border-[#E7E0D6] pb-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-[#E7E0D6] pb-3">
               <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#8F6D54] font-bold">
                 {t('At-a-Glance Capability Matrix', 'Matriks Ringkas Kapabilitas')}
               </span>

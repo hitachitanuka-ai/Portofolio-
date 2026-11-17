@@ -19,11 +19,11 @@ export const InsightDetailPage: React.FC<InsightDetailPageProps> = ({ postSlug, 
   if (!post) return null;
 
   return (
-    <div className="w-full bg-[#F3EFEA] text-[#1E2022] pt-28 sm:pt-32 pb-24">
-      <article className="max-w-4xl mx-auto px-4 sm:px-8 space-y-12 sm:space-y-14">
+    <div className="w-full bg-[#F3EFEA] text-[#1E2022] pt-24 sm:pt-28 pb-12 sm:pb-16">
+      <article className="max-w-4xl mx-auto px-4 sm:px-8 space-y-6 sm:space-y-8">
         {/* Top Back Navigation Bar */}
         <ScrollReveal immediateOnMount variant="subtle" delay={0}>
-          <div className="flex items-center justify-between border-b border-[#E7E0D6] pb-6">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#E7E0D6] pb-4 sm:pb-5">
             <button
               onClick={() => onNavigate('insights')}
               className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#1E2022] hover:text-[#6E7C69] transition-colors cursor-pointer"
@@ -32,7 +32,7 @@ export const InsightDetailPage: React.FC<InsightDetailPageProps> = ({ postSlug, 
               <span>{t('Back to Insights Journal', 'Kembali ke Jurnal Wawasan')}</span>
             </button>
 
-            <span className="font-mono text-xs text-[#9E7B62] font-semibold">
+            <span className="font-mono text-[11px] sm:text-xs text-[#9E7B62] font-semibold">
               {t('Essay', 'Esai')} · {post.category}
             </span>
           </div>
@@ -61,10 +61,10 @@ export const InsightDetailPage: React.FC<InsightDetailPageProps> = ({ postSlug, 
               {post.title}
             </h1>
 
-            <div className="pt-3 flex items-center gap-3 text-xs font-mono text-[#605E59] border-t border-[#E7E0D6]">
+            <div className="pt-3 flex flex-wrap items-center gap-2 text-xs font-mono text-[#605E59] border-t border-[#E7E0D6]">
               <span className="font-bold text-[#1E2022]">Bangkit Surya Wijaya</span>
               <span>—</span>
-              <span>People & Culture Lead · Business Analyst</span>
+              <span>People &amp; Culture Lead · Business Analyst</span>
             </div>
           </header>
         </ScrollReveal>
@@ -91,9 +91,9 @@ export const InsightDetailPage: React.FC<InsightDetailPageProps> = ({ postSlug, 
         </ScrollReveal>
 
         {/* Deep Sections */}
-        <div className="space-y-10 text-[#4A4843] text-sm sm:text-base leading-relaxed font-light">
+        <div className="space-y-6 sm:space-y-8 text-[#4A4843] text-sm sm:text-base leading-relaxed font-light">
           {post.content.sections.map((sec, idx) => (
-            <ScrollReveal key={idx} as="section" variant="editorial" delay={0.06} className="space-y-4 pt-6 border-t border-[#E7E0D6]">
+            <ScrollReveal key={idx} as="section" variant="editorial" delay={0.06} className="space-y-3 pt-5 border-t border-[#E7E0D6]">
               <h2 className="font-sans font-bold text-2xl sm:text-3xl text-[#1E2022] tracking-tight">
                 {sec.heading}
               </h2>
@@ -108,7 +108,7 @@ export const InsightDetailPage: React.FC<InsightDetailPageProps> = ({ postSlug, 
 
         {/* Author Bio Box in Sage Green Card */}
         <ScrollReveal variant="card" delay={0.08}>
-          <div className="p-8 sm:p-10 bg-[#6E7C69] text-white rounded-3xl space-y-4 shadow-lg">
+          <div className="p-6 sm:p-10 bg-[#6E7C69] text-white rounded-3xl space-y-4 shadow-lg">
             <div className="flex items-center gap-3">
               <span className="font-mono text-xs uppercase tracking-widest text-[#EAE2D8] font-bold">
                 {t('Author Perspective', 'Perspektif Penulis')}
@@ -126,7 +126,7 @@ export const InsightDetailPage: React.FC<InsightDetailPageProps> = ({ postSlug, 
             <div className="pt-2">
               <button
                 onClick={() => onNavigate('contact')}
-                className="px-6 py-3 bg-[#1E2022] text-white hover:bg-black rounded-full text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer inline-flex items-center gap-2"
+                className="w-full sm:w-auto px-6 py-3 bg-[#1E2022] text-white hover:bg-black rounded-full text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer inline-flex items-center justify-center gap-2"
               >
                 <span>{t('Connect on Advisory', 'Diskusi & Kolaborasi')}</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-[#AF8C72]" />

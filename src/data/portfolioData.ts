@@ -19,6 +19,12 @@ export const IMAGES = {
   suryaCeremonyCoordinator: '/assets/aistudio/WhatsApp_Image_2026-11-10_at_22.18.35_6d7bed69.jpeg',
   suryaPineContemplation: '/assets/aistudio/WhatsApp_Image_2026-11-10_at_22.18.27_52aaf0b8.jpeg',
   suryaCulturalAttire: '/assets/aistudio/WhatsApp_Image_2026-11-10_at_22.19.17_4a4e5d12.jpeg',
+  osisChairman2019: '/assets/aistudio/KETUA_DAN_WAKIL_KETUA_OSIS_SMAN_1_DRAMAGA._MASA_JABATAN_2019-2020Ketua_-__Bangkit_Surya_WijayaWa_953dbec9.jpg',
+  fkokbChairman2020: '/assets/aistudio/___Forum_Komunikasi_OSIS_Kabupaten_Bogor______Sabtu_-_Minggu__25_-_26_Januari_2020_Bumi_Perkemah_a7fbe21b.jpg',
+  fojbKorda2020: '/assets/aistudio/Assalamualaikum_Warahmatullahi_Wabarakatuh_Salam_Pemimpin_Muda_Jawa_Barat_Hai_seluruh_pelajar_Ja_ebafdec1.jpg',
+  ipbOsisFestHead2024: '/assets/aistudio/_TEAM_REVEAL_Event__Meet_the_incredible_team_behind_IPB_OSIS_Fest_2024_Get_ready_for_an_unforge_30da11d5.jpg',
+  dutaIpbPortrait: '/assets/aistudio/All_eyes_on_Bangkit_Suya_Meet__bangsur.w_our_Duta_IPB_representing_the_excellence_Faculty_of_Ani_d0fe2505.jpg',
+  fonCertificate2021: '/assets/aistudio/fon_certificate_2021_2022.jpg',
 
   // Event & Operational Photos (Sub-Album "Event" - 13 Photos)
   eventFapetIpbStage: '/assets/aistudio/WhatsApp_Image_2026-11-10_at_22.19.29__1__69367cb5.jpeg',
@@ -37,7 +43,7 @@ export const IMAGES = {
 
   // Custom Built Web Apps (Software Products)
   perviaBanner: '/assets/aistudio/pervia_banner.jpg',
-  perviaVideo: '/assets/aistudio/pervia_demo_web.mp4',
+  perviaVideo: '/assets/aistudio/PerVia_15s_v4_premium_8cb1ca0e.mp4',
   perviaTalentMatrix: '/assets/aistudio/pervia_talent_matrix.jpg',
   matchifyBanner: '/assets/aistudio/Gemini_Generated_Image_9lz4sq9lz4sq9lz4_9b5d8ac9.jpg',
   matchifyVideo: '/assets/aistudio/gemini_generated_video_fc4adc6f_6688bbe4.mp4',
@@ -161,6 +167,51 @@ export const SURYA_PHOTOS_ARCHIVE = [
     category: 'Cultural & Identity',
     location: 'Grand Convention Hall',
   },
+  {
+    id: 'myself-11',
+    image: IMAGES.osisChairman2019,
+    title: 'Student Council President — SMAN 1 Dramaga (2019/2020)',
+    subtitle: 'OSKA Nata Nirwashita Sahwahita — Executive Student Governance Term 2019/2020',
+    year: '2019–2020',
+    category: 'Student Leadership',
+    location: 'SMAN 1 Dramaga, Kab. Bogor',
+  },
+  {
+    id: 'myself-12',
+    image: IMAGES.fkokbChairman2020,
+    title: 'President — Forum Komunikasi OSIS Kab. Bogor (2020–2021)',
+    subtitle: 'Mandate Handover & District Student Council Coalition Leadership (FKOKB)',
+    year: '2020–2021',
+    category: 'District Leadership',
+    location: 'Kabupaten Bogor, Jawa Barat',
+  },
+  {
+    id: 'myself-13',
+    image: IMAGES.fojbKorda2020,
+    title: 'Regional Coordinator — Forum OSIS Jawa Barat Region 1 (2020–2021)',
+    subtitle: 'Koordinator Daerah Wilayah 1 — West Java Student Leadership Network',
+    year: '2020–2021',
+    category: 'Provincial Leadership',
+    location: 'Jawa Barat (Wilayah 1)',
+  },
+  {
+    id: 'myself-14',
+    image: IMAGES.dutaIpbPortrait,
+    title: 'Duta IPB University — Faculty of Animal Science Ambassador',
+    subtitle: 'Official Institutional Ambassador Representing IPB University & Faculty of Animal Science',
+    year: '2022–2024',
+    category: 'Campus Ambassador',
+    location: 'IPB University, Bogor',
+  },
+  {
+    id: 'myself-15',
+    image: IMAGES.fonCertificate2021,
+    title: 'Forum OSIS Nusantara — Human Resources Development (2021–2022)',
+    subtitle: 'Official National Executive Certificate (049/FON/SKt/XI/2021) · Komisi X DPR-RI',
+    year: '2021–2022',
+    category: 'National Leadership',
+    location: 'Jakarta · Komisi X DPR-RI',
+  },
 ];
 
 // Sub-Album "Event" inside CreativeStyle (13 Curated Photos)
@@ -281,6 +332,15 @@ export const EVENT_PHOTOS_ARCHIVE = [
     year: '2024',
     category: 'Event Operations',
     location: 'Campus Grounds, IPB',
+  },
+  {
+    id: 'event-14',
+    image: IMAGES.ipbOsisFestHead2024,
+    title: 'Head of Event — IPB OSIS Fest 2024',
+    subtitle: 'Event Division Reveal & National Summit Direction Across 27 Provinces',
+    year: '2024',
+    category: 'National Summit',
+    location: 'IPB University, Bogor',
   },
 ];
 
@@ -820,7 +880,7 @@ export const PROJECTS: Project[] = [
     categoryFilter: 'Business & Strategy',
     date: 'Oct 2023 – Oct 2024',
     year: '2024',
-    image: IMAGES.peopleCulture,
+    image: IMAGES.ipbOsisFestHead2024,
     client: 'Duta IPB University',
     location: 'Bogor & 27 Provinces',
     shortSummary: 'Led a nationwide student summit engaging 270+ student leaders across 27 provinces, winning 1st Place National at PREA 2024.',

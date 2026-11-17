@@ -264,7 +264,7 @@ export const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, onOpenC
                 <li>• 1st Place Digital PR (ESG Theme) — PREA 2024</li>
                 <li>• Head of Event IPB OSIS Fest 2024 (27 provinces)</li>
                 <li>• Head of HR of Student — BEM Fak. Peternakan</li>
-                <li>• Selected in Indonesia Student Leadership Camp IX (UI)</li>
+                <li>• Human Resources Development — Forum OSIS Nusantara (2021–2022)</li>
                 <li>• The Best Student Council President 2021</li>
                 <li>• Professional Moderator & Keynote MC</li>
               </ul>

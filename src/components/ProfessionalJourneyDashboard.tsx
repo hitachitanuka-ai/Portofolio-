@@ -1,29 +1,19 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Briefcase, 
-  Users, 
-  Award, 
-  BarChart3, 
-  CheckCircle2, 
-  Sparkles, 
-  Layers, 
-  Calendar, 
-  MapPin, 
-  ArrowUpRight, 
+import {
+  Briefcase,
+  Users,
+  Award,
+  BarChart3,
+  CheckCircle2,
+  Sparkles,
   ChevronLeft,
-  ChevronRight, 
-  ShieldCheck, 
-  Terminal, 
-  Cpu, 
-  Wrench, 
-  FileText, 
-  GraduationCap, 
-  Trophy, 
+  ChevronRight,
+  Cpu,
+  FileText,
+  Trophy,
   HeartHandshake,
   Compass,
-  Zap,
-  Clock,
   TrendingUp,
   LayoutGrid,
   Calculator,
@@ -51,180 +41,16 @@ import {
   Workflow,
   Kanban,
 } from 'lucide-react';
-import { IMAGES } from '../data/portfolioData';
 import { AppRoute } from '../types';
 import { ScrollReveal } from './ScrollReveal';
+import { OrganizationalExplorer } from './OrganizationalExplorer';
+import { WorkingExperienceShowcase } from './WorkingExperienceShowcase';
 import { useLanguage } from '../context/LanguageContext';
 
 interface ProfessionalJourneyDashboardProps {
   onNavigate: (route: AppRoute, slug?: string) => void;
   onOpenResume: () => void;
 }
-
-// =========================================================================
-// DATA: Corporate & Working Roles
-// =========================================================================
-const WORKING_ROLES_EN = [
-  {
-    id: 'work-1',
-    role: 'People and Culture Lead',
-    company: 'PT. Fan Sukses Bersama',
-    period: 'Apr 2026 – Present',
-    badge: 'Current Role',
-    type: 'Full-time · Corporate',
-    scope: '110+ Full-Time Personnel · End-to-End HR Operations',
-    summary: 'Managing end-to-end Human Capital operations, employee welfare, regulatory BPJS compliance, and building practical in-house HR workflow tools.',
-    responsibilities: [
-      'Directing full-lifecycle recruitment, candidate screening rubrics, and automated onboarding workflows.',
-      'Ensuring statutory labor compliance for BPJS Ketenagakerjaan & BPJS Kesehatan with zero legal infractions.',
-      'Cascading division-level OKRs into individual contributor KPI scorecards with calibrated appraisal cycles.',
-      'Architecting custom internal automation systems (Pervia PMS, Matchify RMS, Slipr Payroll, Zeno Assessment).'
-    ],
-    metrics: [
-      { label: 'Payroll Cycle', value: '-75%', detail: 'From 3 days to <1 hr' },
-      { label: 'Time-to-Hire', value: '-60%', detail: 'From 43 to 17.2 days' },
-      { label: 'Compliance', value: '100%', detail: 'Zero infractions' }
-    ],
-    toolsApplied: ['Pervia PMS', 'Matchify RMS', 'Slipr Payroll', 'Zeno Assessment', 'Google Workspace'],
-    image: IMAGES.eventMeetingDinner,
-  },
-  {
-    id: 'work-2',
-    role: 'Project Analyst',
-    company: 'PT. Rakamin Kolektif Madani',
-    period: 'Dec 2025 – Mar 2026',
-    badge: 'Change Management Advisory',
-    type: 'Project / Advisory',
-    scope: 'Cross-Functional Org Strategy & C-Suite Telemetry',
-    summary: 'Synthesizing organizational complexity into executive C-suite Power BI dashboards and authoring the Corporate Leadership Handbook through structure audits.',
-    responsibilities: [
-      'Auditing cross-functional organizational workflows to identify structural bottlenecks and role ambiguities.',
-      'Synthesizing headcount capacity and workload planning models for board-level decision makers.',
-      'Authoring and standardizing the Corporate Leadership Handbook establishing clear governance & delegation RACI matrices.'
-    ],
-    metrics: [
-      { label: 'Role Clarity', value: '100%', detail: 'Aligned across leads' },
-      { label: 'Reporting Speed', value: '+40%', detail: 'Automated dashboards' },
-      { label: 'Handbook', value: 'Adopted', detail: 'Enterprise-wide' }
-    ],
-    toolsApplied: ['Power BI', 'Org Design RACI', 'Looker Studio', 'C-Suite Handbooks'],
-  },
-  {
-    id: 'work-3',
-    role: 'Human Capital Management Officer',
-    company: 'PT. Indekstat Konsultan Indonesia',
-    period: 'Sep 2024 – Dec 2024',
-    badge: 'National MSIB Program',
-    type: 'Professional Practice',
-    scope: '35 Technical & Research Consultants',
-    summary: 'Pioneered quantitative Workforce Needs Analysis (WNA) and designed standardized competency matrices for research consultants.',
-    responsibilities: [
-      'Conducting quantitative Workforce Needs Analysis (WNA) via structured empirical time-motion interviews.',
-      'Formulating 5-tier competency rubrics, restructured job descriptions, and salary benchmarks.',
-      'Optimizing candidate pipeline data tracking and standardized onboarding curricula.'
-    ],
-    metrics: [
-      { label: 'Role Clarity', value: '+85%', detail: 'Post-program verified' },
-      { label: 'Competencies', value: '5 Tiers', detail: 'Standardized rubrics' },
-      { label: 'Consultants', value: '35 Staff', detail: 'Mapped end-to-end' }
-    ],
-    toolsApplied: ['WNA Time Studies', 'Competency Matrix', 'Excel Advanced', 'Job Grading'],
-  },
-  {
-    id: 'work-4',
-    role: 'Operations Lead & Event Coordinator',
-    company: 'Sakala Wedding & Lamaran.yok',
-    period: 'Sep 2025 – Present',
-    badge: 'High-Stakes Live Logistics',
-    type: 'Operations Leadership',
-    scope: '50+ Major Luxury Productions · Up to 2,000+ Guests',
-    summary: 'Orchestrating end-to-end operational logistics, VIP guest flows, multi-vendor contracts, and crisis mitigation under high-pressure real-time conditions.',
-    responsibilities: [
-      'Managing live on-site crowd logistics, security protocols, and spatial movement for up to 2,000 attendees.',
-      'Leading multi-vendor contract negotiations, synchronization of technical run-sheets, and vendor compliance.',
-      'Acting as primary executive stakeholder liaison and directing real-time crisis mitigation calmly under pressure.'
-    ],
-    metrics: [
-      { label: 'Success Rate', value: '100%', detail: '50+ productions' },
-      { label: 'Live Delays', value: '0 Mins', detail: 'Flawless run-sheet' },
-      { label: 'Crowd Scale', value: '2,000+', detail: 'Guests orchestrated' }
-    ],
-    toolsApplied: ['Master Run-Sheets', 'Crowd Protocol', 'Vendor Contracts', 'Stage Comms'],
-    image: IMAGES.eventAquafestSolo,
-  },
-];
-
-const WORKING_ROLES_ID = [
-  {
-    ...WORKING_ROLES_EN[0],
-    badge: 'Peran Aktif Saat Ini',
-    type: 'Full-time · Korporat',
-    scope: '110+ Karyawan Tetap · Operasional HR End-to-End',
-    summary: 'Mengelola operasional Human Capital secara end-to-end, kesejahteraan karyawan, kepatuhan regulasi BPJS & PPh 21, serta membangun sistem otomasi HR internal.',
-    responsibilities: [
-      'Memimpin rekrutmen menyeluruh, rubrik skrining kandidat, dan alur onboarding otomatis.',
-      'Memastikan kepatuhan ketenagakerjaan BPJS Ketenagakerjaan & BPJS Kesehatan dengan nol pelanggaran.',
-      'Menurunkan OKR divisi ke dalam scorecard KPI individu melalui siklus evaluasi terkalibrasi.',
-      'Merancang sistem otomasi internal kustom (Pervia PMS, Matchify RMS, Slipr Payroll, Zeno Assessment).'
-    ],
-    metrics: [
-      { label: 'Siklus Payroll', value: '-75%', detail: 'Dari 3 hari ke <1 jam' },
-      { label: 'Time-to-Hire', value: '-60%', detail: 'Dari 43 ke 17,2 hari' },
-      { label: 'Kepatuhan', value: '100%', detail: 'Nol pelanggaran' }
-    ],
-  },
-  {
-    ...WORKING_ROLES_EN[1],
-    badge: 'Penasihat Change Management',
-    type: 'Proyek / Konsultasi',
-    scope: 'Strategi Organisasi Lintas Fungsi & Dashboard Direksi',
-    summary: 'Mengubah kompleksitas organisasi menjadi dashboard eksekutif Power BI bagi jajaran direksi serta menyusun Corporate Leadership Handbook lewat audit struktur.',
-    responsibilities: [
-      'Mengaudit alur kerja lintas fungsi guna mengidentifikasi hambatan struktur dan tumpang-tindih peran.',
-      'Menyusun model kapasitas headcount dan perencanaan beban kerja untuk pengambil keputusan.',
-      'Menyusun Corporate Leadership Handbook dengan matriks tata kelola dan delegasi RACI yang tegas.'
-    ],
-    metrics: [
-      { label: 'Kejelasan Peran', value: '100%', detail: 'Selaras di tiap pemimpin' },
-      { label: 'Kecepatan Laporan', value: '+40%', detail: 'Dashboard otomatis' },
-      { label: 'Panduan', value: 'Diadopsi', detail: 'Seluruh perusahaan' }
-    ],
-  },
-  {
-    ...WORKING_ROLES_EN[2],
-    badge: 'Program MSIB Nasional',
-    type: 'Praktik Profesional',
-    scope: '35 Konsultan Riset & Teknis',
-    summary: 'Memelopori Workforce Needs Analysis (WNA) kuantitatif serta merancang matriks kompetensi 5 tingkat terstandar bagi konsultan riset.',
-    responsibilities: [
-      'Melakukan Workforce Needs Analysis (WNA) kuantitatif lewat studi waktu dan wawancara empiris.',
-      'Menyusun rubrik kompetensi 5 tingkat, restrukturisasi uraian jabatan, dan pemetaan rentang gaji.',
-      'Mengoptimalkan pelacakan data kandidat rekrutmen dan kurikulum onboarding standar.'
-    ],
-    metrics: [
-      { label: 'Kejelasan Peran', value: '+85%', detail: 'Terverifikasi pascaprogram' },
-      { label: 'Kompetensi', value: '5 Tingkat', detail: 'Rubrik terstandar' },
-      { label: 'Konsultan', value: '35 Staf', detail: 'Terpetakan menyeluruh' }
-    ],
-  },
-  {
-    ...WORKING_ROLES_EN[3],
-    badge: 'Logistik Acara Skala Besar',
-    type: 'Kepemimpinan Operasional',
-    scope: '50+ Produksi Acara Mewah · Hingga 2.000+ Tamu',
-    summary: 'Mengorkestrasi logistik operasional end-to-end, alur tamu VIP, negosiasi multi-vendor, dan mitigasi krisis real-time di bawah tekanan tinggi.',
-    responsibilities: [
-      'Mengelola alur massa langsung di lokasi, protokol keamanan, dan pergerakan hingga 2.000 tamu.',
-      'Memimpin negosiasi kontrak multi-vendor, sinkronisasi run-sheet teknis, dan kepatuhan vendor.',
-      'Menjadi penghubung utama pemangku kepentingan serta memimpin mitigasi krisis secara tenang.'
-    ],
-    metrics: [
-      { label: 'Keberhasilan', value: '100%', detail: '50+ produksi acara' },
-      { label: 'Keterlambatan', value: '0 Menit', detail: 'Run-sheet presisi' },
-      { label: 'Skala Tamu', value: '2.000+', detail: 'Tamu terkelola' }
-    ],
-  },
-];
 
 // =========================================================================
 // DATA: Competencies (Hard Skills, Soft Skills, Tools)
@@ -464,195 +290,11 @@ const ORBITAL_ECOSYSTEM_ITEMS: OrbitalEcosystemItem[] = [
   ),
 ];
 
-// =========================================================================
-// DATA: Organizational Milestones & Timeline
-// =========================================================================
-const ORGANIZATIONAL_TIMELINE_EN = [
-  {
-    id: 'org-1',
-    year: '2024',
-    period: '2024',
-    role: 'Head of Event — IPB OSIS Fest 2024',
-    organization: 'Directorate of Promotion & Admissions, IPB University',
-    scope: 'National Scale (Delegates from 27 Provinces)',
-    badge: 'National Leadership Conference',
-    summary: 'Directed the organizing committee for a national student leadership summit welcoming student council presidents from 27 Indonesian provinces.',
-    highlights: [
-      'Led and coordinated 70+ cross-division committee members overseeing event flow, VIP protocol, and live risk mitigation.',
-      'Managed budget allocation, strategic partnerships, and direct alignment with IPB University rectorate leadership.',
-      'Guided the ESG Digital PR campaign to win 1st Place National at the Public Relations Excellence Awards (PREA) 2024.'
-    ],
-    image: IMAGES.eventSbIpbCommittee,
-    quote: 'True leadership is the discipline of aligning diverse talents around one shared vision of measurable impact.'
-  },
-  {
-    id: 'org-2',
-    year: '2022 – 2024',
-    period: '2022 – 2024',
-    role: 'Duta IPB University (University Ambassador)',
-    organization: 'Institut Pertanian Bogor (IPB University)',
-    scope: 'Official Rectorate Representation & Public Diplomacy',
-    badge: 'Official Campus Ambassador',
-    summary: 'Selected as official university ambassador leading institutional communications, national educational forums, and VIP hospitality.',
-    highlights: [
-      'Represented IPB University across national education roadshows, higher-education expos, and partnership audiences.',
-      'Served as Master of Ceremony (MC) and lead moderator across dozens of rectorate symposia and national seminars.',
-      'Built institutional diplomacy bridges linking campus leadership with ministries and corporate partners.'
-    ],
-    image: IMAGES.eventDutaIpbStage,
-    quote: 'Institutional representation demands character, diplomatic poise, and communication that inspires confidence.'
-  },
-  {
-    id: 'org-3',
-    year: '2023 – 2024',
-    period: '2023 – 2024',
-    role: 'Head of Human Resources / HR of Student',
-    organization: 'BEM Faculty of Animal Science, IPB University',
-    scope: 'Executive Student Board',
-    badge: 'Talent & Culture Lead',
-    summary: 'Led the student HR department in structuring recruitment assessments, member retention, performance tracking, and internal climate.',
-    highlights: [
-      'Designed cultural-fit recruitment and structured onboarding workflows for incoming organization officers.',
-      'Launched periodic organizational pulse surveys to track member engagement and board effectiveness.',
-      'Sustained 92% officer retention and satisfaction throughout the tenure cycle.'
-    ],
-    image: IMAGES.eventFapetIpbStage,
-    quote: 'Organizations grow not through titles on a chart, but through how clearly each member feels valued and guided.'
-  },
-  {
-    id: 'org-4',
-    year: '2021',
-    period: '2021',
-    role: 'National Delegate — Indonesia Student Leadership Camp (ISLC) IX',
-    organization: 'Universitas Indonesia (UI)',
-    scope: 'National Scale (Top 100 Student Council Presidents)',
-    badge: 'National Executive Incubation',
-    summary: 'Selected from thousands of student council presidents nationwide for executive leadership incubation and public policy formulation.',
-    highlights: [
-      'Co-authored national youth advocacy proposals alongside Indonesia’s top 100 student council presidents.',
-      'Trained intensively in strategic policy diplomacy, systems thinking, and structured public problem-solving.',
-      'Selected among drafters of the national youth resolution for Forum OSIS Nusantara.'
-    ],
-    image: IMAGES.eventAquafestMcDuo,
-    quote: 'Young leaders step forward to take responsibility before being asked, and deliver beyond expectation.'
-  },
-  {
-    id: 'org-5',
-    year: '2020 – 2021',
-    period: '2020 – 2021',
-    role: 'Student Council President (Ketua Umum OSIS)',
-    organization: 'Student Council Governance (OSIS)',
-    scope: 'Executive Student Governance',
-    badge: 'Best Student President Award',
-    summary: 'Led student governance through pandemic-era digital program transformation, stakeholder collaboration, and student advocacy.',
-    highlights: [
-      'Pioneered hybrid and digital student initiatives during pandemic operational restrictions.',
-      'Maintained constructive alignment across school faculty, alumni networks, and external student councils.',
-      'Awarded The Best Student Council President for student communication digitalization.'
-    ],
-    image: IMAGES.eventTeamFistSteps,
-    quote: 'Leadership foundations begin with integrity, quiet service, and consistency in daily execution.'
-  }
-];
-
-const ORGANIZATIONAL_TIMELINE_ID = [
-  {
-    id: 'org-1',
-    year: '2024',
-    period: '2024',
-    role: 'Head of Event — IPB OSIS Fest 2024',
-    organization: 'Direktorat Promosi & Penerimaan Mahasiswa Baru IPB University',
-    scope: 'Tingkat Nasional (Delegasi dari 27 Provinsi)',
-    badge: 'Konferensi Kepemimpinan Nasional',
-    summary: 'Memimpin kepanitiaan akbar konferensi kepemimpinan pelajar nasional dengan delegasi ketua OSIS dari 27 provinsi di Indonesia.',
-    highlights: [
-      'Memimpin dan mengkoordinasikan lebih dari 70 panitia lintas divisi dalam merancang alur acara, protokol tamu kehormatan, dan mitigasi krisis.',
-      'Mengelola alokasi anggaran, kemitraan strategis, dan koordinasi langsung dengan pimpinan rektorat IPB University.',
-      'Membawa kampanye meraih Juara 1 Nasional Digital PR (ESG Theme) di ajang Public Relations Excellence Awards (PREA) 2024.'
-    ],
-    image: IMAGES.eventSbIpbCommittee,
-    quote: 'Kepemimpinan sejati adalah kemampuan mengorkestrasi keberagaman talenta menuju satu visi dampak yang nyata.'
-  },
-  {
-    id: 'org-2',
-    year: '2022 – 2024',
-    period: '2022 – 2024',
-    role: 'Duta IPB University (University Ambassador)',
-    organization: 'Institut Pertanian Bogor (IPB University)',
-    scope: 'Representasi Resmi Rektorat & Diplomasi Publik',
-    badge: 'Duta Resmi Kampus',
-    summary: 'Terpilih sebagai duta resmi universitas untuk memimpin komunikasi publik, representasi institusi pada forum nasional, dan penerimaan tamu VIP.',
-    highlights: [
-      'Mewakili IPB University dalam roadshow edukasi nasional, expo perguruan tinggi, dan audiensi kemitraan institusional.',
-      'Bertindak sebagai Master of Ceremony (MC) dan moderator utama pada puluhan simposium rektorat dan seminar nasional.',
-      'Membangun jejaring diplomasi kampus dengan berbagai kementerian, mitra industri, dan pemangku kepentingan publik.'
-    ],
-    image: IMAGES.eventDutaIpbStage,
-    quote: 'Representasi institusi menuntut keteladanan, etika diplomasi, dan kemampuan bertutur yang menginspirasi.'
-  },
-  {
-    id: 'org-3',
-    year: '2023 – 2024',
-    period: '2023 – 2024',
-    role: 'Head of Human Resources / HR of Student',
-    organization: 'BEM Fakultas Peternakan IPB University',
-    scope: 'Kepengurusan BEM Fakultas Peternakan',
-    badge: 'Kepala Departemen SDM',
-    summary: 'Memimpin departemen SDM mahasiswa dalam merancang program rekrutmen, retensi, penilaian kinerja, dan iklim internal organisasi.',
-    highlights: [
-      'Merancang sistem rekrutmen dan orientasi kerja staf organisasi berbasis asesmen kesesuaian nilai (cultural fit).',
-      'Mengembangkan survei iklim organisasi (pulse survey) berkala untuk mengidentifikasi kepuasan anggota dan efektivitas kepengurusan.',
-      'Meningkatkan angka retensi dan kepuasan pengurus hingga 92% sepanjang periode kerja.'
-    ],
-    image: IMAGES.eventFapetIpbStage,
-    quote: 'Organisasi bertumbuh bukan dari struktur kertasnya, melainkan dari rasa dihargai yang dirasakan setiap anggotanya.'
-  },
-  {
-    id: 'org-4',
-    year: '2021',
-    period: '2021',
-    role: 'Delegasi Nasional — Indonesia Student Leadership Camp (ISLC) IX',
-    organization: 'Universitas Indonesia (UI)',
-    scope: 'Tingkat Nasional (Top 100 Ketua OSIS Terbaik se-Indonesia)',
-    badge: 'Inkubasi Kepemimpinan Nasional',
-    summary: 'Terpilih dari ribuan ketua OSIS se-Indonesia untuk mengikuti inkubasi kepemimpinan eksekutif, debat kebijakan publik, dan inisiatif nasional.',
-    highlights: [
-      'Merumuskan gagasan advokasi kepemudaan nasional bersama 100 ketua OSIS terbaik se-Indonesia.',
-      'Terlatih dalam diplomasi kebijakan strategis, pemecahan masalah publik, dan analisis kebijakan.',
-      'Terpilih masuk jajaran perumus resolusi kepemudaan nasional Forum OSIS Nusantara.'
-    ],
-    image: IMAGES.eventAquafestMcDuo,
-    quote: 'Pemimpin muda harus berani mengambil tanggung jawab sebelum diminta, dan menuntaskannya melampaui ekspektasi.'
-  },
-  {
-    id: 'org-5',
-    year: '2020 – 2021',
-    period: '2020 – 2021',
-    role: 'Ketua Umum OSIS',
-    organization: 'Organisasi Siswa Intra Sekolah (OSIS)',
-    scope: 'Kepemimpinan Eksekutif Lembaga Siswa',
-    badge: 'Ketua OSIS Terbaik',
-    summary: 'Memimpin kepengurusan OSIS, menginisiasi transformasi program kerja digital masa pandemi, dan mengadvokasi aspirasi seluruh siswa.',
-    highlights: [
-      'Memimpin jalannya program kerja siswa berbasis virtual dan hybrid selama masa transisi pandemi.',
-      'Membina kolaborasi harmonis dengan dewan guru, alumni, dan organisasi kesiswaan eksternal.',
-      'Meraih predikat Ketua OSIS Terbaik atas terobosan digitalisasi komunikasi kesiswaan.'
-    ],
-    image: IMAGES.eventTeamFistSteps,
-    quote: 'Fondasi kepemimpinan dimulai dari integritas, ketulusan melayani, dan konsistensi dalam tindakan kecil.'
-  }
-];
-
 export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboardProps> = ({
   onNavigate,
   onOpenResume,
 }) => {
-  const { lang, t } = useLanguage();
-  // Professional Journey active role selection (collapsed by default for clean aligned 2x2 grid)
-  const [selectedWorkId, setSelectedWorkId] = useState<string | null>(null);
-
-  const workingRoles = lang === 'id' ? WORKING_ROLES_ID : WORKING_ROLES_EN;
-  const orgTimeline = lang === 'id' ? ORGANIZATIONAL_TIMELINE_ID : ORGANIZATIONAL_TIMELINE_EN;
+  const { t } = useLanguage();
 
   // Competency filter active tab & Orbital spotlight index
   const [skillsTab, setSkillsTab] = useState<'all' | 'hard' | 'soft' | 'tools'>('all');
@@ -675,25 +317,21 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
 
   const centerNode = getOrbitalItemAtOffset(0);
 
-  // Organizational Journey active milestone
-  const [activeOrgId, setActiveOrgId] = useState<string>('org-1');
-  const activeOrg = orgTimeline.find((o) => o.id === activeOrgId) || orgTimeline[0];
-
   return (
     <div className="w-full">
       {/* =========================================================================
           SECTION 1 — PROFESSIONAL JOURNEY: ROLES & IMPACT (Natural Top-to-Bottom Flow)
           ========================================================================= */}
-      <section className="w-full bg-[#F3EFEA] py-20 border-b border-[#E7E0D6]">
+      <section className="w-full bg-[#F3EFEA] py-10 sm:py-14 border-b border-[#E7E0D6]">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 sm:mb-8">
             <ScrollReveal variant="editorial" delay={0}>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#6E7C69]/10 text-[#6E7C69] text-xs font-mono font-bold uppercase tracking-wider mb-2">
                 <Briefcase className="w-3.5 h-3.5 text-[#AF8C72]" />
                 <span>{t('Career Trajectory', 'Lintasan Karier Profesional')}</span>
               </div>
-              <h2 className="font-sans font-black text-4xl sm:text-5xl text-[#1E2022] tracking-tight">
+              <h2 className="font-sans font-black text-3xl sm:text-5xl text-[#1E2022] tracking-tight">
                 {t('Professional Journey', 'Perjalanan Profesional')}
               </h2>
               <p className="text-xs sm:text-sm text-[#605E59] font-light leading-relaxed mt-1 max-w-2xl">
@@ -704,7 +342,7 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
               </p>
             </ScrollReveal>
 
-            <ScrollReveal variant="subtle" delay={0.14} className="flex items-center gap-3">
+            <ScrollReveal variant="subtle" delay={0.14} className="flex flex-wrap items-center gap-3">
               <button
                 onClick={onOpenResume}
                 className="px-5 py-2.5 bg-white hover:bg-[#1E2022] hover:text-white text-[#1E2022] border border-[#E7E0D6] rounded-full text-xs font-semibold tracking-wide transition-all cursor-pointer shadow-2xs active:scale-95 flex items-center gap-2"
@@ -715,168 +353,21 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
 
               <button
                 onClick={() => onNavigate('experience', 'working')}
-                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#1E2022] hover:text-[#6E7C69] transition-colors border-b-2 border-[#1E2022] pb-0.5 cursor-pointer ml-1"
+                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#1E2022] hover:text-[#6E7C69] transition-colors border-b-2 border-[#1E2022] pb-0.5 cursor-pointer"
               >
                 <span>{t('Full Archive ↗', 'Arsip Lengkap ↗')}</span>
               </button>
             </ScrollReveal>
           </div>
 
-          {/* Top KPI Telemetry Ribbon */}
-          <ScrollReveal variant="subtle" delay={0.08}>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 bg-white rounded-3xl border border-[#E7E0D6] shadow-xs mb-8">
-              <div className="p-4 text-center rounded-2xl bg-[#F3EFEA] border border-[#E7E0D6]/60">
-                <span className="font-sans font-black text-2xl sm:text-3xl text-[#6E7C69] block">110+</span>
-                <span className="font-mono text-[11px] text-[#9E7B62] uppercase tracking-wider block font-bold mt-0.5">
-                  {t('Personnel Under HC', 'Karyawan Dikelola')}
-                </span>
-              </div>
-              <div className="p-4 text-center rounded-2xl bg-[#F3EFEA] border border-[#E7E0D6]/60">
-                <span className="font-sans font-black text-2xl sm:text-3xl text-[#AF8C72] block">2+</span>
-                <span className="font-mono text-[11px] text-[#9E7B62] uppercase tracking-wider block font-bold mt-0.5">
-                  {t('Years Corporate HR', 'Tahun Pengalaman HR')}
-                </span>
-              </div>
-              <div className="p-4 text-center rounded-2xl bg-[#F3EFEA] border border-[#E7E0D6]/60">
-                <span className="font-sans font-black text-2xl sm:text-3xl text-[#1E2022] block">04</span>
-                <span className="font-mono text-[11px] text-[#9E7B62] uppercase tracking-wider block font-bold mt-0.5">
-                  {t('In-House HR Systems', 'Sistem HR Internal')}
-                </span>
-              </div>
-              <div className="p-4 text-center rounded-2xl bg-[#F3EFEA] border border-[#E7E0D6]/60">
-                <span className="font-sans font-black text-2xl sm:text-3xl text-[#6E7C69] block">100%</span>
-                <span className="font-mono text-[11px] text-[#9E7B62] uppercase tracking-wider block font-bold mt-0.5">
-                  {t('Regulatory Compliance', 'Kepatuhan Regulasi')}
-                </span>
-              </div>
-            </div>
+          {/* Interactive Executive Career Dossier (Replaces nested 2x2 expandable cards) */}
+          <ScrollReveal variant="media" duration={0.85} delay={0.08}>
+            <WorkingExperienceShowcase
+              onNavigate={onNavigate}
+              onOpenResume={onOpenResume}
+              compactHeader
+            />
           </ScrollReveal>
-
-          {/* 4 Professional Roles Grid */}
-          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-6 ${selectedWorkId ? 'items-start' : 'items-stretch'}`}>
-            {workingRoles.map((role, roleIdx) => {
-              const isSelected = role.id === selectedWorkId;
-
-              return (
-                <ScrollReveal key={role.id} variant="card" delay={(roleIdx % 2) * 0.1} className="h-full">
-                <motion.div
-                  layout
-                  onClick={() => setSelectedWorkId(isSelected ? null : role.id)}
-                  className={`rounded-3xl p-6 sm:p-7 border transition-all duration-300 cursor-pointer relative overflow-hidden flex flex-col justify-between ${
-                    isSelected
-                      ? 'bg-white border-[#AF8C72] shadow-xl ring-2 ring-[#AF8C72]/15'
-                      : 'bg-white/85 hover:bg-white border-[#E7E0D6] hover:border-[#AF8C72]/60 shadow-xs h-full'
-                  }`}
-                >
-                  {/* Top Row: Period, Type & Badge */}
-                  <div>
-                    <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-[#E7E0D6]">
-                      <div className="flex items-center gap-2 font-mono text-xs text-[#9E7B62]">
-                        <Calendar className="w-3.5 h-3.5 text-[#AF8C72]" />
-                        <span className="font-bold text-[#1E2022]">{role.period}</span>
-                        <span>·</span>
-                        <span className="text-[#6E7C69] font-medium">{role.type}</span>
-                      </div>
-
-                      <span className={`px-3 py-0.5 rounded-full text-[10px] font-mono uppercase font-bold tracking-wider ${
-                        isSelected ? 'bg-[#AF8C72] text-white' : 'bg-[#F3EFEA] text-[#1E2022] border border-[#E7E0D6]'
-                      }`}>
-                        {role.badge}
-                      </span>
-                    </div>
-
-                    {/* Role Title & Company */}
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <h3 className="font-sans font-black text-xl sm:text-2xl text-[#1E2022]">
-                          {role.role}
-                        </h3>
-                        <span className="font-mono text-xs font-semibold text-[#6E7C69] block mt-0.5">
-                          {role.company}
-                        </span>
-                        <span className="text-xs text-[#9E7B62] font-mono block mt-0.5">
-                          {role.scope}
-                        </span>
-                      </div>
-
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-transform shrink-0 ${
-                        isSelected ? 'bg-[#AF8C72] text-white rotate-90' : 'bg-[#F3EFEA] text-[#1E2022]'
-                      }`}>
-                        <ChevronRight className="w-4 h-4" />
-                      </div>
-                    </div>
-
-                    {/* Narrative Summary */}
-                    <p className="text-xs sm:text-sm text-[#4A4843] font-light leading-relaxed mt-3">
-                      {role.summary}
-                    </p>
-                  </div>
-
-                  {/* Verified Metrics Chips */}
-                  <div className="grid grid-cols-3 gap-2 pt-4 mt-4 border-t border-[#E7E0D6]/80">
-                    {role.metrics.map((m, mIdx) => (
-                      <div key={mIdx} className="p-2.5 rounded-2xl bg-[#F3EFEA] border border-[#E7E0D6]/60 text-center">
-                        <span className="font-sans font-black text-base sm:text-lg text-[#6E7C69] block leading-tight">
-                          {m.value}
-                        </span>
-                        <span className="font-mono text-[9px] uppercase tracking-wider text-[#1E2022] font-bold block truncate">
-                          {m.label}
-                        </span>
-                        <span className="font-mono text-[8px] text-[#9E7B62] block truncate">
-                          {m.detail}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Expanded Content (Smooth Moderate Animation) */}
-                  <AnimatePresence>
-                    {isSelected && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.35, ease: 'easeInOut' }}
-                        className="pt-5 mt-5 border-t border-[#E7E0D6] space-y-4"
-                      >
-                        <div>
-                          <span className="text-[10px] font-mono uppercase tracking-widest text-[#AF8C72] font-bold block mb-2">
-                            Core Executive Responsibilities:
-                          </span>
-                          <ul className="space-y-2">
-                            {role.responsibilities.map((resp, rIdx) => (
-                              <li key={rIdx} className="flex items-start gap-2 text-xs text-[#1E2022] font-light leading-relaxed">
-                                <CheckCircle2 className="w-3.5 h-3.5 text-[#6E7C69] shrink-0 mt-0.5" />
-                                <span>{resp}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        {/* Applied Tools & Ecosystem */}
-                        <div className="pt-2">
-                          <span className="text-[10px] font-mono uppercase tracking-widest text-[#9E7B62] font-bold block mb-2">
-                            Tools & Systems Deployed:
-                          </span>
-                          <div className="flex flex-wrap gap-1.5">
-                            {role.toolsApplied.map((tool, tIdx) => (
-                              <span
-                                key={tIdx}
-                                className="px-3 py-1 bg-white border border-[#E7E0D6] text-[10px] font-mono text-[#1E2022] rounded-full shadow-2xs font-medium"
-                              >
-                                {tool}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-                </ScrollReveal>
-              );
-            })}
-          </div>
         </div>
       </section>
 
@@ -884,8 +375,8 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
           SECTION 2 — SKILLS & ECOSYSTEM (Editorial Orbital Carousel Concept)
           Inspired by circular depth-wave showcase with refined champagne rings
           ========================================================================= */}
-      <section className="w-full bg-[#FAF8F5] py-20 border-b border-[#E7E0D6] overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-10">
+      <section className="w-full bg-[#FAF8F5] py-10 sm:py-14 border-b border-[#E7E0D6] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-6 sm:space-y-8">
           {/* Centered Editorial Section Header */}
           <div className="text-center max-w-2xl mx-auto space-y-3">
             <ScrollReveal variant="subtle" delay={0}>
@@ -915,9 +406,9 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
               </p>
             </ScrollReveal>
 
-            {/* Centered Compact Filter Selector (Echoing Reference Dropdown/Toggle) */}
-            <ScrollReveal variant="subtle" delay={0.2} className="pt-2 flex justify-center">
-              <div className="inline-flex flex-wrap items-center justify-center gap-1 p-1 bg-white rounded-full border border-[#E7E0D6] shadow-2xs">
+            {/* Centered Compact Filter Selector */}
+            <ScrollReveal variant="subtle" delay={0.2} className="pt-2 flex justify-center w-full">
+              <div className="w-full max-w-md sm:max-w-none sm:w-auto grid grid-cols-2 sm:inline-flex items-center justify-center gap-1.5 sm:gap-1 p-1.5 sm:p-1 bg-white rounded-2xl sm:rounded-full border border-[#E7E0D6] shadow-2xs">
                 {[
                   { id: 'all', label: `All Ecosystem (${ORBITAL_ECOSYSTEM_ITEMS.length})` },
                   { id: 'hard', label: `Hard Skills (${HARD_SKILLS.length})` },
@@ -931,7 +422,7 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
                       setSkillsTab(tab.id as 'all' | 'hard' | 'soft' | 'tools');
                       setActiveOrbitalIdx(0);
                     }}
-                    className={`px-3.5 py-1.5 rounded-full text-[11px] font-mono transition-all cursor-pointer font-semibold ${
+                    className={`px-2.5 sm:px-3.5 py-2 sm:py-1.5 rounded-xl sm:rounded-full text-[10.5px] sm:text-[11px] font-mono transition-all cursor-pointer font-semibold text-center ${
                       skillsTab === tab.id
                         ? 'bg-[#1E2022] text-white shadow-xs'
                         : 'text-[#605E59] hover:text-[#1E2022] hover:bg-[#F3EFEA]'
@@ -948,7 +439,7 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
               ORBITAL DEPTH-WAVE CIRCULAR STAGE
               ========================================================================= */}
           <ScrollReveal variant="media" duration={0.95} delay={0.12}>
-          <div className="relative py-8 sm:py-12 flex items-center justify-center min-h-[340px] sm:min-h-[370px] select-none">
+          <div className="relative pt-4 pb-12 sm:py-12 flex items-center justify-center min-h-[320px] sm:min-h-[370px] select-none">
             {/* Soft radial backdrop glow adapting to spotlight color */}
             {centerNode && (
               <div
@@ -1038,7 +529,7 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
                 const tone = ECOSYSTEM_TONES[centerNode.item.tone];
 
                 return (
-                  <div className="relative flex items-center justify-center shrink-0 mx-2">
+                  <div className="relative flex items-center justify-center shrink-0 mx-1 sm:mx-2">
                     {/* Left Arrow Floating Control */}
                     <button
                       type="button"
@@ -1049,7 +540,7 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
                         )
                       }
                       aria-label="Previous skill"
-                      className="absolute -left-4 sm:-left-5 z-20 w-9 h-9 rounded-full bg-white border border-[#E7E0D6] hover:border-[#1E2022] hover:bg-[#1E2022] hover:text-white text-[#1E2022] shadow-md flex items-center justify-center transition-all cursor-pointer active:scale-95"
+                      className="absolute -left-3 sm:-left-5 z-20 w-9 h-9 rounded-full bg-white border border-[#E7E0D6] hover:border-[#1E2022] hover:bg-[#1E2022] hover:text-white text-[#1E2022] shadow-md flex items-center justify-center transition-all cursor-pointer active:scale-95"
                     >
                       <ChevronLeft className="w-4 h-4" strokeWidth={2} />
                     </button>
@@ -1062,29 +553,29 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.94 }}
                         transition={{ duration: 0.28, ease: 'easeOut' }}
-                        className={`w-64 h-64 sm:w-[296px] sm:h-[296px] rounded-full bg-white border-[3px] ${tone.spotlightBorder} shadow-[0_20px_50px_rgba(30,32,34,0.10)] p-6 sm:p-7 flex flex-col items-center justify-between text-center relative`}
+                        className={`w-[252px] h-[252px] sm:w-[296px] sm:h-[296px] rounded-full bg-white border-[3px] ${tone.spotlightBorder} shadow-[0_20px_50px_rgba(30,32,34,0.10)] p-5 sm:p-7 flex flex-col items-center justify-between text-center relative`}
                       >
                         {/* Top Micro Header inside Circle */}
                         <div className="space-y-1 pt-1">
-                          <span className={`font-mono text-[9px] uppercase tracking-[0.16em] ${tone.tagColor} font-bold block`}>
+                          <span className={`font-mono text-[9px] uppercase tracking-[0.14em] sm:tracking-[0.16em] ${tone.tagColor} font-bold block`}>
                             {centerNode.item.groupLabel}
                           </span>
-                          <h3 className="font-sans font-extrabold text-base sm:text-lg text-[#1E2022] leading-tight line-clamp-2 px-2">
+                          <h3 className="font-sans font-extrabold text-[15px] sm:text-lg text-[#1E2022] leading-tight line-clamp-2 px-2">
                             {centerNode.item.name}
                           </h3>
                         </div>
 
                         {/* Center Harmonious Color Halo & Unique Semantic Icon */}
-                        <div className={`w-18 h-18 rounded-2xl ${tone.haloBg} border ${tone.haloBorder} flex items-center justify-center shadow-inner transition-colors`}>
-                          <CenterIcon className={`w-8 h-8 ${tone.iconColor}`} strokeWidth={1.65} />
+                        <div className={`w-16 h-16 sm:w-18 sm:h-18 rounded-2xl ${tone.haloBg} border ${tone.haloBorder} flex items-center justify-center shadow-inner transition-colors`}>
+                          <CenterIcon className={`w-7 h-7 sm:w-8 sm:h-8 ${tone.iconColor}`} strokeWidth={1.65} />
                         </div>
 
                         {/* Bottom Outcome & Domain Subtitle */}
                         <div className="pb-2 space-y-0.5 px-2">
-                          <span className="font-mono text-[9px] uppercase tracking-wider text-[#605E59] block">
+                          <span className="font-mono text-[8.5px] sm:text-[9px] uppercase tracking-wider text-[#605E59] block">
                             Applied Focus
                           </span>
-                          <strong className={`font-serif italic text-base sm:text-lg ${tone.subTextColor} font-normal block leading-tight line-clamp-1`}>
+                          <strong className={`font-serif italic text-[15px] sm:text-lg ${tone.subTextColor} font-normal block leading-tight line-clamp-1`}>
                             {centerNode.item.subLabel}
                           </strong>
                         </div>
@@ -1100,13 +591,13 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
                         )
                       }
                       aria-label="Next skill"
-                      className="absolute -right-4 sm:-right-5 z-20 w-9 h-9 rounded-full bg-white border border-[#E7E0D6] hover:border-[#1E2022] hover:bg-[#1E2022] hover:text-white text-[#1E2022] shadow-md flex items-center justify-center transition-all cursor-pointer active:scale-95"
+                      className="absolute -right-3 sm:-right-5 z-20 w-9 h-9 rounded-full bg-white border border-[#E7E0D6] hover:border-[#1E2022] hover:bg-[#1E2022] hover:text-white text-[#1E2022] shadow-md flex items-center justify-center transition-all cursor-pointer active:scale-95"
                     >
                       <ChevronRight className="w-4 h-4" strokeWidth={2} />
                     </button>
 
                     {/* Floating Bottom-Left Spec Chip */}
-                    <div className="absolute -bottom-3 -left-2 sm:left-1 z-20 bg-white border border-[#E7E0D6] rounded-xl px-3 py-1.5 shadow-md flex items-center gap-2.5 text-[10px] font-mono">
+                    <div className="absolute -bottom-5 sm:-bottom-3 left-0 sm:left-1 z-20 bg-white border border-[#E7E0D6] rounded-xl px-2.5 sm:px-3 py-1.5 shadow-md flex items-center gap-2 sm:gap-2.5 text-[10px] font-mono">
                       <span className="font-bold text-[#1E2022]">
                         {String(safeOrbitalIdx + 1).padStart(2, '0')}/
                         {String(visibleOrbitalItems.length).padStart(2, '0')}
@@ -1128,7 +619,7 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
                     </div>
 
                     {/* Floating Bottom-Center Color-Matched Verified Check Pill */}
-                    <div className={`absolute -bottom-4 left-1/2 -translate-x-1/2 translate-x-14 sm:translate-x-16 z-20 w-8 h-8 rounded-xl ${tone.accentPillBg} text-white shadow-md flex items-center justify-center border-2 border-white transition-colors`}>
+                    <div className={`absolute -bottom-5 sm:-bottom-4 right-1 sm:right-auto sm:left-1/2 sm:translate-x-16 z-20 w-8 h-8 rounded-xl ${tone.accentPillBg} text-white shadow-md flex items-center justify-center border-2 border-white transition-colors`}>
                       <CheckCircle2 className="w-4 h-4" strokeWidth={2} />
                     </div>
                   </div>
@@ -1215,11 +706,11 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
               ========================================================================= */}
           <ScrollReveal variant="subtle" delay={0.14}>
           <div className="bg-white/90 rounded-3xl border border-[#E7E0D6] p-4 sm:p-5 space-y-3 shadow-2xs">
-            <div className="flex items-center justify-between text-[11px] font-mono">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-[11px] font-mono">
               <span className="uppercase tracking-wider font-bold text-[#8F6D54]">
                 Quick Ecosystem Index
               </span>
-              <span className="text-[#605E59]">
+              <span className="text-[#605E59] text-[10px] sm:text-[11px]">
                 Click any item to focus spotlight
               </span>
             </div>
@@ -1259,10 +750,10 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
       {/* =========================================================================
           SECTION 3 — ORGANIZATIONAL JOURNEY: INTERACTIVE CARDS + TIMELINE
           ========================================================================= */}
-      <section className="w-full bg-[#E8ECE6] py-20 border-b border-[#D7DFD5]">
+      <section className="w-full bg-[#E8ECE6] py-10 sm:py-14 border-b border-[#D7DFD5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 sm:mb-8">
             <ScrollReveal variant="editorial" delay={0}>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#AF8C72]/15 text-[#AF8C72] text-xs font-mono font-bold uppercase tracking-wider mb-2">
                 <Trophy className="w-3.5 h-3.5 text-[#AF8C72]" />
@@ -1284,135 +775,16 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
                 onClick={() => onNavigate('experience', 'organizational')}
                 className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#1E2022] hover:text-[#6E7C69] transition-colors border-b-2 border-[#1E2022] pb-0.5 cursor-pointer"
               >
-                <span>{t('Explore All 5 Milestones ↗', 'Lihat Semua 5 Tonggak ↗')}</span>
+                <span>{t('Explore All 7 Milestones ↗', 'Lihat Semua 7 Tonggak ↗')}</span>
               </button>
             </ScrollReveal>
           </div>
 
           {/* =========================================================================
-              TIMELINE CONTROLLER RIBBON (Clickable Milestone Nodes)
+              INTERACTIVE ORGANIZATIONAL EXPLORER (CREAM · SAGE GREEN · LIGHT BROWN)
               ========================================================================= */}
-          <ScrollReveal variant="subtle" delay={0.1}>
-          <div className="relative mb-12 p-3 bg-white rounded-3xl border border-[#E7E0D6] shadow-xs">
-            <div className="flex items-center justify-between overflow-x-auto gap-2 p-1">
-              {orgTimeline.map((item, idx) => {
-                const isActive = item.id === activeOrgId;
-
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => setActiveOrgId(item.id)}
-                    className={`flex-1 min-w-[130px] p-3 rounded-2xl text-left transition-all duration-300 cursor-pointer relative ${
-                      isActive
-                        ? 'bg-[#1E2022] text-white shadow-md'
-                        : 'hover:bg-[#F3EFEA] text-[#1E2022]'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between mb-1">
-                      <span className={`font-mono text-[10px] uppercase font-bold tracking-wider ${
-                        isActive ? 'text-[#AF8C72]' : 'text-[#6E7C69]'
-                      }`}>
-                        Milestone 0{idx + 1}
-                      </span>
-                      {isActive && (
-                        <div className="w-2 h-2 rounded-full bg-[#AF8C72] animate-ping" />
-                      )}
-                    </div>
-                    <span className="font-sans font-bold text-sm block truncate">
-                      {item.year}
-                    </span>
-                    <span className={`text-[10px] block truncate font-mono mt-0.5 ${
-                      isActive ? 'text-[#E8DFD4]' : 'text-[#9E7B62]'
-                    }`}>
-                      {item.organization.split('(')[0].trim()}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-          </ScrollReveal>
-
-          {/* =========================================================================
-              ACTIVE MILESTONE INTERACTIVE SHOWCASE CARD
-              ========================================================================= */}
-          <ScrollReveal variant="media" duration={0.92} delay={0.14}>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeOrg.id}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
-              className="bg-white rounded-[2.5rem] p-6 sm:p-10 border border-[#D7DFD5] shadow-lg grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
-            >
-              {/* Left Column: Organization Narrative & Governance */}
-              <div className="lg:col-span-7 space-y-6">
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <span className="px-3 py-1 rounded-full bg-[#6E7C69]/10 text-[#6E7C69] text-xs font-mono font-bold uppercase tracking-wider border border-[#6E7C69]/20">
-                      {activeOrg.badge}
-                    </span>
-                    <span className="font-mono text-xs text-[#9E7B62] font-semibold">
-                      {activeOrg.period} · {activeOrg.scope}
-                    </span>
-                  </div>
-
-                  <h3 className="font-sans font-black text-2xl sm:text-3xl lg:text-4xl text-[#1E2022] leading-tight">
-                    {activeOrg.role}
-                  </h3>
-                  <span className="font-mono text-sm font-bold text-[#6E7C69] block mt-1">
-                    {activeOrg.organization}
-                  </span>
-                </div>
-
-                <p className="text-sm text-[#4A4843] font-light leading-relaxed">
-                  {activeOrg.summary}
-                </p>
-
-                {/* Key Highlights & Governance Impact */}
-                <div className="space-y-3 pt-2">
-                  <span className="text-[11px] font-mono uppercase tracking-widest text-[#AF8C72] font-bold block">
-                    Leadership Highlights & Deliverables:
-                  </span>
-                  <div className="space-y-2.5">
-                    {activeOrg.highlights.map((hl, hIdx) => (
-                      <div key={hIdx} className="flex items-start gap-2.5 text-xs text-[#1E2022] font-light leading-relaxed">
-                        <CheckCircle2 className="w-4 h-4 text-[#6E7C69] shrink-0 mt-0.5" />
-                        <span>{hl}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Inspirational Leadership Quote */}
-                <div className="p-4 rounded-2xl bg-[#F3EFEA] border-l-4 border-[#AF8C72] text-xs italic text-[#4A4843] font-light">
-                  "{activeOrg.quote}"
-                </div>
-              </div>
-
-              {/* Right Column: Real Event Photo Documentation */}
-              <div className="lg:col-span-5">
-                <div className="relative rounded-3xl overflow-hidden shadow-md aspect-4/3 group border border-[#D7DFD5]">
-                  <img
-                    src={activeOrg.image}
-                    alt={activeOrg.role}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-
-                  <div className="absolute bottom-4 inset-x-4 text-white text-xs font-mono flex items-center justify-between">
-                    <span className="bg-black/70 backdrop-blur-md px-3 py-1 rounded-full text-[10px] border border-white/20">
-                      {t('Leadership Documentation', 'Dokumentasi Kepemimpinan')}
-                    </span>
-                    <span className="text-[11px] font-bold text-[#E8DFD4]">
-                      {activeOrg.year}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+          <ScrollReveal variant="media" duration={0.92} delay={0.12}>
+            <OrganizationalExplorer onNavigate={onNavigate} />
           </ScrollReveal>
         </div>
       </section>

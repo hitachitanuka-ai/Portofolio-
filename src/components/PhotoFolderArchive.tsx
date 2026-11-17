@@ -273,8 +273,8 @@ export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
                 </h3>
                 <span className="mt-2 text-xs font-mono font-medium text-neutral-600 bg-neutral-100 px-4 py-1 rounded-full border border-neutral-200/80">
                   {activeAlbum === 'event'
-                    ? 'CREATIVESTYLE · 13 DOKUMENTASI EVENT & PROTOKOL · 2024–2025'
-                    : 'CREATIVESTYLE · 10 CURATED PERSONAL PORTRAITS · 2026'}
+                    ? `CREATIVESTYLE · ${EVENT_PHOTOS_ARCHIVE.length} DOKUMENTASI EVENT & PROTOKOL · 2024–2025`
+                    : `CREATIVESTYLE · ${SURYA_PHOTOS_ARCHIVE.length} CURATED PERSONAL PORTRAITS · 2019–2026`}
                 </span>
               </div>
             </motion.div>
@@ -305,7 +305,7 @@ export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
                       ? 'Album "myself" — Bangkit Surya Wijaya'
                       : activeAlbum === 'event'
                         ? 'Sub-Album "Event" — Panggung, Protokol & Operasional'
-                        : 'Koleksi Lengkap CreativeStyle (23 Foto)'}
+                        : `Koleksi Lengkap CreativeStyle (${SURYA_PHOTOS_ARCHIVE.length + EVENT_PHOTOS_ARCHIVE.length} Foto)`}
                   </span>
                 </div>
 

@@ -100,12 +100,12 @@ export const Navbar: React.FC<NavbarProps> = ({
         }`}
       >
         <div
-          className={`mx-auto transition-all duration-500 flex items-center justify-between gap-4 ${
+          className={`mx-auto transition-all duration-500 flex items-center justify-between gap-2 sm:gap-4 ${
             isScrolled
-              ? 'max-w-6xl rounded-2xl sm:rounded-full bg-[#FAF8F5]/92 backdrop-blur-xl border border-[#E4E0D8] shadow-[0_16px_40px_-14px_rgba(30,32,34,0.16)] px-4 sm:px-6 py-2.5'
+              ? 'max-w-6xl rounded-2xl sm:rounded-full bg-[#FAF8F5]/92 backdrop-blur-xl border border-[#E4E0D8] shadow-[0_16px_40px_-14px_rgba(30,32,34,0.16)] px-3.5 sm:px-6 py-2.5'
               : isDarkTop
-              ? 'max-w-7xl px-5 sm:px-8 py-4 sm:py-5 bg-gradient-to-b from-[#14171A]/75 via-[#14171A]/35 to-transparent border-b border-white/10'
-              : 'max-w-7xl px-5 sm:px-8 py-3.5 sm:py-4 bg-[#F5F3EE]/90 backdrop-blur-md border-b border-[#E4E0D8]'
+              ? 'max-w-7xl px-3.5 sm:px-8 py-3.5 sm:py-5 bg-gradient-to-b from-[#14171A]/75 via-[#14171A]/35 to-transparent border-b border-white/10'
+              : 'max-w-7xl px-3.5 sm:px-8 py-3 sm:py-4 bg-[#F5F3EE]/90 backdrop-blur-md border-b border-[#E4E0D8]'
           }`}
         >
           {/* -------------------------------------------------------------------
@@ -113,11 +113,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               ------------------------------------------------------------------- */}
           <button
             onClick={() => handleLinkClick('home')}
-            className="flex items-center gap-3 group cursor-pointer focus-visible:outline-2 focus-visible:outline-[#B49A70] rounded-xl text-left shrink-0"
+            className="flex items-center gap-2 sm:gap-3 group cursor-pointer focus-visible:outline-2 focus-visible:outline-[#B49A70] rounded-xl text-left min-w-0 flex-1 lg:flex-initial"
           >
             {/* Geometric Architectural Emblem */}
             <div
-              className={`relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center font-serif italic text-base sm:text-lg font-bold transition-all duration-300 overflow-hidden ${
+              className={`relative w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center font-serif italic text-sm sm:text-lg font-bold transition-all duration-300 overflow-hidden shrink-0 ${
                 isDarkTop
                   ? 'bg-white/10 text-white border border-[#B49A70]/60 group-hover:bg-[#B49A70] group-hover:text-[#14171A]'
                   : 'bg-[#1E2022] text-[#F5F3EE] border border-[#1E2022] group-hover:bg-[#6E7C69] group-hover:border-[#6E7C69]'
@@ -127,9 +127,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-[#B49A70]/40 blur-[2px]" />
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col min-w-0">
               <span
-                className={`font-sans text-xs sm:text-sm font-black tracking-[0.16em] uppercase transition-colors leading-tight ${
+                className={`font-sans text-[10.5px] sm:text-sm font-black tracking-[0.07em] sm:tracking-[0.16em] uppercase transition-colors leading-tight truncate ${
                   isDarkTop
                     ? 'text-white group-hover:text-[#B49A70]'
                     : 'text-[#1E2022] group-hover:text-[#6E7C69]'
@@ -137,20 +137,20 @@ export const Navbar: React.FC<NavbarProps> = ({
               >
                 THE MODERN STRATEGIST
               </span>
-              <div className="flex items-center gap-1.5 mt-0.5">
-                <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.18em] uppercase font-bold text-[#B49A70]">
+              <div className="flex items-center gap-1.5 mt-0.5 min-w-0">
+                <span className="font-mono text-[8.5px] sm:text-[10px] tracking-[0.12em] sm:tracking-[0.18em] uppercase font-bold text-[#B49A70] truncate">
                   BANGKIT SURYA WIJAYA
                 </span>
                 <span
                   aria-hidden="true"
-                  className={`hidden sm:inline text-[9px] ${
+                  className={`hidden md:inline text-[9px] shrink-0 ${
                     isDarkTop ? 'text-white/35' : 'text-[#A7A69F]'
                   }`}
                 >
                   /
                 </span>
                 <span
-                  className={`hidden sm:inline font-mono text-[9px] tracking-wider uppercase ${
+                  className={`hidden md:inline font-mono text-[9px] tracking-wider uppercase shrink-0 ${
                     isDarkTop ? 'text-[#D1CCC5]/80' : 'text-[#605E59]'
                   }`}
                 >
@@ -272,7 +272,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                                     {t('Organizational Leadership', 'Kepemimpinan Organisasi')}
                                   </span>
                                   <span className="font-mono text-[10px] text-[#B49A70] font-semibold">
-                                    {t('5 Roles', '5 Amanah')}
+                                    {t('7 Roles', '7 Amanah')}
                                   </span>
                                 </div>
                                 <span className="text-[11px] text-[#605E59] block truncate">
@@ -440,7 +440,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* -------------------------------------------------------------------
               MOBILE MENU ACTIONS
               ------------------------------------------------------------------- */}
-          <div className="flex items-center gap-1.5 lg:hidden shrink-0">
+          <div className="flex items-center gap-1 sm:gap-1.5 lg:hidden shrink-0">
             <div
               role="group"
               aria-label="Mobile Language Switcher"
@@ -453,7 +453,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 type="button"
                 onClick={() => setLang('en')}
-                className={`px-2 py-1 rounded-full cursor-pointer ${
+                className={`px-1.5 sm:px-2 py-1 rounded-full cursor-pointer ${
                   lang === 'en' ? 'bg-[#B49A70] text-[#14171A]' : ''
                 }`}
               >
@@ -462,7 +462,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 type="button"
                 onClick={() => setLang('id')}
-                className={`px-2 py-1 rounded-full cursor-pointer ${
+                className={`px-1.5 sm:px-2 py-1 rounded-full cursor-pointer ${
                   lang === 'id' ? 'bg-[#B49A70] text-[#14171A]' : ''
                 }`}
               >
@@ -471,18 +471,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
             <button
               onClick={onOpenResume}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full border transition-colors cursor-pointer min-h-[38px] ${
+              className={`inline-flex items-center gap-1 px-2.5 sm:px-3 py-1.5 text-[11px] sm:text-xs font-semibold rounded-full border transition-colors cursor-pointer min-h-[34px] sm:min-h-[38px] ${
                 isDarkTop
                   ? 'text-[#14171A] bg-white border-white'
                   : 'text-white bg-[#1E2022] border-[#1E2022]'
               }`}
             >
-              <FileText className="w-3.5 h-3.5 text-[#B49A70]" />
+              <FileText className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#B49A70]" />
               <span>CV</span>
             </button>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`w-10 h-10 rounded-full flex items-center justify-center border transition-colors cursor-pointer ${
+              className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border transition-colors cursor-pointer ${
                 isDarkTop
                   ? 'text-white bg-white/10 border-white/20 hover:bg-white/20'
                   : 'text-[#1E2022] bg-white border-[#E4E0D8] hover:border-[#1E2022]'
@@ -490,7 +490,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               aria-label="Toggle navigation"
               aria-expanded={isMobileMenuOpen}
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
             </button>
           </div>
         </div>
@@ -551,7 +551,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                             onClick={() => handleLinkClick('experience', 'organizational')}
                             className="text-xs font-medium text-[#605E59] hover:text-[#1E2022] block py-1 cursor-pointer text-left"
                           >
-                            {t('Organizational Leadership — 5 Mandates', 'Kepemimpinan Organisasi — 5 Amanah')}
+                            {t('Organizational Leadership — 7 Mandates', 'Kepemimpinan Organisasi — 7 Amanah')}
                           </button>
                           <button
                             onClick={() => handleLinkClick('experience', 'project')}

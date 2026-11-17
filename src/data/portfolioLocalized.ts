@@ -414,8 +414,52 @@ export function getLocalizedPhotoArchive(lang: Language) {
       if (p.id === 'myself-6') {
         return { ...p, subtitle: 'Prestasi Akademik & Riset Kuantitatif (IPK 3.65)' };
       }
+      if (p.id === 'myself-11') {
+        return {
+          ...p,
+          title: 'Ketua OSIS SMAN 1 Dramaga (Masa Jabatan 2019/2020)',
+          subtitle: 'OSKA Nata Nirwashita Sahwahita — Kepemimpinan Eksekutif Pelajar',
+        };
+      }
+      if (p.id === 'myself-12') {
+        return {
+          ...p,
+          title: 'Ketua Umum Forum Komunikasi OSIS Kab. Bogor (2020–2021)',
+          subtitle: 'Musyawarah Besar & Amanah Kepemimpinan Pelajar Tingkat Kabupaten Bogor',
+        };
+      }
+      if (p.id === 'myself-13') {
+        return {
+          ...p,
+          title: 'Koordinator Daerah Forum OSIS Jawa Barat Wilayah 1 (2020–2021)',
+          subtitle: 'Koordinasi Strategis Jejaring OSIS Jawa Barat Wilayah 1',
+        };
+      }
+      if (p.id === 'myself-14') {
+        return {
+          ...p,
+          title: 'Duta IPB University — Fakultas Peternakan',
+          subtitle: 'Representasi Resmi Universitas & Fakultas Peternakan IPB University',
+        };
+      }
+      if (p.id === 'myself-15') {
+        return {
+          ...p,
+          title: 'Forum OSIS Nusantara — Divisi Pengembangan SDM (2021–2022)',
+          subtitle: 'Sertifikat Resmi Pengurus Nasional (049/FON/SKt/XI/2021) · Komisi X DPR RI',
+        };
+      }
       return p;
     }),
-    event: EVENT_PHOTOS_ARCHIVE,
+    event: EVENT_PHOTOS_ARCHIVE.map((p) => {
+      if (p.id === 'event-14') {
+        return {
+          ...p,
+          title: 'Head of Event — IPB OSIS Fest 2024',
+          subtitle: 'Kepala Divisi Acara & Pengarah Konferensi Nasional Lintas 27 Provinsi',
+        };
+      }
+      return p;
+    }),
   };
 }

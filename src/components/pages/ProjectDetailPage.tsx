@@ -72,10 +72,10 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
   const relatedProjects = projects.filter((p) => p.id !== project.id && (cs?.relatedProjectIds.includes(p.id) || true)).slice(0, 2);
 
   return (
-    <div className="w-full bg-[#F3EFEA] text-[#1E2022] pt-28 sm:pt-32 pb-24">
-      <div className="max-w-5xl mx-auto px-4 sm:px-8 space-y-12 sm:space-y-16">
+    <div className="w-full bg-[#F3EFEA] text-[#1E2022] pt-24 sm:pt-28 pb-12 sm:pb-16">
+      <div className="max-w-5xl mx-auto px-4 sm:px-8 space-y-7 sm:space-y-10">
         {/* Top Back Navigation Bar */}
-        <ScrollReveal immediateOnMount variant="subtle" delay={0} className="flex items-center justify-between border-b border-[#E7E0D6] pb-6">
+        <ScrollReveal immediateOnMount variant="subtle" delay={0} className="flex flex-wrap items-center justify-between gap-2 border-b border-[#E7E0D6] pb-4 sm:pb-5">
           <button
             onClick={() => onNavigate('projects')}
             className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#1E2022] hover:text-[#6E7C69] transition-colors cursor-pointer"
@@ -84,7 +84,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
             <span>{t('Back to Projects Archive', 'Kembali ke Arsip Proyek')}</span>
           </button>
 
-          <span className="font-mono text-xs text-[#9E7B62] font-semibold">
+          <span className="font-mono text-[11px] sm:text-xs text-[#9E7B62] font-semibold">
             {t('Case Study', 'Studi Kasus')} · {project.category}
           </span>
         </ScrollReveal>
@@ -119,107 +119,163 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
             </p>
           </ScrollReveal>
 
-          {/* Premiere Video Container: Immediately plays with sound */}
-          <ScrollReveal immediateOnMount variant="media" duration={1.0} delay={0.14} blur={4} className="relative aspect-[16/10] bg-[#14171A] rounded-3xl overflow-hidden border border-[#E7E0D6] shadow-2xl">
-            {project.videoUrl && isPlayingVideo ? (
-              <div className="relative w-full h-full bg-black flex items-center justify-center">
-                <video
-                  ref={videoRef}
-                  controls
-                  autoPlay
-                  playsInline
-                  preload="auto"
-                  poster={project.image}
-                  className="w-full h-full object-contain"
-                >
-                  <source src={project.videoUrl} type="video/mp4" />
-                  Browser Anda belum mendukung pemutaran video HTML5.
-                </video>
-
-                {/* Floating Sound Controller Badge */}
-                <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
-                  <button
-                    onClick={toggleSound}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-mono flex items-center gap-1.5 backdrop-blur-md shadow-lg transition-all cursor-pointer ${
-                      isMuted
-                        ? 'bg-amber-500/90 hover:bg-amber-500 text-black font-bold animate-pulse'
-                        : 'bg-black/75 hover:bg-black text-white border border-white/20'
-                    }`}
-                    title={isMuted ? 'Klik untuk aktifkan suara' : 'Klik untuk matikan suara'}
-                  >
-                    {isMuted ? (
-                      <>
-                        <VolumeX className="w-3.5 h-3.5" />
-                        <span>{t('Click to Enable Sound', 'Klik untuk Aktifkan Suara')}</span>
-                      </>
-                    ) : (
-                      <>
-                        <Volume2 className="w-3.5 h-3.5 text-emerald-400" />
-                        <span>{t('Sound On', 'Suara Aktif')}</span>
-                      </>
-                    )}
-                  </button>
-
-                  {/* Toggle Screenshot Button */}
-                  <button
-                    onClick={() => setIsPlayingVideo(false)}
-                    className="px-3 py-1.5 rounded-full bg-black/60 hover:bg-black text-white text-xs font-mono flex items-center gap-1 border border-white/20 backdrop-blur-md transition-colors cursor-pointer"
-                    title={t('Show Cover Screenshot', 'Tampilkan Gambar Cover')}
-                  >
-                    <ImageIcon className="w-3 h-3 text-[#AF8C72]" />
-                    <span>{t('Cover Image', 'Gambar Cover')}</span>
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <>
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-
-                {project.videoUrl && (
-                  <div className="absolute inset-0 flex items-center justify-center">
+          {/* Premiere Video Container: Non-overlapping control bar on mobile + floating controls on sm+ */}
+          <ScrollReveal immediateOnMount variant="media" duration={1.0} delay={0.14} blur={4} className="bg-[#14171A] rounded-2xl sm:rounded-3xl overflow-hidden border border-[#E7E0D6] shadow-2xl">
+            {/* Mobile Dedicated Media Controls Bar (prevents overlay button collisions on < sm) */}
+            {(project.videoUrl || project.projectUrl) && (
+              <div className="sm:hidden flex flex-wrap items-center justify-between gap-2 px-3 py-2.5 bg-[#1B1F24] border-b border-white/10">
+                {project.videoUrl && isPlayingVideo ? (
+                  <div className="flex items-center gap-1.5">
                     <button
-                      onClick={() => {
-                        setIsPlayingVideo(true);
-                        setTimeout(() => {
-                          if (videoRef.current) {
-                            videoRef.current.muted = false;
-                            videoRef.current.play().catch(() => {});
-                          }
-                        }, 100);
-                      }}
-                      className="px-6 py-3.5 bg-white text-[#1E2022] hover:bg-[#F3EFEA] text-xs font-bold uppercase tracking-wider rounded-full flex items-center gap-2.5 shadow-2xl transition-all cursor-pointer hover:scale-105 active:scale-95"
+                      onClick={toggleSound}
+                      className={`px-2.5 py-1 rounded-full text-[11px] font-mono flex items-center gap-1 cursor-pointer ${
+                        isMuted
+                          ? 'bg-amber-500 text-black font-bold'
+                          : 'bg-white/10 text-white border border-white/20'
+                      }`}
                     >
-                      <Play className="w-4 h-4 fill-current text-[#AF8C72]" />
-                      <span>{t('Play Walkthrough Video with Sound', 'Putar Video dengan Suara')}</span>
+                      {isMuted ? (
+                        <>
+                          <VolumeX className="w-3 h-3" />
+                          <span>{t('Unmute', 'Suara')}</span>
+                        </>
+                      ) : (
+                        <>
+                          <Volume2 className="w-3 h-3 text-emerald-400" />
+                          <span>{t('Sound On', 'Suara Aktif')}</span>
+                        </>
+                      )}
+                    </button>
+
+                    <button
+                      onClick={() => setIsPlayingVideo(false)}
+                      className="px-2.5 py-1 rounded-full bg-white/10 text-white text-[11px] font-mono flex items-center gap-1 border border-white/15 cursor-pointer"
+                    >
+                      <ImageIcon className="w-3 h-3 text-[#AF8C72]" />
+                      <span>{t('Cover', 'Cover')}</span>
                     </button>
                   </div>
+                ) : (
+                  <span className="text-[11px] font-mono text-[#AF8C72] font-semibold">
+                    {project.category}
+                  </span>
                 )}
-              </>
+
+                {project.projectUrl && (
+                  <a
+                    href={project.projectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1 rounded-full bg-[#B49A70] text-[#14171A] text-[11px] font-mono font-bold flex items-center gap-1 ml-auto"
+                  >
+                    <span>{t('Live Demo', 'Demo Live')}</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                )}
+              </div>
             )}
 
-            {/* Launch Live Demo Top-Right Badge */}
-            {project.projectUrl && (
-              <a
-                href={project.projectUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute top-4 right-4 bg-[#1E2022]/90 backdrop-blur-md px-4 py-2 rounded-full text-xs font-mono text-white border border-white/20 hover:bg-black transition-colors flex items-center gap-1.5 shadow-md z-20"
-              >
-                <span>{t('Launch Live System Demo', 'Buka Demo Sistem Live')}</span>
-                <ExternalLink className="w-3.5 h-3.5 text-[#AF8C72]" />
-              </a>
-            )}
+            <div className="relative aspect-[16/10] w-full">
+              {project.videoUrl && isPlayingVideo ? (
+                <div className="relative w-full h-full bg-black flex items-center justify-center">
+                  <video
+                    ref={videoRef}
+                    controls
+                    autoPlay
+                    playsInline
+                    preload="auto"
+                    poster={project.image}
+                    className="w-full h-full object-contain"
+                  >
+                    <source src={project.videoUrl} type="video/mp4" />
+                    Browser Anda belum mendukung pemutaran video HTML5.
+                  </video>
+
+                  {/* Desktop Floating Sound Controller Badge (hidden on mobile to avoid overlap) */}
+                  <div className="hidden sm:flex absolute top-4 left-4 z-20 items-center gap-2">
+                    <button
+                      onClick={toggleSound}
+                      className={`px-3.5 py-1.5 rounded-full text-xs font-mono flex items-center gap-1.5 backdrop-blur-md shadow-lg transition-all cursor-pointer ${
+                        isMuted
+                          ? 'bg-amber-500/90 hover:bg-amber-500 text-black font-bold animate-pulse'
+                          : 'bg-black/75 hover:bg-black text-white border border-white/20'
+                      }`}
+                      title={isMuted ? 'Klik untuk aktifkan suara' : 'Klik untuk matikan suara'}
+                    >
+                      {isMuted ? (
+                        <>
+                          <VolumeX className="w-3.5 h-3.5" />
+                          <span>{t('Click to Enable Sound', 'Klik untuk Aktifkan Suara')}</span>
+                        </>
+                      ) : (
+                        <>
+                          <Volume2 className="w-3.5 h-3.5 text-emerald-400" />
+                          <span>{t('Sound On', 'Suara Aktif')}</span>
+                        </>
+                      )}
+                    </button>
+
+                    {/* Toggle Screenshot Button */}
+                    <button
+                      onClick={() => setIsPlayingVideo(false)}
+                      className="px-3 py-1.5 rounded-full bg-black/60 hover:bg-black text-white text-xs font-mono flex items-center gap-1 border border-white/20 backdrop-blur-md transition-colors cursor-pointer"
+                      title={t('Show Cover Screenshot', 'Tampilkan Gambar Cover')}
+                    >
+                      <ImageIcon className="w-3 h-3 text-[#AF8C72]" />
+                      <span>{t('Cover Image', 'Gambar Cover')}</span>
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+
+                  {project.videoUrl && (
+                    <div className="absolute inset-0 flex items-center justify-center p-4">
+                      <button
+                        onClick={() => {
+                          setIsPlayingVideo(true);
+                          setTimeout(() => {
+                            if (videoRef.current) {
+                              videoRef.current.muted = false;
+                              videoRef.current.play().catch(() => {});
+                            }
+                          }, 100);
+                        }}
+                        className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white text-[#1E2022] hover:bg-[#F3EFEA] text-[11px] sm:text-xs font-bold uppercase tracking-wider rounded-full flex items-center gap-2 shadow-2xl transition-all cursor-pointer hover:scale-105 active:scale-95"
+                      >
+                        <Play className="w-4 h-4 fill-current text-[#AF8C72]" />
+                        <span>{t('Play Walkthrough Video with Sound', 'Putar Video dengan Suara')}</span>
+                      </button>
+                    </div>
+                  )}
+                </>
+              )}
+
+              {/* Desktop Launch Live Demo Top-Right Badge */}
+              {project.projectUrl && (
+                <a
+                  href={project.projectUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden sm:flex absolute top-4 right-4 bg-[#1E2022]/90 backdrop-blur-md px-4 py-2 rounded-full text-xs font-mono text-white border border-white/20 hover:bg-black transition-colors items-center gap-1.5 shadow-md z-20"
+                >
+                  <span>{t('Launch Live System Demo', 'Buka Demo Sistem Live')}</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-[#AF8C72]" />
+                </a>
+              )}
+            </div>
           </ScrollReveal>
 
           {/* Quick Nav Prompt to Proceed to Detailed Explanation */}
-          <ScrollReveal immediateOnMount variant="subtle" delay={0.2} className="flex items-center justify-between pt-2">
-            <span className="text-xs font-mono text-[#9E7B62]">
+          <ScrollReveal immediateOnMount variant="subtle" delay={0.2} className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-2">
+            <span className="text-xs font-mono text-[#9E7B62] leading-relaxed">
               {t(
                 'Video tour above · Scroll down for full system architecture and outcomes.',
                 'Tur video aktif di atas · Gulir ke bawah untuk penjelasan arsitektur dan dampak lengkap.'
@@ -228,7 +284,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
 
             <button
               onClick={scrollToDetails}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white hover:bg-[#1E2022] hover:text-white text-xs font-semibold uppercase tracking-wider text-[#1E2022] border border-[#E7E0D6] shadow-2xs transition-all cursor-pointer group"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 rounded-full bg-white hover:bg-[#1E2022] hover:text-white text-xs font-semibold uppercase tracking-wider text-[#1E2022] border border-[#E7E0D6] shadow-2xs transition-all cursor-pointer group shrink-0"
             >
               <span>{t('Read Detailed Case Study', 'Lanjut ke Penjelasan Detail Aplikasi')}</span>
               <ArrowDown className="w-3.5 h-3.5 text-[#AF8C72] group-hover:translate-y-0.5 transition-transform" />
@@ -239,9 +295,9 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
         {/* =========================================================================
             B. PROJECT OVERVIEW & C. THE CHALLENGE (Anchor ID: case-study-details)
             ========================================================================= */}
-        <section id="case-study-details" className="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-[#E7E0D6] pt-16">
+        <section id="case-study-details" className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 border-t border-[#E7E0D6] pt-8 sm:pt-10">
           <ScrollReveal variant="card" delay={0} className="h-full">
-          <div className="h-full p-8 bg-white border border-[#E7E0D6] rounded-3xl space-y-4 shadow-xs">
+          <div className="h-full p-6 sm:p-8 bg-white border border-[#E7E0D6] rounded-3xl space-y-4 shadow-xs">
             <span className="font-mono text-xs uppercase tracking-widest text-[#6E7C69] block font-bold">
               B / Project Overview
             </span>
@@ -255,7 +311,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
           </ScrollReveal>
 
           <ScrollReveal variant="card" delay={0.1} className="h-full">
-          <div className="h-full p-8 bg-white border border-[#E7E0D6] rounded-3xl space-y-4 shadow-xs">
+          <div className="h-full p-6 sm:p-8 bg-white border border-[#E7E0D6] rounded-3xl space-y-4 shadow-xs">
             <span className="font-mono text-xs uppercase tracking-widest text-[#AF8C72] block font-bold">
               C / The Operational Challenge
             </span>
@@ -272,8 +328,8 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
         {/* =========================================================================
             D. OBJECTIVES & E. STRATEGIC APPROACH
             ========================================================================= */}
-        <section className="border-t border-[#E7E0D6] pt-16 space-y-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <section className="border-t border-[#E7E0D6] pt-8 sm:pt-10 space-y-6 sm:space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Objectives */}
             <ScrollReveal variant="card" delay={0} className="h-full">
             <div className="h-full p-8 bg-white border border-[#E7E0D6] rounded-3xl space-y-4 shadow-xs">
@@ -326,7 +382,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
         {/* =========================================================================
             F. EXECUTION & ARCHITECTURE
             ========================================================================= */}
-        <section className="border-t border-[#E7E0D6] pt-16 space-y-8">
+        <section className="border-t border-[#E7E0D6] pt-8 sm:pt-10 space-y-5 sm:space-y-6">
           <ScrollReveal variant="editorial" delay={0}>
             <span className="font-mono text-xs uppercase tracking-widest text-[#6E7C69] block font-bold mb-2">
               F / Execution & Architecture
@@ -368,7 +424,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
         {/* =========================================================================
             G. PRODUCT SHOWCASE: Visual Artifacts & Live Demo
             ========================================================================= */}
-        <section className="border-t border-[#E7E0D6] pt-16 space-y-8">
+        <section className="border-t border-[#E7E0D6] pt-8 sm:pt-10 space-y-5 sm:space-y-6">
           <ScrollReveal variant="editorial" delay={0} className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
               <span className="font-mono text-xs uppercase tracking-widest text-[#AF8C72] block font-bold mb-2">
@@ -418,7 +474,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
         {/* =========================================================================
             H. RESULTS & IMPACT: Quantitative Outcomes
             ========================================================================= */}
-        <section className="border-t border-[#E7E0D6] pt-16 space-y-8">
+        <section className="border-t border-[#E7E0D6] pt-8 sm:pt-10 space-y-5 sm:space-y-6">
           <ScrollReveal variant="editorial" delay={0}>
             <span className="font-mono text-xs uppercase tracking-widest text-[#6E7C69] block font-bold mb-2">
               H / Results & Impact
@@ -429,7 +485,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
           </ScrollReveal>
 
           {/* Metric Cards Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             {(cs?.results.metrics || [
               { label: 'Efficiency Gain', value: project.exif.aperture, detail: 'Measurable ROI' },
               { label: 'Scale Covered', value: project.exif.focalLength, detail: 'Personnel/Applicants' },
@@ -437,14 +493,14 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
               { label: 'Accuracy', value: '100%', detail: 'Verified output' }
             ]).map((m, idx) => (
               <ScrollReveal key={idx} variant="card" delay={idx * 0.08} className="h-full">
-              <div className="h-full p-6 bg-white border border-[#E7E0D6] rounded-3xl text-center space-y-1 shadow-xs">
-                <span className="font-sans font-black text-3xl sm:text-4xl text-[#6E7C69] block">
+              <div className="h-full p-4 sm:p-6 bg-white border border-[#E7E0D6] rounded-3xl text-center space-y-1 shadow-xs">
+                <span className="font-sans font-black text-2xl sm:text-4xl text-[#6E7C69] block">
                   {m.value}
                 </span>
-                <span className="font-mono text-xs uppercase tracking-wider text-[#1E2022] block font-bold">
+                <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-[#1E2022] block font-bold">
                   {m.label}
                 </span>
-                <span className="font-mono text-[10px] text-[#9E7B62] block">
+                <span className="font-mono text-[9.5px] sm:text-[10px] text-[#9E7B62] block">
                   {m.detail}
                 </span>
               </div>
@@ -462,7 +518,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
         {/* =========================================================================
             I. KEY LEARNINGS
             ========================================================================= */}
-        <section className="border-t border-[#E7E0D6] pt-16 space-y-6">
+        <section className="border-t border-[#E7E0D6] pt-8 sm:pt-10 space-y-5">
           <ScrollReveal variant="editorial" delay={0}>
             <span className="font-mono text-xs uppercase tracking-widest text-[#AF8C72] block font-bold mb-2">
               I / Professional Takeaways
@@ -490,7 +546,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId,
         {/* =========================================================================
             J. RELATED PROJECTS
             ========================================================================= */}
-        <section className="border-t border-[#E7E0D6] pt-16 space-y-8">
+        <section className="border-t border-[#E7E0D6] pt-8 sm:pt-10 space-y-5 sm:space-y-6">
           <ScrollReveal variant="editorial" delay={0} className="flex items-center justify-between">
             <div>
               <span className="font-mono text-xs uppercase tracking-widest text-[#6E7C69] block font-bold mb-1">

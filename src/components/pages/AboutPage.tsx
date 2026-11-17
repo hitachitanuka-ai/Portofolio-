@@ -16,23 +16,23 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenResume }
   const values = getLocalizedPersonalValues(lang);
 
   return (
-    <div className="w-full bg-[#F3EFEA] text-[#1E2022] pt-28 sm:pt-32 pb-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-20 sm:space-y-24">
+    <div className="w-full bg-[#F3EFEA] text-[#1E2022] pt-24 sm:pt-28 pb-12 sm:pb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-8 sm:space-y-12">
         {/* =========================================================================
             SECTION A — PERSONAL INTRODUCTION
             ========================================================================= */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start border-b border-[#E7E0D6] pb-20">
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start border-b border-[#E7E0D6] pb-8 sm:pb-12">
           {/* Left Column: Portrait + Academic Credential */}
           <div className="lg:col-span-5 space-y-6">
             <ScrollReveal immediateOnMount variant="media" duration={1.0} delay={0.04}>
-              <div className="relative aspect-[4/5] bg-white p-4 rounded-3xl border border-[#E7E0D6] shadow-md">
+              <div className="relative aspect-[4/5] bg-white p-3 sm:p-4 rounded-3xl border border-[#E7E0D6] shadow-md">
                 <img
                   src={IMAGES.suryaBalconyExecutive}
                   alt="Bangkit Surya Wijaya — Portrait"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover object-top rounded-2xl filter grayscale contrast-105 hover:grayscale-0 transition-all duration-700"
                 />
-                <div className="absolute bottom-6 right-6 bg-[#1E2022]/95 backdrop-blur-md text-white px-4 py-2 rounded-full font-mono text-xs uppercase tracking-widest border border-white/20 shadow-md">
+                <div className="absolute bottom-5 right-5 sm:bottom-6 sm:right-6 bg-[#1E2022]/95 backdrop-blur-md text-white px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full font-mono text-[10.5px] sm:text-xs uppercase tracking-widest border border-white/20 shadow-md">
                   B. Surya Wijaya · S.Pt.
                 </div>
               </div>
@@ -63,7 +63,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenResume }
           </div>
 
           {/* Right Column: Narrative Biography */}
-          <div className="lg:col-span-7 space-y-8">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6">
             <ScrollReveal immediateOnMount variant="editorial" delay={0.08}>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#AF8C72]/15 text-[#AF8C72] text-[11px] font-mono uppercase tracking-wider font-bold mb-3">
                 <Sparkles className="w-3.5 h-3.5" />
@@ -146,10 +146,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenResume }
               </ScrollReveal>
             </div>
 
-            <ScrollReveal variant="subtle" delay={0.16} className="pt-2 flex flex-wrap items-center gap-4">
+            <ScrollReveal variant="subtle" delay={0.16} className="pt-2 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
               <button
                 onClick={onOpenResume}
-                className="px-6 py-3.5 bg-[#1E2022] text-white hover:bg-black text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer rounded-full flex items-center gap-2 shadow-md active:scale-95"
+                className="w-full sm:w-auto px-6 py-3.5 bg-[#1E2022] text-white hover:bg-black text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer rounded-full flex items-center justify-center gap-2 shadow-md active:scale-95"
               >
                 <FileText className="w-4 h-4 text-[#AF8C72]" />
                 <span>{t('Download Executive CV', 'Unduh CV Eksekutif')}</span>
@@ -157,7 +157,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenResume }
 
               <button
                 onClick={() => onNavigate('contact')}
-                className="px-6 py-3.5 bg-white text-[#1E2022] border border-[#E7E0D6] hover:bg-[#1E2022] hover:text-white text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer rounded-full shadow-xs active:scale-95"
+                className="w-full sm:w-auto px-6 py-3.5 bg-white text-[#1E2022] border border-[#E7E0D6] hover:bg-[#1E2022] hover:text-white text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer rounded-full shadow-xs active:scale-95 text-center"
               >
                 {t('Start a Conversation', 'Mulai Diskusi')}
               </button>
@@ -168,7 +168,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenResume }
         {/* =========================================================================
             SECTION B — PROFESSIONAL PHILOSOPHY
             ========================================================================= */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 border-b border-[#E7E0D6] pb-20 items-start">
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 border-b border-[#E7E0D6] pb-8 sm:pb-12 items-start">
           <ScrollReveal variant="editorial" delay={0} className="lg:col-span-4 space-y-3">
             <span className="font-mono text-xs uppercase tracking-widest text-[#AF8C72] block font-bold">
               {t('Approach & Mindset', 'Pendekatan & Pola Pikir')}
@@ -178,9 +178,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenResume }
             </h2>
           </ScrollReveal>
 
-          <div className="lg:col-span-8 space-y-6 text-[#4A4843] text-base leading-relaxed font-light">
+          <div className="lg:col-span-8 space-y-6 text-[#4A4843] text-sm sm:text-base leading-relaxed font-light">
             <ScrollReveal variant="editorial" delay={0.08}>
-              <blockquote className="font-serif text-2xl text-[#1E2022] italic pl-6 border-l-4 border-[#6E7C69] leading-snug">
+              <blockquote className="font-serif text-xl sm:text-2xl text-[#1E2022] italic pl-4 sm:pl-6 border-l-4 border-[#6E7C69] leading-snug">
                 {t(
                   '"Great systems do not replace human discernment; they create the quiet bandwidth required for discernment to flourish."',
                   '"Sistem yang baik tidak menggantikan kebijaksanaan manusia; sistem menciptakan ruang tenang agar keputusan strategis dapat bertumbuh jernih."'
@@ -246,7 +246,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenResume }
         {/* =========================================================================
             SECTION C — CAREER PERSPECTIVE
             ========================================================================= */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 border-b border-[#E7E0D6] pb-20 items-start">
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 border-b border-[#E7E0D6] pb-8 sm:pb-12 items-start">
           <ScrollReveal variant="editorial" delay={0} className="lg:col-span-4 space-y-3">
             <span className="font-mono text-xs uppercase tracking-widest text-[#6E7C69] block font-bold">
               {t('Evolution of Thought', 'Evolusi Cara Pandang')}
@@ -281,7 +281,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenResume }
         {/* =========================================================================
             SECTION D — PERSONAL VALUES
             ========================================================================= */}
-        <section className="space-y-8">
+        <section className="space-y-6">
           <ScrollReveal variant="editorial" delay={0}>
             <span className="font-mono text-xs uppercase tracking-widest text-[#AF8C72] block font-bold mb-2">
               {t('Ethos & Principles', 'Etos & Prinsip Kerja')}
@@ -294,7 +294,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenResume }
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((val, valIdx) => (
               <ScrollReveal key={val.num} variant="card" delay={valIdx * 0.08} className="h-full">
-                <div className="h-full p-8 bg-white border border-[#E7E0D6] rounded-3xl space-y-4 shadow-xs hover:border-[#6E7C69] transition-all">
+                <div className="h-full p-6 sm:p-8 bg-white border border-[#E7E0D6] rounded-3xl space-y-3.5 sm:space-y-4 shadow-xs hover:border-[#6E7C69] transition-all">
                   <span className="font-mono text-xs text-[#6E7C69] font-bold block">
                     {val.num} / {t('PRINCIPLE', 'PRINSIP')}
                   </span>
@@ -317,12 +317,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenResume }
             SECTION E — RESUME DOWNLOAD CTA BANNER
             ========================================================================= */}
         <ScrollReveal variant="media" duration={0.95} delay={0.08}>
-          <section className="p-8 sm:p-12 bg-[#6E7C69] text-white rounded-[2rem] shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-8">
+          <section className="p-6 sm:p-9 bg-[#6E7C69] text-white rounded-[2rem] shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="space-y-2">
               <span className="font-mono text-xs uppercase tracking-widest text-[#EAE2D8] font-bold">
                 {t('Curriculum Vitae & Credentials', 'Daftar Riwayat Hidup & Kredensial')}
               </span>
-              <h3 className="font-sans font-extrabold text-3xl sm:text-4xl text-white">
+              <h3 className="font-sans font-extrabold text-2xl sm:text-4xl text-white">
                 {t('Looking for a comprehensive resume?', 'Butuh ringkasan CV profesional lengkap?')}
               </h3>
               <p className="text-xs sm:text-sm text-[#F3EFEA]/90 max-w-xl font-light">
@@ -335,7 +335,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenResume }
 
             <button
               onClick={onOpenResume}
-              className="px-8 py-4 bg-[#1E2022] text-white hover:bg-black text-xs font-semibold uppercase tracking-wider rounded-full transition-all cursor-pointer shrink-0 shadow-md flex items-center gap-2"
+              className="w-full md:w-auto px-8 py-4 bg-[#1E2022] text-white hover:bg-black text-xs font-semibold uppercase tracking-wider rounded-full transition-all cursor-pointer shrink-0 shadow-md flex items-center justify-center gap-2"
             >
               <span>{t('Open Executive CV', 'Buka CV Eksekutif')}</span>
               <ArrowUpRight className="w-4 h-4 text-[#AF8C72]" />

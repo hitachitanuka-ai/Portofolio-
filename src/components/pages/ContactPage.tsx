@@ -119,15 +119,15 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenResume }) => {
   )}`;
 
   return (
-    <div className="w-full bg-[#F3EFEA] text-[#1E2022] pt-28 sm:pt-32 pb-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-16 sm:space-y-20">
+    <div className="w-full bg-[#F3EFEA] text-[#1E2022] pt-24 sm:pt-28 pb-12 sm:pb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-7 sm:space-y-10">
         {/* Header */}
-        <ScrollReveal immediateOnMount variant="editorial" delay={0} className="border-b border-[#E7E0D6] pb-10 max-w-3xl">
+        <ScrollReveal immediateOnMount variant="editorial" delay={0} className="border-b border-[#E7E0D6] pb-5 sm:pb-6 max-w-3xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#6E7C69]/10 text-[#6E7C69] text-xs font-mono font-bold uppercase tracking-wider mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{t('Initiate Collaboration', 'Mulai Kolaborasi')}</span>
           </div>
-          <h1 className="font-sans font-black text-4xl sm:text-5xl lg:text-6xl text-[#1E2022] tracking-tight leading-tight">
+          <h1 className="font-sans font-black text-3xl sm:text-5xl lg:text-6xl text-[#1E2022] tracking-tight leading-tight">
             {t('Good Ideas Deserve Thoughtful Execution.', 'Ide yang Baik Layak Mendapat Eksekusi Presisi.')}
           </h1>
           <p className="text-sm sm:text-base text-[#605E59] mt-3 font-light leading-relaxed">
@@ -139,9 +139,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenResume }) => {
         </ScrollReveal>
 
         {/* Main Grid: Contact Channels (Left) | Contact Form (Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           {/* Left Column: Direct Coordinates & Resume */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-4 sm:space-y-5">
             <ScrollReveal immediateOnMount variant="subtle" delay={0.08}>
               <span className="font-mono text-xs uppercase tracking-widest text-[#AF8C72] block font-bold">
                 {t('Direct Coordinates', 'Kontak Langsung')}
@@ -150,16 +150,16 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenResume }) => {
 
             {/* Email */}
             <ScrollReveal immediateOnMount variant="card" delay={0.12}>
-              <div className="p-6 bg-white border border-[#E7E0D6] rounded-3xl space-y-2 shadow-xs hover:border-[#6E7C69] transition-all">
+              <div className="p-5 sm:p-6 bg-white border border-[#E7E0D6] rounded-3xl space-y-2 shadow-xs hover:border-[#6E7C69] transition-all">
                 <span className="font-mono text-[10px] uppercase tracking-wider text-[#AF8C72] block font-bold">
                   {t('Official Inquiries & Collaboration', 'Pertanyaan Resmi & Kolaborasi')}
                 </span>
                 <a
                   href="mailto:bangkitsurya321@gmail.com"
-                  className="font-mono text-base text-[#1E2022] hover:text-[#6E7C69] transition-colors font-medium flex items-center justify-between"
+                  className="font-mono text-sm sm:text-base text-[#1E2022] hover:text-[#6E7C69] transition-colors font-medium flex items-center justify-between gap-2"
                 >
-                  <span>bangkitsurya321@gmail.com</span>
-                  <Mail className="w-4 h-4 text-[#6E7C69]" />
+                  <span className="break-all">bangkitsurya321@gmail.com</span>
+                  <Mail className="w-4 h-4 text-[#6E7C69] shrink-0" />
                 </a>
                 <span className="text-xs text-[#605E59] block font-light">
                   {t('Average response turnaround within 24 business hours.', 'Rata-rata waktu respons dalam 1×24 jam kerja.')}
@@ -169,7 +169,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenResume }) => {
 
             {/* LinkedIn */}
             <ScrollReveal variant="card" delay={0.18}>
-              <div className="p-6 bg-white border border-[#E7E0D6] rounded-3xl space-y-2 shadow-xs hover:border-[#6E7C69] transition-all">
+              <div className="p-5 sm:p-6 bg-white border border-[#E7E0D6] rounded-3xl space-y-2 shadow-xs hover:border-[#6E7C69] transition-all">
                 <span className="font-mono text-[10px] uppercase tracking-wider text-[#AF8C72] block font-bold">
                   {t('Professional Network', 'Jejaring Profesional')}
                 </span>
@@ -177,10 +177,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenResume }) => {
                   href="https://www.linkedin.com/in/bangkit-surya-133311211/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-sans font-bold text-xl text-[#1E2022] hover:text-[#6E7C69] transition-colors flex items-center justify-between"
+                  className="font-sans font-bold text-lg sm:text-xl text-[#1E2022] hover:text-[#6E7C69] transition-colors flex items-center justify-between gap-2"
                 >
                   <span>LinkedIn / Bangkit Surya Wijaya</span>
-                  <Linkedin className="w-4 h-4 text-[#6E7C69]" />
+                  <Linkedin className="w-4 h-4 text-[#6E7C69] shrink-0" />
                 </a>
                 <span className="text-xs text-[#605E59] block font-light">
                   {t('Career milestones, leadership recommendations & network.', 'Rekam jejak karier, rekomendasi pimpinan & jejaring profesional.')}
@@ -190,7 +190,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenResume }) => {
 
             {/* Instagram */}
             <ScrollReveal variant="card" delay={0.24}>
-              <div className="p-6 bg-white border border-[#E7E0D6] rounded-3xl space-y-2 shadow-xs hover:border-[#6E7C69] transition-all">
+              <div className="p-5 sm:p-6 bg-white border border-[#E7E0D6] rounded-3xl space-y-2 shadow-xs hover:border-[#6E7C69] transition-all">
                 <span className="font-mono text-[10px] uppercase tracking-wider text-[#AF8C72] block font-bold">
                   {t('Personal & Public Diplomacy', 'Personal & Diplomasi Publik')}
                 </span>
@@ -198,10 +198,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenResume }) => {
                   href="https://www.instagram.com/bangsur.w/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-sans font-bold text-xl text-[#1E2022] hover:text-[#6E7C69] transition-colors flex items-center justify-between"
+                  className="font-sans font-bold text-lg sm:text-xl text-[#1E2022] hover:text-[#6E7C69] transition-colors flex items-center justify-between gap-2"
                 >
                   <span>Instagram / @bangsur.w</span>
-                  <Instagram className="w-4 h-4 text-[#AF8C72]" />
+                  <Instagram className="w-4 h-4 text-[#AF8C72] shrink-0" />
                 </a>
                 <span className="text-xs text-[#605E59] block font-light">
                   {t('Visual documentation, speaking engagements & youth initiatives.', 'Dokumentasi visual, forum wicara publik & inisiatif kepemudaan.')}
@@ -239,11 +239,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenResume }) => {
           </div>
 
           {/* Right Column: Contact Inquiry Form */}
-          <ScrollReveal immediateOnMount variant="media" duration={0.95} delay={0.14} className="lg:col-span-7 bg-white border border-[#E7E0D6] rounded-3xl p-8 sm:p-12 shadow-xs">
+          <ScrollReveal immediateOnMount variant="media" duration={0.95} delay={0.14} className="lg:col-span-7 bg-white border border-[#E7E0D6] rounded-3xl p-6 sm:p-8 shadow-xs">
             <span className="font-mono text-xs uppercase tracking-widest text-[#6E7C69] block font-bold mb-2">
               {t('Direct Email Dispatch', 'Pengiriman Email Langsung')}
             </span>
-            <h2 className="font-sans font-black text-3xl text-[#1E2022] tracking-tight mb-6">
+            <h2 className="font-sans font-black text-2xl sm:text-3xl text-[#1E2022] tracking-tight mb-5 sm:mb-6">
               {t('Send an Inquiry', 'Kirim Pertanyaan')}
             </h2>
 

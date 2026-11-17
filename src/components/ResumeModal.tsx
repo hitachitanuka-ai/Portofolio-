@@ -44,25 +44,25 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.3 }}
-          className="relative w-full max-w-4xl bg-[#FFFFFF] text-[#1E2022] rounded-3xl shadow-2xl border border-[#E7E0D6] overflow-hidden my-8"
+          className="relative w-full max-w-4xl bg-[#FFFFFF] text-[#1E2022] rounded-2xl sm:rounded-3xl shadow-2xl border border-[#E7E0D6] overflow-hidden my-4 sm:my-8"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header Action Bar */}
-          <div className="flex items-center justify-between px-8 py-4 border-b border-[#E7E0D6] bg-[#F3EFEA] print:hidden">
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xs uppercase tracking-wider text-[#1E2022] font-semibold">
-                Executive Curriculum Vitae · Bangkit Surya Wijaya
+          <div className="flex items-center justify-between gap-2 px-4 sm:px-8 py-3.5 sm:py-4 border-b border-[#E7E0D6] bg-[#F3EFEA] print:hidden">
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="font-mono text-[10px] sm:text-xs uppercase tracking-wider text-[#1E2022] font-semibold truncate">
+                Executive CV · Bangkit Surya Wijaya
               </span>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
               <button
                 onClick={handlePrint}
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#1E2022] border border-[#E7E0D6] bg-white hover:bg-[#F3EFEA] rounded-full transition-colors cursor-pointer shadow-2xs"
+                className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#1E2022] border border-[#E7E0D6] bg-white hover:bg-[#F3EFEA] rounded-full transition-colors cursor-pointer shadow-2xs"
                 title="Print or Save as PDF"
               >
                 <Printer className="w-3.5 h-3.5 text-[#6E7C69]" />
-                <span>Print / Save PDF</span>
+                <span>Print / PDF</span>
               </button>
 
               <button
@@ -76,7 +76,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
           </div>
 
           {/* Printable Resume Body */}
-          <div className="p-8 sm:p-12 space-y-10 max-h-[85vh] overflow-y-auto">
+          <div className="p-5 sm:p-10 md:p-12 space-y-8 sm:space-y-10 max-h-[85vh] overflow-y-auto">
             {/* Top Identity */}
             <div className="border-b border-[#E4E0D8] pb-8 flex flex-col sm:flex-row sm:items-baseline justify-between gap-6">
               <div>
@@ -129,7 +129,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
               <span className="font-mono text-[11px] uppercase tracking-widest text-[#B49A70] block font-bold mb-4">
                 01 / Core Competencies
               </span>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 text-xs">
                 <div className="p-3.5 bg-[#F5F3EE] rounded-xs border border-[#E4E0D8]">
                   <strong className="block font-semibold text-[#171B26] mb-1">People & Culture</strong>
                   <span className="text-[#6B6A65] text-[11px]">End-to-End HR Ops (110+), BPJS, PPh 21 TER, KPI/OKR, Talent Acquisition</span>
@@ -189,6 +189,33 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                   </ul>
                 </div>
 
+                {/* Sakala */}
+                <div className="border-l-2 border-[#E4E0D8] pl-5 space-y-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                    <h3 className="font-serif text-lg font-bold text-[#171B26]">
+                      Operations Lead & Event Coordinator — Sakala Wedding & Lamaran.yok
+                    </h3>
+                    <span className="font-mono text-xs text-[#A7A69F]">Sep 2025 – Present · Jabodetabek</span>
+                  </div>
+                  <ul className="text-xs text-[#171B26] space-y-1.5 list-disc pl-4">
+                    <li>Orchestrated operations for 50+ luxury productions, managing crowd logistics for up to 2,000+ guests with 100% operational success.</li>
+                    <li>Led multi-vendor negotiations, live master run-sheet synchronization, and real-time crisis resolution.</li>
+                  </ul>
+                </div>
+
+                {/* Chinghe & Adhijaya */}
+                <div className="border-l-2 border-[#E4E0D8] pl-5 space-y-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                    <h3 className="font-serif text-lg font-bold text-[#171B26]">
+                      Marketing & Growth Performance Specialist — PT. Chinghe Tech & PT. Adhijaya Mitra Sekawan
+                    </h3>
+                    <span className="font-mono text-xs text-[#A7A69F]">2024 – 2025 · Jakarta</span>
+                  </div>
+                  <ul className="text-xs text-[#171B26] space-y-1.5 list-disc pl-4">
+                    <li>Leveraged conversion funnel tracking and revenue forecasting to generate IDR 400M+ in revenue, achieve a 150% surge in user engagement, and optimize ROAS metrics.</li>
+                  </ul>
+                </div>
+
                 {/* Indekstat */}
                 <div className="border-l-2 border-[#E4E0D8] pl-5 space-y-2">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
@@ -203,17 +230,29 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                   </ul>
                 </div>
 
-                {/* Sakala */}
+                {/* Kelanaa & Ekotifa */}
                 <div className="border-l-2 border-[#E4E0D8] pl-5 space-y-2">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                     <h3 className="font-serif text-lg font-bold text-[#171B26]">
-                      Operations Lead & Event Coordinator — Sakala Wedding & Lamaran.yok
+                      Program Project Leader & Academic Tutor — Kelanaa Islamic Village (YLP) & Ekotifa YPBH
                     </h3>
-                    <span className="font-mono text-xs text-[#A7A69F]">Sep 2025 – Present · Jabodetabek</span>
+                    <span className="font-mono text-xs text-[#A7A69F]">2024 – 2025 · National Programs</span>
                   </div>
                   <ul className="text-xs text-[#171B26] space-y-1.5 list-disc pl-4">
-                    <li>Orchestrated operations for 50+ luxury productions, managing crowd logistics for up to 2,000+ guests with 100% operational success.</li>
-                    <li>Led multi-vendor negotiations, live master run-sheet synchronization, and real-time crisis resolution.</li>
+                    <li>Led Youth Leadership Program (YLP Vol. 1 & Vol. 2, 2025) cohorts end-to-end and tutored youth scholars in Ekotifa YRC (2025) & RTC (2024).</li>
+                  </ul>
+                </div>
+
+                {/* Amartawangsa */}
+                <div className="border-l-2 border-[#E4E0D8] pl-5 space-y-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                    <h3 className="font-serif text-lg font-bold text-[#171B26]">
+                      Project Manager — PT. Amartawangsa Media Sinergi
+                    </h3>
+                    <span className="font-mono text-xs text-[#A7A69F]">2021 – 2022 · Indonesia</span>
+                  </div>
+                  <ul className="text-xs text-[#171B26] space-y-1.5 list-disc pl-4">
+                    <li>Formulated a project management framework and KPI tracker, improving onboarding efficiency and evaluating pilot program impact across 1,000+ participants.</li>
                   </ul>
                 </div>
               </div>

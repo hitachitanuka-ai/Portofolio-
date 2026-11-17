@@ -16,17 +16,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   };
 
   return (
-    <footer className="w-full bg-[#1E2022] text-[#F3EFEA] pt-20 pb-12 border-t border-white/10">
+    <footer className="w-full bg-[#1E2022] text-[#F3EFEA] pt-10 sm:pt-12 pb-8 sm:pb-10 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-16 border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-7 sm:gap-8 pb-8 sm:pb-10 border-b border-white/10">
           {/* Brand & Positioning Column */}
-          <ScrollReveal variant="editorial" delay={0} className="md:col-span-5 space-y-5">
+          <ScrollReveal variant="editorial" delay={0} className="md:col-span-5 space-y-4 sm:space-y-5">
             <div>
-              <span className="font-sans font-black text-2xl sm:text-3xl tracking-[0.2em] text-white block uppercase">
+              <span className="font-sans font-black text-xl sm:text-3xl tracking-[0.14em] sm:tracking-[0.2em] text-white block uppercase">
                 THE MODERN STRATEGIST
               </span>
-              <span className="font-mono text-xs uppercase tracking-widest text-[#AF8C72] mt-1.5 block font-bold">
+              <span className="font-mono text-[11px] sm:text-xs uppercase tracking-wider sm:tracking-widest text-[#AF8C72] mt-1.5 block font-bold leading-relaxed">
                 {t(
                   'Bangkit Surya Wijaya · People Ops & HR Systems Specialist',
                   'Bangkit Surya Wijaya · Spesialis People Ops & Sistem HR'
@@ -139,7 +139,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           variant="subtle"
           delay={0.22}
           rootMargin="0px 0px 0px 0px"
-          className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#F3EFEA]/60"
+          className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#F3EFEA]/60"
         >
           <div>
             <span>
