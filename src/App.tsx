@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
+import { ScrollToTopButton } from './components/ScrollToTopButton';
 import { HomePage } from './components/pages/HomePage';
 import { AboutPage } from './components/pages/AboutPage';
 import { ExpertisePage } from './components/pages/ExpertisePage';
@@ -190,6 +191,9 @@ export default function App() {
           onNavigate={navigate}
           onOpenResume={() => setIsResumeOpen(true)}
         />
+
+        {/* Global Scroll to Top Trigger */}
+        <ScrollToTopButton routeKey={`${currentRoute}-${activeSlug}`} />
 
         {/* Printable Executive Resume Modal */}
         <ResumeModal

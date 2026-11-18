@@ -109,55 +109,31 @@ export const Navbar: React.FC<NavbarProps> = ({
           }`}
         >
           {/* -------------------------------------------------------------------
-              LEFT: SIGNATURE MONOGRAM SEAL + WORDMARK
+              LEFT: CLEAN EXECUTIVE EDITORIAL WORDMARK
               ------------------------------------------------------------------- */}
           <button
+            type="button"
             onClick={() => handleLinkClick('home')}
-            className="flex items-center gap-2 sm:gap-3 group cursor-pointer focus-visible:outline-2 focus-visible:outline-[#B49A70] rounded-xl text-left min-w-0 flex-1 lg:flex-initial"
+            className="inline-flex items-baseline gap-1.5 group cursor-pointer focus-visible:outline-2 focus-visible:outline-[#B49A70] rounded-lg text-left whitespace-nowrap shrink-0 py-1"
           >
-            {/* Geometric Architectural Emblem */}
-            <div
-              className={`relative w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center font-serif italic text-sm sm:text-lg font-bold transition-all duration-300 overflow-hidden shrink-0 ${
+            <span
+              className={`font-sans text-[15px] sm:text-base font-bold tracking-tight transition-colors ${
                 isDarkTop
-                  ? 'bg-white/10 text-white border border-[#B49A70]/60 group-hover:bg-[#B49A70] group-hover:text-[#14171A]'
-                  : 'bg-[#1E2022] text-[#F5F3EE] border border-[#1E2022] group-hover:bg-[#6E7C69] group-hover:border-[#6E7C69]'
+                  ? 'text-white group-hover:text-[#D5C3A5]'
+                  : 'text-[#1E2022] group-hover:text-[#6E7C69]'
               }`}
             >
-              <span className="relative z-10 tracking-tighter">BS</span>
-              <span className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-[#B49A70]/40 blur-[2px]" />
-            </div>
-
-            <div className="flex flex-col min-w-0">
-              <span
-                className={`font-sans text-[10.5px] sm:text-sm font-black tracking-[0.07em] sm:tracking-[0.16em] uppercase transition-colors leading-tight truncate ${
-                  isDarkTop
-                    ? 'text-white group-hover:text-[#B49A70]'
-                    : 'text-[#1E2022] group-hover:text-[#6E7C69]'
-                }`}
-              >
-                THE MODERN STRATEGIST
-              </span>
-              <div className="flex items-center gap-1.5 mt-0.5 min-w-0">
-                <span className="font-mono text-[8.5px] sm:text-[10px] tracking-[0.12em] sm:tracking-[0.18em] uppercase font-bold text-[#B49A70] truncate">
-                  BANGKIT SURYA WIJAYA
-                </span>
-                <span
-                  aria-hidden="true"
-                  className={`hidden md:inline text-[9px] shrink-0 ${
-                    isDarkTop ? 'text-white/35' : 'text-[#A7A69F]'
-                  }`}
-                >
-                  /
-                </span>
-                <span
-                  className={`hidden md:inline font-mono text-[9px] tracking-wider uppercase shrink-0 ${
-                    isDarkTop ? 'text-[#D1CCC5]/80' : 'text-[#605E59]'
-                  }`}
-                >
-                  People Ops &amp; HR Tech
-                </span>
-              </div>
-            </div>
+              Bangkit Surya
+            </span>
+            <span
+              className={`hidden xl:inline font-serif italic text-[15px] sm:text-base font-normal transition-colors ${
+                isDarkTop
+                  ? 'text-[#D5C3A5] group-hover:text-white'
+                  : 'text-[#9E7B62] group-hover:text-[#6E7C69]'
+              }`}
+            >
+              Wijaya
+            </span>
           </button>
 
           {/* -------------------------------------------------------------------
