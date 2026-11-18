@@ -702,47 +702,179 @@ export const ProfessionalJourneyDashboard: React.FC<ProfessionalJourneyDashboard
           </ScrollReveal>
 
           {/* =========================================================================
-              COMPACT QUICK-JUMP INDEX STRIP (Icon + Color-Coded Easy Scannability)
+              STRUCTURED QUICK ECOSYSTEM INDEX (Clean 3-Column Directory, Zero Pill Soup)
               ========================================================================= */}
           <ScrollReveal variant="subtle" delay={0.14}>
-          <div className="bg-white/90 rounded-3xl border border-[#E7E0D6] p-4 sm:p-5 space-y-3 shadow-2xs">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-[11px] font-mono">
-              <span className="uppercase tracking-wider font-bold text-[#8F6D54]">
-                Quick Ecosystem Index
-              </span>
-              <span className="text-[#605E59] text-[10px] sm:text-[11px]">
-                Click any item to focus spotlight
-              </span>
-            </div>
+            <div className="bg-white/95 rounded-[1.5rem] sm:rounded-3xl border border-[#E7E0D6] p-4 sm:p-6 space-y-4 shadow-xs">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 pb-3 border-b border-[#E7E0D6]">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-[11px] uppercase tracking-wider font-bold text-[#8F6D54]">
+                    Quick Ecosystem Index
+                  </span>
+                  <span className="text-[#DFD5C8]" aria-hidden="true">·</span>
+                  <span className="font-mono text-[11px] text-[#6E7C69] font-semibold tabular-nums">
+                    {visibleOrbitalItems.length} {t('Items', 'Item')}
+                  </span>
+                </div>
+                <span className="font-mono text-[10px] sm:text-[11px] text-[#605E59]">
+                  {t('Select any row to focus the spotlight above', 'Pilih baris mana saja untuk menyorot di atas')}
+                </span>
+              </div>
 
-            <div className="flex flex-wrap gap-1.5">
-              {visibleOrbitalItems.map((item, idx) => {
-                const isActive = idx === safeOrbitalIdx;
-                const PillIcon = item.icon;
-                const tone = ECOSYSTEM_TONES[item.tone];
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => setActiveOrbitalIdx(idx)}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-sans transition-all cursor-pointer border ${
-                      isActive
-                        ? `${tone.accentPillBg} text-white border-transparent font-bold shadow-xs`
-                        : 'bg-[#FAF8F5] text-[#23272F] border-[#E7E0D6] hover:border-[#B49A70] hover:bg-white'
-                    }`}
-                  >
-                    <PillIcon
-                      className={`w-3 h-3 shrink-0 ${
-                        isActive ? 'text-white' : tone.iconColor
-                      }`}
-                      strokeWidth={1.8}
-                    />
-                    <span>{item.name}</span>
-                  </button>
-                );
-              })}
+              {skillsTab === 'all' ? (
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5 items-stretch">
+                  {(
+                    [
+                      {
+                        group: 'hard' as const,
+                        num: '01',
+                        title: t('Hard Skills & Analytics', 'Hard Skills & Analitik'),
+                        accentText: 'text-[#4B6144]',
+                        accentBg: 'bg-[#E9F1E8]',
+                      },
+                      {
+                        group: 'soft' as const,
+                        num: '02',
+                        title: t('Executive Soft Skills', 'Soft Skills Eksekutif'),
+                        accentText: 'text-[#8C5243]',
+                        accentBg: 'bg-[#F6EBE7]',
+                      },
+                      {
+                        group: 'tools' as const,
+                        num: '03',
+                        title: t('Tools & Tech Stack', 'Alat & Teknologi'),
+                        accentText: 'text-[#8C683E]',
+                        accentBg: 'bg-[#F8F0E3]',
+                      },
+                    ] as const
+                  ).map((col) => {
+                    const groupItems = visibleOrbitalItems.filter((item) => item.group === col.group);
+                    return (
+                      <div
+                        key={col.group}
+                        className="rounded-2xl bg-[#FAF8F5] border border-[#E7E0D6]/85 p-3 sm:p-3.5 flex flex-col"
+                      >
+                        {/* Group Column Header */}
+                        <div className="flex items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-[#E7E0D6]">
+                          <div className="flex items-center gap-2 min-w-0">
+                            <span
+                              className={`font-mono text-[10px] font-bold px-1.5 py-0.5 rounded-md tabular-nums ${col.accentBg} ${col.accentText}`}
+                            >
+                              {col.num}
+                            </span>
+                            <h4 className="font-sans font-bold text-xs sm:text-[13px] text-[#1E2022] truncate">
+                              {col.title}
+                            </h4>
+                          </div>
+                          <span className="font-mono text-[10px] text-[#9E7B62] tabular-nums shrink-0">
+                            {String(groupItems.length).padStart(2, '0')}
+                          </span>
+                        </div>
+
+                        {/* Structured Rows (2 neat sub-columns for Tools so all 3 columns share balanced height) */}
+                        <div
+                          className={
+                            col.group === 'tools'
+                              ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-1.5'
+                              : 'space-y-1.5'
+                          }
+                        >
+                          {groupItems.map((item) => {
+                            const targetIdx = visibleOrbitalItems.findIndex((v) => v.id === item.id);
+                            const isActive = targetIdx === safeOrbitalIdx;
+                            const RowIcon = item.icon;
+                            const tone = ECOSYSTEM_TONES[item.tone];
+                            return (
+                              <button
+                                key={item.id}
+                                type="button"
+                                onClick={() => setActiveOrbitalIdx(targetIdx)}
+                                className={`w-full text-left px-2.5 py-2 rounded-xl border transition-all cursor-pointer flex items-center justify-between gap-2 group ${
+                                  isActive
+                                    ? `${tone.accentPillBg} text-white border-transparent shadow-xs`
+                                    : 'bg-white hover:bg-white border-[#E7E0D6]/80 hover:border-[#AF8C72] text-[#1E2022]'
+                                }`}
+                              >
+                                <div className="flex items-center gap-2 min-w-0 flex-1">
+                                  <span
+                                    className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                                      isActive ? 'bg-white/20 text-white' : `${tone.haloBg} ${tone.iconColor}`
+                                    }`}
+                                  >
+                                    <RowIcon className="w-3.5 h-3.5" strokeWidth={1.8} />
+                                  </span>
+                                  <span className="font-sans text-[11.5px] font-semibold leading-tight truncate">
+                                    {item.name}
+                                  </span>
+                                </div>
+                                {col.group !== 'tools' && (
+                                  <span
+                                    className={`font-mono text-[9.5px] shrink-0 ${
+                                      isActive ? 'text-white/90' : 'text-[#9E7B62]'
+                                    }`}
+                                  >
+                                    {item.tag}
+                                  </span>
+                                )}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+                  {visibleOrbitalItems.map((item, idx) => {
+                    const isActive = idx === safeOrbitalIdx;
+                    const RowIcon = item.icon;
+                    const tone = ECOSYSTEM_TONES[item.tone];
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => setActiveOrbitalIdx(idx)}
+                        className={`w-full text-left px-3 py-2.5 rounded-xl border transition-all cursor-pointer flex items-center justify-between gap-2.5 ${
+                          isActive
+                            ? `${tone.accentPillBg} text-white border-transparent shadow-xs`
+                            : 'bg-[#FAF8F5] hover:bg-white border-[#E7E0D6] hover:border-[#AF8C72] text-[#1E2022]'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2.5 min-w-0 flex-1">
+                          <span
+                            className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${
+                              isActive ? 'bg-white/20 text-white' : `${tone.haloBg} ${tone.iconColor}`
+                            }`}
+                          >
+                            <RowIcon className="w-3.5 h-3.5" strokeWidth={1.8} />
+                          </span>
+                          <div className="min-w-0 flex-1">
+                            <span className="font-sans text-xs font-semibold block truncate leading-tight">
+                              {item.name}
+                            </span>
+                            <span
+                              className={`font-mono text-[10px] block truncate mt-0.5 ${
+                                isActive ? 'text-white/85' : 'text-[#9E7B62]'
+                              }`}
+                            >
+                              {item.subLabel}
+                            </span>
+                          </div>
+                        </div>
+                        <span
+                          className={`font-mono text-[10px] tabular-nums shrink-0 ${
+                            isActive ? 'text-white' : tone.tagColor
+                          }`}
+                        >
+                          {String(idx + 1).padStart(2, '0')}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
             </div>
-          </div>
           </ScrollReveal>
         </div>
       </section>

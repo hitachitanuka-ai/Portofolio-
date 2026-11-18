@@ -402,64 +402,201 @@ export function getLocalizedBlogPosts(lang: Language): BlogPost[] {
   });
 }
 
+const PHOTO_ID_OVERRIDES: Record<
+  string,
+  { title: string; subtitle: string; category: string; location?: string }
+> = {
+  // Album "myself" (15 items)
+  'myself-1': {
+    title: 'Wibawa Eksekutif & Duta Kampus',
+    subtitle: 'Kepemimpinan Kelembagaan & Representasi Kehumasan',
+    category: 'Kepemimpinan & Formal',
+    location: 'IPB University',
+  },
+  'myself-2': {
+    title: 'Sarjana Peternakan (S.Pt.)',
+    subtitle: 'Tonggak Akademik & Kelulusan IPB (2020–2024)',
+    category: 'Tonggak & Prestasi',
+    location: 'Fakultas Peternakan IPB',
+  },
+  'myself-3': {
+    title: 'Wawasan Global & Eksplorasi Kota',
+    subtitle: 'Perspektif Internasional & Gaya Hidup Metropolitan',
+    category: 'Perjalanan & Global',
+    location: 'Marina Bay, Singapura',
+  },
+  'myself-4': {
+    title: 'Strategis Modern & Kepemimpinan Kreatif',
+    subtitle: 'Pola Pikir Inovasi People & Culture',
+    category: 'Gaya Eksekutif',
+    location: 'Executive Lounge, Jakarta',
+  },
+  'myself-5': {
+    title: 'Direktur Acara Berprofil Tinggi',
+    subtitle: 'Pengarahan Panggung & Koordinasi Komunikasi Berisiko Tinggi',
+    category: 'Operasional & Acara',
+    location: 'Grand Ballroom, Jakarta',
+  },
+  'myself-6': {
+    title: 'Tonggak Departemen Ilmu Produksi & Teknologi Peternakan',
+    subtitle: 'Prestasi Akademik & Riset Kuantitatif (IPK 3,65)',
+    category: 'Akademik & Prestasi',
+    location: 'IPB University',
+  },
+  'myself-7': {
+    title: 'Smart Casual Kontemporer',
+    subtitle: 'Kolaborasi Dunia Kerja Berbasis Teknologi',
+    category: 'Smart Casual',
+    location: 'Creative Hub, Jakarta',
+  },
+  'myself-8': {
+    title: 'Koordinator Protokol Seremonial & Logistik',
+    subtitle: 'Manajemen Alur Massa End-to-End Presisi Tinggi',
+    category: 'Operasional & Logistik',
+    location: 'Luxury Hall, Jakarta',
+  },
+  'myself-9': {
+    title: 'Fokus Strategis & Kontemplasi Malam',
+    subtitle: 'Pemikir Visioner Human Capital',
+    category: 'Potret Atmosferik',
+    location: 'Taman Pinus, Bogor',
+  },
+  'myself-10': {
+    title: 'Warisan Budaya & Keteguhan Sikap',
+    subtitle: 'Kehangatan Interpersonal & Pembawaan Berwibawa',
+    category: 'Budaya & Identitas',
+    location: 'Grand Convention Hall',
+  },
+  'myself-11': {
+    title: 'Ketua OSIS SMAN 1 Dramaga (Masa Jabatan 2019/2020)',
+    subtitle: 'OSKA Nata Nirwashita Sahwahita — Kepemimpinan Eksekutif Pelajar',
+    category: 'Kepemimpinan Pelajar',
+    location: 'SMAN 1 Dramaga, Kab. Bogor',
+  },
+  'myself-12': {
+    title: 'Ketua Umum Forum Komunikasi OSIS Kab. Bogor (2020–2021)',
+    subtitle: 'Serah Terima Amanah & Kepemimpinan Koalisi OSIS Kabupaten Bogor',
+    category: 'Kepemimpinan Daerah',
+    location: 'Kabupaten Bogor, Jawa Barat',
+  },
+  'myself-13': {
+    title: 'Koordinator Daerah Forum OSIS Jawa Barat Wilayah 1 (2020–2021)',
+    subtitle: 'Koordinasi Strategis Jejaring OSIS Jawa Barat Wilayah 1',
+    category: 'Kepemimpinan Provinsi',
+    location: 'Jawa Barat (Wilayah 1)',
+  },
+  'myself-14': {
+    title: 'Duta IPB University — Fakultas Peternakan',
+    subtitle: 'Representasi Resmi Universitas & Fakultas Peternakan IPB University',
+    category: 'Duta Resmi Kampus',
+    location: 'IPB University, Bogor',
+  },
+  'myself-15': {
+    title: 'Forum OSIS Nusantara — Divisi Pengembangan SDM (2021–2022)',
+    subtitle: 'Sertifikat Resmi Pengurus Nasional (049/FON/SKt/XI/2021) · Komisi X DPR RI',
+    category: 'Kepemimpinan Nasional',
+    location: 'Jakarta · Komisi X DPR RI',
+  },
+
+  // Sub-Album "Event" (14 items)
+  'event-1': {
+    title: 'Aquafest 2024 — Pembawa Acara Utama Resmi',
+    subtitle: 'Master of Ceremony Memandu Panggung Utama Forum dalam Busana Formal',
+    category: 'Keynote Host & MC',
+    location: 'Panggung Utama IPB Dramaga',
+  },
+  'event-2': {
+    title: '10 Tahun Duta IPB — Satu Dekade Mengabdi',
+    subtitle: 'Perayaan Satu Dekade Paguyuban Duta IPB University',
+    category: 'Duta IPB University',
+    location: 'IPB International Convention Center',
+  },
+  'event-3': {
+    title: 'Sekolah Bisnis IPB (SB-IPB) — Komite Eksekutif',
+    subtitle: 'Delegasi Komite Eksekutif Resmi di Auditorium SB-IPB',
+    category: 'Komite Eksekutif',
+    location: 'Sekolah Bisnis IPB, Bogor',
+  },
+  'event-4': {
+    title: 'Semarak Ramadhan 1445 H — Moderator Utama',
+    subtitle: 'Moderator Utama & Fasilitator Dialog Nasional',
+    category: 'Moderator Publik',
+    location: 'Pusat Studi Islam IPB',
+  },
+  'event-5': {
+    title: 'Protokol Kenegaraan & Tamu Kehormatan VIP',
+    subtitle: 'Tim Penghubung Protokol Kehormatan pada Agenda Besar Masjid Raya',
+    category: 'Protokol VIP',
+    location: 'Masjid Raya Bogor',
+  },
+  'event-6': {
+    title: 'Aquafest 2024 — Duet MC Panggung Utama',
+    subtitle: 'Memandu Rangkaian Acara Auditorium Utama Aquafest 2024',
+    category: 'Duet MC Panggung',
+    location: 'Auditorium IPB Dramaga',
+  },
+  'event-7': {
+    title: 'Fakultas Peternakan IPB — Panitia Akademik',
+    subtitle: 'Tim Panitia Mahasiswa & Delegasi Fakultas di Panggung Kampus',
+    category: 'Panitia Kampus',
+    location: 'Fakultas Peternakan IPB',
+  },
+  'event-8': {
+    title: 'Rapat Kepemimpinan Eksekutif & Evaluasi Komite Strategis',
+    subtitle: 'Tinjauan Kepemimpinan & Sesi Evaluasi Program Kerja Strategis',
+    category: 'Rapat Pimpinan',
+    location: 'Ruang Rapat Eksekutif, Jakarta',
+  },
+  'event-9': {
+    title: 'Pagelaran Batik Desainer & Protokol Tangga Utama',
+    subtitle: 'Koordinasi Logistik Pagelaran Busana Nusantara di Grand Ballroom',
+    category: 'Busana & Protokol',
+    location: 'Grand Ballroom, Jakarta',
+  },
+  'event-10': {
+    title: 'Dewan Seremonial Tradisi Budaya Nusantara',
+    subtitle: 'Tata Laksana Protokol Adat & Manajemen Panggung Budaya',
+    category: 'Protokol Budaya',
+    location: 'Gedung Kesenian, Jakarta',
+  },
+  'event-11': {
+    title: 'Solidaritas Kru Operasional & Logistik Lapangan',
+    subtitle: 'Tim Eksekusi Lapangan & Pengendalian Arus Pengunjung Skala Besar',
+    category: 'Kru Operasional',
+    location: 'Pintu Masuk Convention Hall',
+  },
+  'event-12': {
+    title: 'Retret Kepemimpinan & Perumusan Strategi',
+    subtitle: 'Konsolidasi Visi Organisasi & Penyelarasan Tim Pimpinan',
+    category: 'Retret Kepemimpinan',
+    location: 'Dataran Tinggi Bogor',
+  },
+  'event-13': {
+    title: 'Penyelenggara Mega Event Terbuka & Pengatur Massa',
+    subtitle: 'Pengawasan Lapangan & Koordinasi Keselamatan Massa Festival Kampus',
+    category: 'Operasional Acara',
+    location: 'Area Kampus IPB',
+  },
+  'event-14': {
+    title: 'Head of Event — IPB OSIS Fest 2024',
+    subtitle: 'Kepala Divisi Acara & Pengarah Konferensi Nasional Lintas 27 Provinsi',
+    category: 'Konferensi Nasional',
+    location: 'IPB University, Bogor',
+  },
+};
+
 export function getLocalizedPhotoArchive(lang: Language) {
   if (lang === 'en') {
     return { myself: SURYA_PHOTOS_ARCHIVE, event: EVENT_PHOTOS_ARCHIVE };
   }
   return {
     myself: SURYA_PHOTOS_ARCHIVE.map((p) => {
-      if (p.id === 'myself-2') {
-        return { ...p, title: 'Sarjana Peternakan (S.Pt.)', subtitle: 'Tonggak Akademik & Kelulusan IPB (2020–2024)' };
-      }
-      if (p.id === 'myself-6') {
-        return { ...p, subtitle: 'Prestasi Akademik & Riset Kuantitatif (IPK 3.65)' };
-      }
-      if (p.id === 'myself-11') {
-        return {
-          ...p,
-          title: 'Ketua OSIS SMAN 1 Dramaga (Masa Jabatan 2019/2020)',
-          subtitle: 'OSKA Nata Nirwashita Sahwahita — Kepemimpinan Eksekutif Pelajar',
-        };
-      }
-      if (p.id === 'myself-12') {
-        return {
-          ...p,
-          title: 'Ketua Umum Forum Komunikasi OSIS Kab. Bogor (2020–2021)',
-          subtitle: 'Musyawarah Besar & Amanah Kepemimpinan Pelajar Tingkat Kabupaten Bogor',
-        };
-      }
-      if (p.id === 'myself-13') {
-        return {
-          ...p,
-          title: 'Koordinator Daerah Forum OSIS Jawa Barat Wilayah 1 (2020–2021)',
-          subtitle: 'Koordinasi Strategis Jejaring OSIS Jawa Barat Wilayah 1',
-        };
-      }
-      if (p.id === 'myself-14') {
-        return {
-          ...p,
-          title: 'Duta IPB University — Fakultas Peternakan',
-          subtitle: 'Representasi Resmi Universitas & Fakultas Peternakan IPB University',
-        };
-      }
-      if (p.id === 'myself-15') {
-        return {
-          ...p,
-          title: 'Forum OSIS Nusantara — Divisi Pengembangan SDM (2021–2022)',
-          subtitle: 'Sertifikat Resmi Pengurus Nasional (049/FON/SKt/XI/2021) · Komisi X DPR RI',
-        };
-      }
-      return p;
+      const ov = PHOTO_ID_OVERRIDES[p.id];
+      return ov ? { ...p, ...ov, location: ov.location ?? p.location } : p;
     }),
     event: EVENT_PHOTOS_ARCHIVE.map((p) => {
-      if (p.id === 'event-14') {
-        return {
-          ...p,
-          title: 'Head of Event — IPB OSIS Fest 2024',
-          subtitle: 'Kepala Divisi Acara & Pengarah Konferensi Nasional Lintas 27 Provinsi',
-        };
-      }
-      return p;
+      const ov = PHOTO_ID_OVERRIDES[p.id];
+      return ov ? { ...p, ...ov, location: ov.location ?? p.location } : p;
     }),
   };
 }

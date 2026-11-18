@@ -54,11 +54,11 @@ export const VisualArchivePage: React.FC<VisualArchivePageProps> = ({ onNavigate
                 className="text-xs font-mono text-[#605E59] hover:text-[#1E2022] flex items-center gap-1 cursor-pointer"
               >
                 <ArrowLeft className="w-3.5 h-3.5 text-[#AF8C72]" />
-                <span>Experience</span>
+                <span>{t('Experience', 'Pengalaman')}</span>
               </button>
               <span className="text-[#AF8C72]">/</span>
               <span className="font-mono text-xs uppercase tracking-widest text-[#6E7C69] font-bold">
-                Visual Documentation Archive
+                {t('Visual Documentation Archive', 'Arsip Dokumentasi Visual')}
               </span>
             </div>
 
@@ -103,7 +103,7 @@ export const VisualArchivePage: React.FC<VisualArchivePageProps> = ({ onNavigate
               }`}
             >
               <FolderOpen className="w-3.5 h-3.5 shrink-0" />
-              <span>{t('Sub-Album "Event"', 'Sub-Album "Event"')} ({eventPhotos.length})</span>
+              <span>{t('Event Sub-Album', 'Sub-Album "Event"')} ({eventPhotos.length})</span>
             </button>
 
             <button
@@ -118,7 +118,7 @@ export const VisualArchivePage: React.FC<VisualArchivePageProps> = ({ onNavigate
               }`}
             >
               <UserCheck className="w-3.5 h-3.5 shrink-0" />
-              <span>{t('Album "myself"', 'Album "myself"')} ({myselfPhotos.length})</span>
+              <span>{t('"myself" Album', 'Album "myself"')} ({myselfPhotos.length})</span>
             </button>
           </div>
           </ScrollReveal>
@@ -139,7 +139,9 @@ export const VisualArchivePage: React.FC<VisualArchivePageProps> = ({ onNavigate
                   src={item.image}
                   alt={item.title}
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${
+                    item.id === 'myself-15' ? 'object-center' : 'object-top'
+                  }`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity flex items-end p-3.5 sm:p-4 text-white">
                   <span className="font-mono text-[9.5px] sm:text-[10px] uppercase tracking-wider flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 sm:px-3 py-1 rounded-full border border-white/20">
@@ -191,13 +193,14 @@ export const VisualArchivePage: React.FC<VisualArchivePageProps> = ({ onNavigate
                     <span className="px-2.5 py-0.5 rounded-full bg-[#AF8C72]/30 text-[#AF8C72] text-[10px] font-mono uppercase font-bold">
                       {selectedPhoto.category}
                     </span>
-                    <span className="font-mono text-xs text-[#A7A69F]">
-                      {selectedIndex + 1} of {photoList.length}
+                    <span className="font-mono text-xs text-[#A7A69F] tabular-nums">
+                      {selectedIndex + 1} {t('of', 'dari')} {photoList.length}
                     </span>
                   </div>
 
                   <button
                     onClick={() => setSelectedIndex(null)}
+                    aria-label={t('Close preview', 'Tutup pratinjau')}
                     className="p-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
                   >
                     <X className="w-5 h-5" />
@@ -216,6 +219,7 @@ export const VisualArchivePage: React.FC<VisualArchivePageProps> = ({ onNavigate
                   {/* Nav Arrows */}
                   <button
                     onClick={handlePrev}
+                    aria-label={t('Previous photo', 'Foto sebelumnya')}
                     className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-2.5 rounded-full bg-black/65 hover:bg-black/90 text-white border border-white/20 transition-all cursor-pointer"
                   >
                     <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -223,6 +227,7 @@ export const VisualArchivePage: React.FC<VisualArchivePageProps> = ({ onNavigate
 
                   <button
                     onClick={handleNext}
+                    aria-label={t('Next photo', 'Foto berikutnya')}
                     className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-2.5 rounded-full bg-black/65 hover:bg-black/90 text-white border border-white/20 transition-all cursor-pointer"
                   >
                     <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />

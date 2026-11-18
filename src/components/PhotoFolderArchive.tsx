@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowUpRight, X, ChevronLeft, ChevronRight, MapPin, Calendar, Sparkles, FolderOpen, Camera, Layers, UserCheck } from 'lucide-react';
 import { SURYA_PHOTOS_ARCHIVE, EVENT_PHOTOS_ARCHIVE } from '../data/portfolioData';
+import { getLocalizedPhotoArchive } from '../data/portfolioLocalized';
+import { useLanguage } from '../context/LanguageContext';
 import { ReticleFrame } from './ReticleFrame';
 
 interface PhotoFolderArchiveProps {
@@ -11,17 +13,20 @@ interface PhotoFolderArchiveProps {
 type AlbumCategory = 'myself' | 'event' | 'all';
 
 export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
+  const { lang, t } = useLanguage();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [activeAlbum, setActiveAlbum] = useState<AlbumCategory>('myself');
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
+  const { myself: localizedMyself, event: localizedEvent } = getLocalizedPhotoArchive(lang);
+
   // Determine current active photo list
-  const currentPhotoList = 
-    activeAlbum === 'myself' 
-      ? SURYA_PHOTOS_ARCHIVE 
-      : activeAlbum === 'event' 
-        ? EVENT_PHOTOS_ARCHIVE 
-        : [...SURYA_PHOTOS_ARCHIVE, ...EVENT_PHOTOS_ARCHIVE];
+  const currentPhotoList =
+    activeAlbum === 'myself'
+      ? localizedMyself
+      : activeAlbum === 'event'
+        ? localizedEvent
+        : [...localizedMyself, ...localizedEvent];
 
   const selectedPhoto = selectedIndex !== null ? currentPhotoList[selectedIndex] : null;
 
@@ -58,7 +63,15 @@ export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
             CreativeStyle Archive
           </h2>
           <p className="text-sm sm:text-base text-neutral-600 max-w-xl mb-8">
-            Dokumentasi kurasi personal dan dinamika kepemimpinan lapangan Bangkit Surya Wijaya. Terbagi dalam Album <strong>"myself"</strong> dan Sub-Album <strong>"Event"</strong>.
+            {lang === 'id' ? (
+              <>
+                Dokumentasi kurasi personal dan dinamika kepemimpinan lapangan Bangkit Surya Wijaya. Terbagi dalam Album <strong>"myself"</strong> dan Sub-Album <strong>"Event"</strong>.
+              </>
+            ) : (
+              <>
+                Curated personal milestones and field leadership photography by Bangkit Surya Wijaya, organized into the <strong>"myself"</strong> album and <strong>"Event"</strong> sub-album.
+              </>
+            )}
           </p>
 
           {/* Quick Album Switcher Pills */}
@@ -75,7 +88,7 @@ export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
               }`}
             >
               <UserCheck className="w-3.5 h-3.5" />
-              <span>Album "myself"</span>
+              <span>{t('"myself" Album', 'Album "myself"')}</span>
               <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
                 activeAlbum === 'myself' ? 'bg-white/20 text-white' : 'bg-neutral-300/60 text-neutral-700'
               }`}>
@@ -95,7 +108,7 @@ export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
               }`}
             >
               <FolderOpen className="w-3.5 h-3.5" />
-              <span>Sub-Album "Event"</span>
+              <span>{t('Event Sub-Album', 'Sub-Album "Event"')}</span>
               <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
                 activeAlbum === 'event' ? 'bg-white/20 text-white' : 'bg-neutral-300/60 text-neutral-700'
               }`}>
@@ -116,7 +129,7 @@ export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
                 }`}
               >
                 <Layers className="w-3 h-3" />
-                <span>Semua ({SURYA_PHOTOS_ARCHIVE.length + EVENT_PHOTOS_ARCHIVE.length})</span>
+                <span>{t('All', 'Semua')} ({SURYA_PHOTOS_ARCHIVE.length + EVENT_PHOTOS_ARCHIVE.length})</span>
               </button>
             )}
           </div>
@@ -246,13 +259,15 @@ export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
                       *CREATIVESTYLE.
                     </span>
                     <span className="text-[10px] text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200 font-mono font-semibold">
-                      {activeAlbum === 'event' ? '13 EVENT PHOTOS' : '10 PORTRAITS'}
+                      {activeAlbum === 'event'
+                        ? t(`${EVENT_PHOTOS_ARCHIVE.length} EVENT PHOTOS`, `${EVENT_PHOTOS_ARCHIVE.length} FOTO ACARA`)
+                        : t(`${SURYA_PHOTOS_ARCHIVE.length} PORTRAITS`, `${SURYA_PHOTOS_ARCHIVE.length} POTRET`)}
                     </span>
                   </div>
 
                   <div className="flex items-end justify-between pt-2">
                     <span className="text-xs text-neutral-600 font-medium text-left">
-                      Buka {activeAlbum === 'event' ? 'Sub-Album' : 'Album'} <br />
+                      {t('Open', 'Buka')} {activeAlbum === 'event' ? t('Sub-Album', 'Sub-Album') : t('Album', 'Album')} <br />
                       <strong className="text-neutral-950 font-bold text-sm">
                         "{activeAlbum === 'event' ? 'Event' : 'myself'}"
                       </strong>
@@ -273,8 +288,14 @@ export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
                 </h3>
                 <span className="mt-2 text-xs font-mono font-medium text-neutral-600 bg-neutral-100 px-4 py-1 rounded-full border border-neutral-200/80">
                   {activeAlbum === 'event'
-                    ? `CREATIVESTYLE · ${EVENT_PHOTOS_ARCHIVE.length} DOKUMENTASI EVENT & PROTOKOL · 2024–2025`
-                    : `CREATIVESTYLE · ${SURYA_PHOTOS_ARCHIVE.length} CURATED PERSONAL PORTRAITS · 2019–2026`}
+                    ? t(
+                        `CREATIVESTYLE · ${EVENT_PHOTOS_ARCHIVE.length} EVENT & PROTOCOL DOCS · 2024–2025`,
+                        `CREATIVESTYLE · ${EVENT_PHOTOS_ARCHIVE.length} DOKUMENTASI EVENT & PROTOKOL · 2024–2025`
+                      )
+                    : t(
+                        `CREATIVESTYLE · ${SURYA_PHOTOS_ARCHIVE.length} CURATED PERSONAL PORTRAITS · 2019–2026`,
+                        `CREATIVESTYLE · ${SURYA_PHOTOS_ARCHIVE.length} POTRET PERSONAL TERKURASI · 2019–2026`
+                      )}
                 </span>
               </div>
             </motion.div>
@@ -297,15 +318,18 @@ export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
                     </span>
                     <span className="text-neutral-600">·</span>
                     <span className="text-[11px] font-mono tracking-widest uppercase text-neutral-400">
-                      {currentPhotoList.length} DOKUMENTASI TERSEDIA
+                      {currentPhotoList.length} {t('PHOTOS AVAILABLE', 'DOKUMENTASI TERSEDIA')}
                     </span>
                   </div>
                   <span className="font-display font-bold text-lg sm:text-xl text-white">
                     {activeAlbum === 'myself'
-                      ? 'Album "myself" — Bangkit Surya Wijaya'
+                      ? t('Album "myself" — Bangkit Surya Wijaya', 'Album "myself" — Bangkit Surya Wijaya')
                       : activeAlbum === 'event'
-                        ? 'Sub-Album "Event" — Panggung, Protokol & Operasional'
-                        : `Koleksi Lengkap CreativeStyle (${SURYA_PHOTOS_ARCHIVE.length + EVENT_PHOTOS_ARCHIVE.length} Foto)`}
+                        ? t('Sub-Album "Event" — Stage, Protocol & Operations', 'Sub-Album "Event" — Panggung, Protokol & Operasional')
+                        : t(
+                            `Complete CreativeStyle Collection (${SURYA_PHOTOS_ARCHIVE.length + EVENT_PHOTOS_ARCHIVE.length} Photos)`,
+                            `Koleksi Lengkap CreativeStyle (${SURYA_PHOTOS_ARCHIVE.length + EVENT_PHOTOS_ARCHIVE.length} Foto)`
+                          )}
                   </span>
                 </div>
 
@@ -340,7 +364,7 @@ export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
                           : 'text-neutral-400 hover:text-white'
                       }`}
                     >
-                      Semua
+                      {t('All', 'Semua')}
                     </button>
                   </div>
 
@@ -350,7 +374,7 @@ export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
                     className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-neutral-800 hover:bg-neutral-700 text-xs font-semibold uppercase tracking-wider text-white rounded-full transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95 shrink-0"
                   >
                     <X className="w-3.5 h-3.5" />
-                    <span>Tutup</span>
+                    <span>{t('Close', 'Tutup')}</span>
                   </button>
                 </div>
               </div>
@@ -451,7 +475,7 @@ export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
                             {item.subtitle}
                           </span>
                           <span className="text-[10px] text-neutral-400 mt-2 font-mono flex items-center gap-1">
-                            <Camera className="w-3 h-3" /> Klik untuk inspeksi detail
+                            <Camera className="w-3 h-3" /> {t('Click to inspect details', 'Klik untuk inspeksi detail')}
                           </span>
                         </div>
                       </motion.div>
@@ -471,8 +495,14 @@ export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
                   <div className="py-6">
                     <p className="font-serif italic text-sm text-neutral-300 leading-relaxed text-right">
                       {activeAlbum === 'event'
-                        ? '"Kepemimpinan panggung dan keprotokolan menuntut ketepatan waktu, ketenangan dalam krisis, serta koordinasi ribuan orang dengan disiplin tinggi."'
-                        : '"Setiap momentum membentuk perspektif kepemimpinan, cara mengelola talenta, serta membangun kultur organisasi yang tangguh."'}
+                        ? t(
+                            '"Stage leadership and protocol demand exact timing, composure in crisis, and coordinated orchestration for thousands of attendees."',
+                            '"Kepemimpinan panggung dan keprotokolan menuntut ketepatan waktu, ketenangan dalam krisis, serta koordinasi ribuan orang dengan disiplin tinggi."'
+                          )
+                        : t(
+                            '"Every milestone shapes how we lead talent, build resilient culture, and steward organizations."',
+                            '"Setiap momentum membentuk perspektif kepemimpinan, cara mengelola talenta, serta membangun kultur organisasi yang tangguh."'
+                          )}
                     </p>
                     <span className="font-mono text-[10px] tracking-wider uppercase text-neutral-500 mt-2 block">
                       — Surya Wijaya
@@ -484,8 +514,8 @@ export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
                       {activeAlbum === 'event' ? (
                         <>
                           SUB-ALBUM "EVENT" <br />
-                          13 DOKUMENTASI <br />
-                          OPERASI & PROTOKOL
+                          {EVENT_PHOTOS_ARCHIVE.length} {t('PHOTOS', 'DOKUMENTASI')} <br />
+                          {t('OPS & PROTOCOL', 'OPERASI & PROTOKOL')}
                         </>
                       ) : (
                         <>
@@ -506,7 +536,7 @@ export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
                   onClick={() => setIsOpen(false)}
                   className="px-6 py-2.5 bg-white text-neutral-950 hover:bg-neutral-200 text-xs font-bold uppercase tracking-wider rounded-full transition-all cursor-pointer shadow-md active:scale-95"
                 >
-                  Tutup & Lipat Kembali ke Folder
+                  {t('Close & Fold Back to Folder', 'Tutup & Lipat Kembali ke Folder')}
                 </button>
               </div>
             </motion.div>
@@ -545,21 +575,21 @@ export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
                     <button
                       onClick={handlePrev}
                       className="p-2 rounded-full bg-neutral-800 hover:bg-neutral-700 text-white transition-colors cursor-pointer"
-                      title="Foto Sebelumnya"
+                      title={t('Previous Photo', 'Foto Sebelumnya')}
                     >
                       <ChevronLeft className="w-4 h-4" />
                     </button>
                     <button
                       onClick={handleNext}
                       className="p-2 rounded-full bg-neutral-800 hover:bg-neutral-700 text-white transition-colors cursor-pointer"
-                      title="Foto Selanjutnya"
+                      title={t('Next Photo', 'Foto Selanjutnya')}
                     >
                       <ChevronRight className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => setSelectedIndex(null)}
                       className="p-2 rounded-full bg-neutral-800 hover:bg-neutral-700 text-white transition-colors cursor-pointer ml-1"
-                      title="Tutup"
+                      title={t('Close', 'Tutup')}
                     >
                       <X className="w-4 h-4" />
                     </button>
@@ -591,14 +621,14 @@ export const PhotoFolderArchive: React.FC<PhotoFolderArchiveProps> = () => {
                         </span>
                         <span className="inline-flex items-center gap-1 text-neutral-400">
                           <Calendar className="w-3.5 h-3.5" />
-                          Tahun {selectedPhoto.year}
+                          {t('Year', 'Tahun')} {selectedPhoto.year}
                         </span>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-2 self-end sm:self-auto">
                       <span className="text-[11px] font-mono text-neutral-500">
-                        {selectedIndex + 1} dari {currentPhotoList.length} foto
+                        {selectedIndex + 1} {t('of', 'dari')} {currentPhotoList.length} {t('photos', 'foto')}
                       </span>
                     </div>
                   </div>
